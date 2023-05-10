@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- SQL문 정의할 때 VO표현을 간단하게 하고 싶은 경우. 
+     별명을 지어서 사용 -->
+   <typeAliases>
+      <typeAlias type="com.multi.liveAlone.MemberVO" alias="memberVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.bbsParty.BbsPartyVO" alias="bbsPartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.chatParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.voyage.RecommendVO" alias="recommendVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.voyage.VoyageVO" alias="voyageVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.food.FoodVO" alias="foodVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.sReview.SReviewVO" alias="sReviewVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.store.StoreVO" alias="storeVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
+   </typeAliases>
+   <mappers>
+   <!-- SQL문 정의하는 파일들의 목록을 지정. 테이블당 한개 사용 -->
+      <mapper resource="mapper/memberMapper.xml" />
+      <mapper resource="mapper/bbsPartyMapper.xml" />
+      <mapper resource="mapper/chatPartyMapper.xml" />
+      <mapper resource="mapper/recommendMapper.xml" />
+      <mapper resource="mapper/voyageMapper.xml" />
+      <mapper resource="mapper/foodMapper.xml" />
+      <mapper resource="mapper/sReviewMapper.xml" />
+      <mapper resource="mapper/storeMapper.xml" />
+      <mapper resource="mapper/bbsShareMapper.xml" />
+      <mapper resource="mapper/chatShareMapper.xml" />
+   </mappers>
+</configuration>

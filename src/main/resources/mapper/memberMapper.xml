@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<!-- insert, delete, update는 무조건 resultType="int"이므로
+		 프로그래머가 써주지 않아도 이미 resultType="int"가
+		 있는 것으로 본다.!
+	 -->
+	 
+	<insert id="create" parameterType="memberVO">
+		insert into member values (#{id}, #{pw}, #{name}, #{tel})
+	</insert>
+	
+	<delete id="del"  parameterType="memberVO"> <!-- 정석은 Type에 String으로 -->
+		delete from member where id = #{id}
+	</delete>
+	
+	<update id="up"  parameterType="memberVO">
+		update member set tel = #{tel} where id = #{id}
+	</update>
+	
+	<select id="one" parameterType="String" resultType="memberVO">
+		select * from member
+		where id = #{id}
+	</select>
+	
+	<!-- VO와 db table이 같을 때는 자동으로 컬럼명과 동일한 vo의 변수에 넣어줌.
+	
+		 VO와 db table이 다를 때는 수동으로
+		 어떤 컬럼명에서 꺼내서 VO의 변수에 넣어줄지 mapping을 해주어야 함.
+	-->
+	<!-- <resultMap type="memberVO" id="map1">
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="tel" column="contact"/>
+	</resultMap> -->
+	
+	<!-- row하나당 어떤 vo에 넣을지만 지정하면 my.selectList()를 호출한 경우에는
+		 myBatis가 list vo가 잔뜩 들어간 List로 만들어준다. -->
+	<select id="all" resultType="memberVO">
+		select *
+		from member
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
