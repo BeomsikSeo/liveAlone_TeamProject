@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>난 혼자 산다 _ 검색 페이지</h3>
-<form action=""><button></button></form>
+가게이름 : ${vo.store_name}
+설명 : ${vo.store_info}
+1인좌석 수 : ${vo.store_single}
 </body>
 </html>

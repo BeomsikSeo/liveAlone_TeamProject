@@ -2,8 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
 	
+	<insert id="create" parameterType="storeVO">
+		insert into store values
+		(null,
+		 #{store_name},
+		 #{store_addr}, 
+		 #{store_tel}, 
+		 #{store_info}, 
+		 #{store_single}, 
+		 #{store_img}, 
+		 #{store_day}, 
+		 #{store_open}, 
+		 #{store_closed}, 
+		 #{store_category})
+	</insert>
 
-	
+	<select id="all" resultType="storeVO">
+		select *
+		from store
+	</select>
 </mapper>
 
 
