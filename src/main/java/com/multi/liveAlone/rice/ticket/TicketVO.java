@@ -2,39 +2,31 @@ package com.multi.liveAlone.rice.ticket;
 
 public class TicketVO {
 
-	private String _id;
-	private int ticket_id;
-	private String ticket_userId;
-	private int ticket_storeId;
+	private int ticket_ID;
+	private String ticket_userID;
+	private int ticket_storeID;
 	private String ticket_start;
 	private String ticket_end;
-	private String ticket_order;
-	private int ticket_usePoint;
-	private int ticket_possible;
-	
-	public String get_id() {
-		return _id;
+	private int ticket_price;
+	private int ticket_usedMileage;
+	private int ticket_use;
+	public int getTicket_ID() {
+		return ticket_ID;
 	}
-	public void set_id(String _id) {
-		this._id = _id;
+	public void setTicket_ID(int ticket_ID) {
+		this.ticket_ID = ticket_ID;
 	}
-	public int getTicket_id() {
-		return ticket_id;
+	public String getTicket_userID() {
+		return ticket_userID;
 	}
-	public void setTicket_id(int ticket_id) {
-		this.ticket_id = ticket_id;
+	public void setTicket_userID(String ticket_userID) {
+		this.ticket_userID = ticket_userID;
 	}
-	public String getTicket_userId() {
-		return ticket_userId;
+	public int getTicket_storeID() {
+		return ticket_storeID;
 	}
-	public void setTicket_userId(String ticket_userId) {
-		this.ticket_userId = ticket_userId;
-	}
-	public int getTicket_storeId() {
-		return ticket_storeId;
-	}
-	public void setTicket_storeId(int ticket_storeId) {
-		this.ticket_storeId = ticket_storeId;
+	public void setTicket_storeID(int ticket_storeID) {
+		this.ticket_storeID = ticket_storeID;
 	}
 	public String getTicket_start() {
 		return ticket_start;
@@ -48,31 +40,37 @@ public class TicketVO {
 	public void setTicket_end(String ticket_end) {
 		this.ticket_end = ticket_end;
 	}
-	public String getTicket_order() {
-		return ticket_order;
+	public int getTicket_use() {
+		return ticket_use;
 	}
-	public void setTicket_order(String ticket_order) {
-		this.ticket_order = ticket_order;
+	public void setTicket_use(int ticket_use) {
+		this.ticket_use = ticket_use;
 	}
-	public int getTicket_usePoint() {
-		return ticket_usePoint;
+	public int getTicket_price() {
+		return ticket_price;
 	}
-	public void setTicket_usePoint(int ticket_usePoint) {
-		this.ticket_usePoint = ticket_usePoint;
+	public void setTicket_price(int ticket_price) {
+		this.ticket_price = ticket_price;
 	}
-	public int getTicket_possible() {
-		return ticket_possible;
+	public int getTicket_usedMileage() {
+		return ticket_usedMileage;
 	}
-	public void setTicket_possible(int ticket_possible) {
-		this.ticket_possible = ticket_possible;
+	public void setTicket_usedMileage(int ticket_usedMileage) {
+		this.ticket_usedMileage = ticket_usedMileage;
 	}
+	
 	
 	@Override
 	public String toString() {
-		return "TicketVO [_id=" + _id + ", ticket_id=" + ticket_id + ", ticket_userId=" + ticket_userId
-				+ ", ticket_storeId=" + ticket_storeId + ", ticket_start=" + ticket_start + ", ticket_end=" + ticket_end
-				+ ", ticket_order=" + ticket_order + ", ticket_usePoint=" + ticket_usePoint + ", ticket_possible="
-				+ ticket_possible + "]";
+		return "TicketVO [ticket_ID=" + ticket_ID + ", ticket_userID=" + ticket_userID + ", ticket_storeID="
+				+ ticket_storeID + ", ticket_start=" + ticket_start + ", ticket_end=" + ticket_end + ", ticket_price="
+				+ ticket_price + ", ticket_usedMileage=" + ticket_usedMileage + ", ticket_use=" + ticket_use + "]";
 	}
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ticket">
+	
+	<insert id="insertTicket" parameterType="ticketVO">
+		insert into ticket values (#{ticket_ID} ,#{ticket_userID}, #{ticket_storeID}, #{ticket_start}, #{ticket_end} ,#{ticket_price}, #{ticket_usedMileage}, #{ticket_use})
+	</insert>
+	
+	<select id="selectTicketOne" parameterType="TicketVO" resultType="TicketVO">
+		select * from ticket where ticket_userID = #{ticket_userID} and ticket_start = #{ticket_start}
+	</select>
+	
+	<select id="selectTicketAll" resultType="TicketVO">
+		select * from ticket where ticket_userID = #{userID}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
