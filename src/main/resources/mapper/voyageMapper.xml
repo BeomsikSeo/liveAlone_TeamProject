@@ -4,6 +4,36 @@
 	
 
 	
+	<delete id="del"  parameterType="String">
+		delete from recommend 
+		where id = #{id}
+	</delete>
+	
+	<update id="up"  parameterType="VoyageVO">resultType="VoyageVO"
+		update basket 
+		set name = #{name} 
+		where member_id = #{member_id}
+	</update>
+	<update id="updateBasket" parameterType="VoyageVO">
+    UPDATE basket
+    SET lat = #{lat},
+        longi = #{longi}
+    WHERE member_id = #{member_id}
+</update>
+	
+	<select id="one" parameterType="String"  resultType="VoyageVO">
+		select * 
+		from voyage
+		where name = #{name}
+	</select>
+	
+	<select id="all"  resultType="VoyageVO">
+		select *
+		from voyage
+	</select>
+	<select id="getRandomNames" resultType="String">
+    SELECT name FROM voyage ORDER BY RAND() LIMIT 5
+</select>
 </mapper>
 
 

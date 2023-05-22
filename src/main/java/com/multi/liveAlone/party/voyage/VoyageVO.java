@@ -8,7 +8,14 @@ public class VoyageVO {
 	private String tag1;
 	private String tag2;
 	private String tag3;
-	
+	private String info;
+	private String member_id;
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -51,11 +58,16 @@ public class VoyageVO {
 	public void setTag3(String tag3) {
 		this.tag3 = tag3;
 	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
+	}
 	@Override
 	public String toString() {
 		return "VoyageVO [name=" + name + ", region=" + region + ", longi=" + longi + ", lat=" + lat + ", tag1=" + tag1
-				+ ", tag2=" + tag2 + ", tag3=" + tag3 + "]";
+				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", info=" + info + ", member_id=" + member_id + "]";
 	}
 	
-
 }
