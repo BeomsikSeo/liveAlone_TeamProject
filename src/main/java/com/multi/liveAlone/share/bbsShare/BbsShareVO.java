@@ -3,91 +3,83 @@ package com.multi.liveAlone.share.bbsShare;
 import java.util.Date;
 
 public class BbsShareVO {
-	private int bbsShare;
+	private int bbsShareNo;
 	private boolean bbsShareRequest;
 	private String bbsShareTitle;
 	private String bbsShareContent;
 	private String bbsShareWriter;
-	private Date bbsShareDate;
+	private String bbsShareDate;
 	private String bbsShareCategory;
 	private int bbsShareView;
 	private int bbsShareInterest;
 	private boolean bbsShareSuccess;
 	private String bbsShareImage;
-	public int getBbsShare() {
-		return bbsShare;
+	
+	public int getBbsShareNo() {
+		return bbsShareNo;
 	}
-	public void setBbsShare(int bbsShare) {
-		this.bbsShare = bbsShare;
+	public void setBbsShareNo(int bbsShareNo) {
+		this.bbsShareNo = bbsShareNo;
 	}
-	public boolean isBbsShareRequest() {
+	public boolean isBbssharerequest() {
 		return bbsShareRequest;
 	}
 	public void setBbsShareRequest(boolean bbsShareRequest) {
 		this.bbsShareRequest = bbsShareRequest;
 	}
-	public String getBbsShareTitle() {
+	public String getBbssharetitle() {
 		return bbsShareTitle;
 	}
 	public void setBbsShareTitle(String bbsShareTitle) {
 		this.bbsShareTitle = bbsShareTitle;
 	}
-	public String getBbsShareContent() {
+	public String getBbssharecontent() {
 		return bbsShareContent;
 	}
 	public void setBbsShareContent(String bbsShareContent) {
 		this.bbsShareContent = bbsShareContent;
 	}
-	public String getBbsShareWriter() {
+	public String getBbssharewriter() {
 		return bbsShareWriter;
 	}
 	public void setBbsShareWriter(String bbsShareWriter) {
 		this.bbsShareWriter = bbsShareWriter;
 	}
-	public Date getBbsShareDate() {
+	public String getBbssharedate() {
 		return bbsShareDate;
 	}
-	public void setBbsShareDate(Date bbsShareDate) {
+	public void setBbsShareDate(String bbsShareDate) {
 		this.bbsShareDate = bbsShareDate;
 	}
-	public String getBbsShareCategory() {
+	public String getBbssharecategory() {
 		return bbsShareCategory;
 	}
 	public void setBbsShareCategory(String bbsShareCategory) {
 		this.bbsShareCategory = bbsShareCategory;
 	}
-	public int getBbsShareView() {
+	public int getBbsshareview() {
 		return bbsShareView;
 	}
 	public void setBbsShareView(int bbsShareView) {
 		this.bbsShareView = bbsShareView;
 	}
-	public int getBbsShareInterest() {
+	public int getBbsshareinterest() {
 		return bbsShareInterest;
 	}
 	public void setBbsShareInterest(int bbsShareInterest) {
 		this.bbsShareInterest = bbsShareInterest;
 	}
-	public boolean isBbsShareSuccess() {
+	public boolean isBbssharesuccess() {
 		return bbsShareSuccess;
 	}
 	public void setBbsShareSuccess(boolean bbsShareSuccess) {
 		this.bbsShareSuccess = bbsShareSuccess;
 	}
-	public String getBbsShareImage() {
+	public String getBbsshareimage() {
 		return bbsShareImage;
 	}
 	public void setBbsShareImage(String bbsShareImage) {
 		this.bbsShareImage = bbsShareImage;
-	}
-	
-	@Override
-	public String toString() {
-		return "BbsShareVO [bbsShare=" + bbsShare + ", bbsShareRequest=" + bbsShareRequest + ", bbsShareTitle="
-				+ bbsShareTitle + ", bbsShareContent=" + bbsShareContent + ", bbsShareWriter=" + bbsShareWriter
-				+ ", bbsShareDate=" + bbsShareDate + ", bbsShareCategory=" + bbsShareCategory + ", bbsShareView="
-				+ bbsShareView + ", bbsShareInterest=" + bbsShareInterest + ", bbsShareSuccess=" + bbsShareSuccess
-				+ ", bbsShareImage=" + bbsShareImage + "]";
 	}
 	
 	

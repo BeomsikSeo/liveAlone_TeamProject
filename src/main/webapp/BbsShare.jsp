@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h3>검색</h3>
+<a href="list">게시물 리스트</a>
+<hr>
+
+<form action="one" method="get">
+	id : <input name="id" value="apple"><br>
+	<button type="submit">단일 검색</button>
+</form>
+<hr>
+
+<h3>게시물 작성</h3>
+<form action="insert" method="get">
+	title : <input name="title" value="title"><br>
+	content : <input name="content" value="content"><br>
+	category : <input name="category" value="11010"><br>
+	request : <input name="request" value="0"><br>
+	image : <input name="image" value="image01.jpg"><br>
+	<button type="submit">insert</button>
+</form>
+<hr>
+
+<h3>게시물 수정</h3>
+<form action="update" method="get">
+	title : <input name="title" value="title"><br>
+	content : <input name="content" value="content"><br>
+	category : <input name="category" value="11010"><br>
+	image : <input name="image" value="image01.jpg"><br>
+	<button type="submit">서버로 전송</button>
+</form>
+<hr>
+
+<h3>게시물 삭제</h3>
+<form action="delete" method="get">
+	id : <input name="id" value="apple"><br>
+	<button type="submit">서버로 전송</button>
+</form>
+<hr>
+
+</body>
+</html>

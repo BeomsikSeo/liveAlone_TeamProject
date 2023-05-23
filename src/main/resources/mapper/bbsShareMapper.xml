@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bbsShare">
+<mapper namespace="bbsshare">
 	
-
+	<insert id="create" parameterType="BbsShareVO">
+		insert into bbsshare values (NULL, #{bbsShareRequest}, #{bbsShareTitle}, #{bbsShareContent}, #{bbsShareWriter}, #{bbsShareDate}, #{bbsShareCategory}, #{bbsShareView}
+		, #{bbsShareInterest}, #{bbsShareSuccess}, #{bbsShareImage})
+	</insert>
+	
+	<delete id="del"  parameterType="BbsShareVO">
+		delete from bbsshare where bbsshareno = #{bbsshareno}
+	</delete>
+	
+	<update id="uprequest"  parameterType="BbsShareVO">
+		update bbsshare set bbssharerequest = #{bbssharerequest} where bbsshareno = #{bbsshareno}
+	</update>
+	
+	<update id="upcontent"  parameterType="BbsShareVO">
+		update bbsshare set tel = #{tel} where id = #{id}
+	</update>
+	
+	
+	
+	<select id="one" parameterType="String" resultType="BbsShareVO">
+		select * from bbsshare where id = #{bbsshareno}
+	</select>
+	
+	<select id="all" resultType="BbsShareVO">
+		select * from bbsshare
+	</select>
 	
 </mapper>
-
-
-
-
-
 
 
 
