@@ -8,7 +8,7 @@
 	</insert>
 	
 	<delete id="del"  parameterType="BbsShareVO">
-		delete from bbsshare where bbsshareno = #{bbsshareno}
+		delete from bbsshare where bbsshareno = #{bbsShareNo}
 	</delete>
 	
 	<update id="uprequest"  parameterType="BbsShareVO">
@@ -22,7 +22,7 @@
 	
 	
 	<select id="one" parameterType="String" resultType="BbsShareVO">
-		select * from bbsshare where id = #{bbsshareno}
+		select * from bbsshare where bbsshareno = #{bbsShareNo}
 	</select>
 	
 	<select id="all" resultType="BbsShareVO">

@@ -20,21 +20,21 @@
 
 <h3>게시물 작성</h3>
 <form action="insert" method="get">
-	title : <input name="title" value="title"><br>
-	content : <input name="content" value="content"><br>
-	category : <input name="category" value="11010"><br>
-	request : <input name="request" value="0"><br>
-	image : <input name="image" value="image01.jpg"><br>
+	title : <input name="bbsShareTitle" value="title"><br>
+	content : <input name="bbsShareContent" value="content"><br>
+	category : <input name="bbsShareCategory" value="11010"><br>
+	request : <input name="bbsShareRequest" value="0"><br>
+	image : <input name="bbsShareImage" value="image01.jpg"><br>
 	<button type="submit">insert</button>
 </form>
 <hr>
 
 <h3>게시물 수정</h3>
 <form action="update" method="get">
-	title : <input name="title" value="title"><br>
-	content : <input name="content" value="content"><br>
-	category : <input name="category" value="11010"><br>
-	image : <input name="image" value="image01.jpg"><br>
+	title : <input name="bbsShareTitle" value="title"><br>
+	content : <input name="bbsShareContent" value="content"><br>
+	category : <input name="bbsShareCategory" value="11010"><br>
+	image : <input name="bbsShareImage" value="image01.jpg"><br>
 	<button type="submit">서버로 전송</button>
 </form>
 <hr>

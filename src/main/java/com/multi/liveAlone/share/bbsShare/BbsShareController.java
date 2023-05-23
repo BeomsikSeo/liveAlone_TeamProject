@@ -32,10 +32,8 @@ public class BbsShareController {
 		bag.setBbsShareInterest(0);
 		bag.setBbsShareSuccess(false);
 		
-		
-		System.out.println(bag);
-		System.out.println(dao);
 		dao.insert(bag);
+		
 
 	}
 
@@ -62,8 +60,8 @@ public class BbsShareController {
 
 	@RequestMapping("list")
 	public void list(Model model) {
-		List<BbsShareVO> list = dao.list();
 		System.out.println("list요청됨.");
+		List<BbsShareVO> list = dao.list();
 		model.addAttribute("list", list);
 
 	}

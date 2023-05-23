@@ -7,10 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-검색 완료
-id : ${bag.id}<br> <!-- expression language = EL -->
-pw : ${bag.pw}<br>
-name : ${bag.name}<br>
-tel : ${bag.tel}<br>
+no : ${bag.bbsShareNo}<br>
+request : ${bag.bbsShareRequest}<br>
+title : ${bag.bbsShareTitle}<br>
+content : ${bag.bbsShareContent}<br>
+writer : ${bag.bbsShareWriter}<br>
+date : ${bag.bbsShareDate}<br>
+category : ${bag.bbsShareCategory}<br>
+view : ${bag.bbsShareView}<br>
+interest : ${bag.bbsShareInterest}<br>
+success : ${bag.bbsShareSuccess}<br>
+image : ${bag.bbsShareImage}<br>
 </body>
 </html>

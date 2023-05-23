@@ -9,10 +9,18 @@
 </head>
 <body>
 <c:forEach items="${list}" var="vo">
-${vo.id}
-${vo.pw}
-${vo.name}
-${vo.tel}
+${vo.bbsShareNo}
+${vo.bbsShareRequest}
+${vo.bbsShareTitle}
+${vo.bbsShareContent}
+${vo.bbsShareWriter}
+${vo.bbsShareDate}
+${vo.bbsShareCategory}
+${vo.bbsShareView}
+${vo.bbsShareInterest}
+${vo.bbsShareSuccess}
+${vo.bbsShareImage}
+<br>
 </c:forEach>
 </body>
 </html>
