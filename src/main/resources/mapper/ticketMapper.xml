@@ -6,12 +6,16 @@
 		insert into ticket values (#{ticket_ID} ,#{ticket_userID}, #{ticket_storeID}, #{ticket_start}, #{ticket_end} ,#{ticket_price}, #{ticket_usedMileage}, #{ticket_use})
 	</insert>
 	
-	<select id="selectTicketOne" parameterType="TicketVO" resultType="TicketVO">
+	<select id="selectTicketOne" parameterType="ticketVO" resultType="ticketVO">
 		select * from ticket where ticket_userID = #{ticket_userID} and ticket_start = #{ticket_start}
 	</select>
 	
-	<select id="selectTicketAll" resultType="TicketVO">
+	<select id="selectTicketAll" resultType="ticketVO">
 		select * from ticket where ticket_userID = #{userID}
+	</select>
+	
+	<select id="selectTicketPage" parameterType="ticketVOInfo" resultType="ticketVOPage" >
+		select * from (select ROW_NUMBER() over(order by ticket_start desc) as ticket_no, t.* from ticket t) ticket_sorted where ticket_sorted.ticket_no between #{start_ticketVO} and #{end_ticketVO}
 	</select>
 </mapper>
 

@@ -12,14 +12,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import com.multi.liveAlone.rice.order.KakaoPayApprovalVO;
-import com.multi.liveAlone.rice.order.KakaoPayReadyVO;
 import com.multi.liveAlone.rice.ticket.TicketVO;
-
-import lombok.extern.java.Log;
  
 @Service
-@Log
 public class KakaoPay {
  
     private static final String HOST = "https://kapi.kakao.com";

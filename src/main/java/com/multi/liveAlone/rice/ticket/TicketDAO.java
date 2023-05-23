@@ -31,4 +31,12 @@ public class TicketDAO {
 		return resultTicketVOList;
 	}
 
+	// 페이징 된 티켓의 정보를 가지고 옵니다.
+	public List<TicketVOPage> selectTicketPage(TicketVOInfo page) {
+		return my.selectList("ticket.selectTicketPage", page);
+		
+	}
+
+	
+
 }

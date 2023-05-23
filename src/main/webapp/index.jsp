@@ -12,8 +12,8 @@
 <body>
 	Index Page
 	<hr>
-	<a href="rice/order/orderMenu">이동</a>
+	<a href="rice/order/menuOrder">주문 페이지</a> <br>
 	
-	<a href="rice/ticket/userTicket">보유 티켓 확인</a>
+	<a href="rice/ticket/userTicket">사용자 티켓 확인 페이지</a>
 </body>
 </html>

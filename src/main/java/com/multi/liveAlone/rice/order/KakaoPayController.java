@@ -15,14 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.multi.liveAlone.rice.store.StoreDAO;
 import com.multi.liveAlone.rice.store.StoreVO;
 import com.multi.liveAlone.rice.ticket.TicketDAO;
 import com.multi.liveAlone.rice.ticket.TicketVO;
 
 import lombok.Setter;
-import lombok.extern.java.Log;
  
-@Log
 @Controller
 public class KakaoPayController {
 	
@@ -33,11 +32,15 @@ public class KakaoPayController {
 	@Autowired
 	TicketDAO ticketDAO; 
 	
+	@Autowired
+	StoreDAO storeDAO;
+	
+	
 	@Setter(onMethod_ = @Autowired)
     private KakaoPay kakaopay;
 
-	private OrderVOList resultOrderList = null; // 최종 주문 리스트를 출력
-	private TicketVO resultTicket = null;		// 최종 티켓 
+	private OrderVOList resultOrderList = null; 
+	private TicketVO resultTicket = null;		
 	private StoreVO resultStore;
 	
     @GetMapping("/kakaoPay")
@@ -64,6 +67,7 @@ public class KakaoPayController {
     public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, HttpSession session) {
     	 System.out.println("결제 완료");
     	 
+    	 // 티켓 발급 처리
     	 // 멤버 아이디
     	 String memberID = (String)session.getAttribute("memberID");
     	 resultTicket.setTicket_userID(memberID);;
@@ -84,55 +88,47 @@ public class KakaoPayController {
     	 ticketDAO.insertTicket(resultTicket);
     	 
     	 
+    	 // 주문 내역 처리
     	 // Insert한 티켓을 다시 select
     	 TicketVO resultTicketOne = ticketDAO.selectTicketOne(resultTicket);
     	 
+    	 StoreVO store = storeDAO.selectOne(resultTicket.getTicket_storeID());
     	 
     	 // OrderVOList를 List로 따로 정렬합니다.
     	 List<OrderVO> orderList = new ArrayList<OrderVO>();
  			for(int i = 0; i < resultOrderList.getList().size(); i++) {
+ 				// orderList에 resultOrderList의 orderVO을 하나씩 넣습니다
  				orderList.add( resultOrderList.getList().get(i) );
+ 				
+ 				
+ 				// orderList의 orderVO.ticket_ID 값을 초기화합니다.
+ 				orderList.get(i).setTicket_ID(resultTicketOne.getTicket_ID());
  			}
     	 
-    	 // 다시 Select한 티켓에 할당된 티켓 번호를 활용해
-    	 // 주문 DB에 주문 내역을 집어 넣습니다.
-    	 orderDAO.insertOrder(orderList, resultTicketOne.getTicket_ID());
     	 
+ 		// 주문 내역을 Order DB에 넣습니다.
+    	 orderDAO.insertOrder(orderList);
+    	 
+    	 // 주문 정보 , 가게 정보, 티켓 정보를 넘깁니다.
     	 model.addAttribute("orderList", orderList);
-    	 model.addAttribute("ticket",resultTicket);
-    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));	
+    	 model.addAttribute("store", store);
+    	 model.addAttribute("ticket", resultTicket);
+    	 
     }
     
     // 결제 취소시 이쪽으로 이동
     @GetMapping("/rice/order/kakaoPayCancel")
     public void kakaoPayCancel(@RequestParam("pg_token") String pg_token, Model model) {
-    	 System.out.println("결제 완료");
+    	 System.out.println("결제 취소");
     	 
     	 
-    	 
-    	 // 티켓 정보와 주문 정보를 DB에 저장해야함
-    	 // 1. 티켓 정보 저장
-    	 // 2. 주문 정보 저장
-    	 
-    	 model.addAttribute("orderList", resultOrderList);
-    	 model.addAttribute("ticket",resultTicket);
-    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));	
     }
     
     // 결재 실패시 이쪽으로 이동
     @GetMapping("/rice/order/kakaoPaySuccessFail")
     public void kakaoPaySuccessFail(@RequestParam("pg_token") String pg_token, Model model) {
-    	 System.out.println("결제 완료");
+    	 System.out.println("결제 실패");
     	 
     	 
-    	 
-    	 // 티켓 정보와 주문 정보를 DB에 저장해야함
-    	 // 1. 티켓 정보 저장
-    	 // 2. 주문 정보 저장
-    	 
-    	 
-    	 model.addAttribute("orderList", resultOrderList);
-    	 model.addAttribute("ticket",resultTicket);
-    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));	
     }
 }

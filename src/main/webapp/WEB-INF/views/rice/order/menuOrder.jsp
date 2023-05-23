@@ -9,20 +9,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	$(function() {
-<%-- 
-		선택한 가게가 제공하는 메뉴들을 보여줍니다.
-		추후 팀원과 기능 결합시 조율
-		 --%>
-	$.ajax({
-			url : "orderMenu",
-			success : function(result) {
-				$("#result").append(result)
-			}
-		})
-<%--
+	<%--
 		count_button 클래스에 있는 버튼을 누르면
 		count_button 형제 요소인  menu_count 요소를 증가/감소 합니다.
-		--%>
+	--%>
 	$('.count_button').click(function() {
 			let num = $(this).val()
 
@@ -38,7 +28,6 @@
 
 			$(this).siblings('.menu-counter').val(count);
 		})
-
 	})
 </script>
 
@@ -86,7 +75,7 @@
 </head>
 <body>
 	<div class = "order-menu" >
-		<form action="payMenu">
+		<form action="menuPay" method="post">
 			<div class = "order-menu-info" id="store-info">
 				<%-- 가게 정보를 표시하는 곳 입니다. --%>
 				<input type="text" name="store_name" value="${store.store_name }" style="font-size: large;">
