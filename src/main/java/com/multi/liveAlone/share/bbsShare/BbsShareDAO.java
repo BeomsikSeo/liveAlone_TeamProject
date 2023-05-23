@@ -39,4 +39,9 @@ public class BbsShareDAO {
 		System.out.println(list.size());
 		return list;
 	}
+	
+	public int success() {
+		int result = my.update("bbsshare.upsuccess", bag);
+		return result;
+	}
 }

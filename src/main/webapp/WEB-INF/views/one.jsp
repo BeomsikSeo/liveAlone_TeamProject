@@ -16,7 +16,7 @@ date : ${bag.bbsShareDate}<br>
 category : ${bag.bbsShareCategory}<br>
 view : ${bag.bbsShareView}<br>
 interest : ${bag.bbsShareInterest}<br>
-success : ${bag.bbsShareSuccess}<br>
+success : ${bag.bbsShareSuccess}<a href="success"><button>완료(1)</button></a><br>
 image : ${bag.bbsShareImage}<br>
 </body>
 </html>

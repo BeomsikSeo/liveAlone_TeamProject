@@ -63,7 +63,12 @@ public class BbsShareController {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list();
 		model.addAttribute("list", list);
-
+	}
+	
+	@RequestMapping("success")
+	public void success() {
+		System.out.println("success요청됨.");
+		
 	}
 
 }

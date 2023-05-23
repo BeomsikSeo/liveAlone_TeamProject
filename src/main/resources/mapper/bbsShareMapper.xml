@@ -7,16 +7,32 @@
 		, #{bbsShareInterest}, #{bbsShareSuccess}, #{bbsShareImage})
 	</insert>
 	
+	
+	
 	<delete id="del"  parameterType="BbsShareVO">
 		delete from bbsshare where bbsshareno = #{bbsShareNo}
 	</delete>
 	
+	
+	
 	<update id="uprequest"  parameterType="BbsShareVO">
-		update bbsshare set bbssharerequest = #{bbssharerequest} where bbsshareno = #{bbsshareno}
+		update bbsshare set bbssharerequest = #{bbsShareRequest} where bbsshareno = #{bbsShareNo}
 	</update>
 	
 	<update id="upcontent"  parameterType="BbsShareVO">
-		update bbsshare set tel = #{tel} where id = #{id}
+		update bbsshare set bbssharetitle = #{bbsShareTitle}, bbssharecontent = #{bbsShareContent}, bbssharecategory = #{bbsShareCategory}, bbsshareimage = #{bbsShareImage} where bbsshareno = #{bbsShareNo}
+	</update>
+	
+	<update id="upview"  parameterType="BbsShareVO">
+		update bbsshare set bbsshareview = #{bbsShareView}+1 where bbsshareno = #{bbsShareNo}
+	</update>
+	
+	<update id="upinterest"  parameterType="BbsShareVO">
+		update bbsshare set bbsshareinterest = #{bbsShareInterest}+1 where bbsshareno = #{bbsShareNo}
+	</update>
+	
+	<update id="upsuccess"  parameterType="BbsShareVO">
+		update bbsshare set bbssharesuccess = 1 where bbsshareno = #{bbsShareNo}
 	</update>
 	
 	
