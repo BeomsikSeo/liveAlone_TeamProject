@@ -22,4 +22,14 @@ public class StoreDAO {
 		System.out.println(list.size());
 		return list;
 	}
+	
+	public StoreVO listMax() {
+		StoreVO vo = my.selectOne("store.max");
+		return vo;
+	}
+	
+	public StoreVO one(int store_no) {
+		StoreVO vo = my.selectOne("store.one", store_no);
+		return vo;
+	}
 }

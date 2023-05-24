@@ -8,6 +8,7 @@
 </head>
 <body>
 <h3>난 혼자 산다</h3>
+<form action="main.jsp"><button>메인으로</button></form>
 <hr color="blue">
 <form action="insert" method="get">
 가게 이름 : <input name="store_name"> <br>
