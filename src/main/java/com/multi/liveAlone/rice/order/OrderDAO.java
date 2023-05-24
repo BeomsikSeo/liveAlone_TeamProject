@@ -20,5 +20,11 @@ public class OrderDAO {
 			my.insert("order.insertOrder", list.get(i));
 		}
 	}
+
+
+	public List<OrderVO> selectOrderList(int ticket_ID) {
+		return my.selectList("order.selectOrderList", ticket_ID);
+	}
+	
 	
 }

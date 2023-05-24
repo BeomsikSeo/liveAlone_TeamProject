@@ -18,12 +18,23 @@ public class TicketDAO {
 		my.insert("ticket.insertTicket", ticket);
 	}
 	
-	// 티켓 정보를 하나 가지고 옵니다.
+	
+	
+	
+	// 티켓 정보 전체를 이용해 티켓 정보를 하나 가지고 옵니다.
 	public TicketVO selectTicketOne(TicketVO ticket) {
-		TicketVO resultTicketVO = my.selectOne("ticket.selectTicketOne", ticket);
+		TicketVO resultTicketVO = my.selectOne("ticket.selectTicketOne-Ticket", ticket);
 		return resultTicketVO;
 	}
+	
+	// 티켓 아이디를 이용해 티켓 정보 하나를 가지고 옵니다.
+	public TicketVO selectTicketOne(int ticket_ID) {
+		return my.selectOne("ticket.selectTicketOne-ID",ticket_ID);
+	}
 
+	
+	
+	
 	// 사용자의 티켓 리스트를 가지고 옵니다.
 	public List<TicketVO> selectTicketAll(String userID) {
 		List<TicketVO> resultTicketVOList = my.selectList("ticket.selectTicketAll", userID);
@@ -36,6 +47,8 @@ public class TicketDAO {
 		return my.selectList("ticket.selectTicketPage", page);
 		
 	}
+
+	
 
 	
 

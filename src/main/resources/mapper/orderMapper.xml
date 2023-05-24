@@ -3,10 +3,14 @@
 <mapper namespace="order">
 	
 	
-	<insert id="insertOrder" parameterType="OrderVO">
+	<insert id="insertOrder" parameterType="orderVO">
 		insert into orderDB values (#{order_ID}, #{ticket_ID}, #{order_fName}, #{order_fPrice}, #{order_fCount})
 	</insert>
 	
+	
+	<select id="selectOrderList" resultType="orderVO">
+		select * from orderDB where ticket_ID = #{ticket_ID}
+	</select>
 </mapper>
 
 

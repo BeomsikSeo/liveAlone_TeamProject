@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
 	
-	<select id="selectOne" resultType="StoreVO">
+	<select id="selectOne" resultType="storeVO">
+		select * from store where store_no = #{ticket_storeID}
+	</select>
+	
+	<select id="selectOne-page" parameterType="ticketVOPage" resultType="storeVO"> 
 		select * from store where store_no = #{ticket_storeID}
 	</select>
 	

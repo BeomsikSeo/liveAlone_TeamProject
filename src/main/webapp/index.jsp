@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% session.setAttribute("memberID", "userA"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,11 @@
 </script>
 </head>
 <body>
-	Index Page
-	<hr>
-	<a href="rice/order/menuOrder">주문 페이지</a> <br>
-	
+	<h3>Index Page</h3>
 	<a href="rice/ticket/userTicket">사용자 티켓 확인 페이지</a>
+	<hr>
+	<a href="rice/order/menuOrder?storeNo=1">맘스날드 주문</a> <br>
+	<a href="rice/order/menuOrder?storeNo=2">LFC 주문</a> <br>
+	
 </body>
 </html>

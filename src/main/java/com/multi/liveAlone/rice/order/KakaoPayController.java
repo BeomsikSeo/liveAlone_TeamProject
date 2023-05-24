@@ -82,7 +82,7 @@ public class KakaoPayController {
     	 resultTicket.setTicket_end(" ");
     	 
     	 // 티켓 사용 여부 초기화 (0 : 미사용, 1 : 사용, 2 : 환불)
-    	 resultTicket.setTicket_use(0);
+    	 resultTicket.setTicket_use("미사용");
     	 	
     	 // 티켓 Insert
     	 ticketDAO.insertTicket(resultTicket);

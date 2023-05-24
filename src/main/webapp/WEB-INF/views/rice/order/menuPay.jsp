@@ -82,8 +82,8 @@
 			<table class="info-table">
 				<tr>
 					<td class="order-info">상품 명</td>
-					<td class="order-info">상품 개수</td>
 					<td class="order-info">상품 가격(개별)</td>
+					<td class="order-info">상품 개수</td>
 				</tr>
 				<c:forEach items="${orderList }" var="order">
 					<tr>

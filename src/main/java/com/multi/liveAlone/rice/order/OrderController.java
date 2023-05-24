@@ -36,7 +36,7 @@ public class OrderController {
 	
 	// 음식점의 메뉴를 보여줍니다.
 	@RequestMapping("menuOrder")
-	public void menuOrder(HttpSession session,Model model /*, StoreVO store*/) {
+	public void menuOrder(HttpSession session,Model model , int storeNo) {
 		/*
 		 * List<FoodVO> foodList = foodDAO.selectAll(store.getStore_no());
 		 * StroreVO store2 = storeDAO.selectOne(store.getStore_no();
@@ -44,12 +44,12 @@ public class OrderController {
 		
 		
 		// 임의의 데이터 시작
-		session.setAttribute("memberID", "userA");
-		
-		StoreVO store = new StoreVO();
-		store.setStore_no(1);
-		store.setStore_name("맘스날드");
-		store.setStore_addr("강남구");
+		String memberID = (String)session.getAttribute("memberID");
+		System.out.println(memberID);
+
+		session.setAttribute("memberID", memberID);
+
+		StoreVO store = storeDAO.selectOne(storeNo);
 		
 		List<FoodVO> foodList = foodDAO.showMenu(store.getStore_no());
 		// 여기까지가 임의의 데이터 입니다.
@@ -75,7 +75,7 @@ public class OrderController {
 		// 마일리지 정보를 갖고오기 위해  사용자의 정보를 가지고 옵니다.
 		String memberID = (String)session.getAttribute("memberID");
 		MemberVO member = memberDAO.selectOne(memberID);
-		
+		store = storeDAO.selectOne(store.getStore_no());
 		
 		// 사용자가 선택한 가게에서 선택한 메뉴의 종류와 수량을 선별합니다.
 		List<OrderVO> orderList = new ArrayList<OrderVO>();

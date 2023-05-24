@@ -9,7 +9,7 @@ public class TicketVO {
 	private String ticket_end;
 	private int ticket_price;
 	private int ticket_usedMileage;
-	private int ticket_use;
+	private String ticket_use;
 	public int getTicket_ID() {
 		return ticket_ID;
 	}
@@ -40,10 +40,10 @@ public class TicketVO {
 	public void setTicket_end(String ticket_end) {
 		this.ticket_end = ticket_end;
 	}
-	public int getTicket_use() {
+	public String getTicket_use() {
 		return ticket_use;
 	}
-	public void setTicket_use(int ticket_use) {
+	public void setTicket_use(String ticket_use) {
 		this.ticket_use = ticket_use;
 	}
 	public int getTicket_price() {
