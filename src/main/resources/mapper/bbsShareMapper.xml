@@ -45,6 +45,11 @@
 		select * from bbsshare
 	</select>
 	
+	<select id="allcertification" resultType="BbsShareVO">
+		SELECT A.* FROM bbsshare as A LEFT JOIN member as B ON A.bbssharewriter= B.member_id WHERE B.address=  (select address from member where member_id = 'writer1')
+		<!-- writer1대신 사용자 세션의 아이디 사용 -->
+	</select>
+	
 </mapper>
 
 
