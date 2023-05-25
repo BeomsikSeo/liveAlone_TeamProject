@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>지역 인증</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
 	<p style="margin-top: -5px">
@@ -115,9 +116,23 @@
 			if (x2!==y) {
 				document.getElementById("result").innerText = "인증 불가"
 			}
-			
+			$.ajax({
+				anyne:true,
+				type:'POST',
+				data: "user01",
+				url:"/certi",
+				dataType: "text",
+				success : function(data) {	
+					alert("지역 인증이 완료되었습니다.");
+					location.href="/BbsShare";
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					alert("ERROR : " + textStatus + " : " + errorThrown);
+				}
+			});
 		    }  
-	    
+		
+		
 	</script>
 	접속자 인식 위치 : <span id="geo_lat"></span> , <span id="geo_lon"></span> (<span id="now_address"></span>)<br>
 	접속자 등록 위치 : <span id="mem_address"></span> <br>

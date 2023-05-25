@@ -44,5 +44,7 @@ public class BbsShareDAO {
 		int result = my.update("bbsshare.upsuccess", Integer.parseInt(bbsShareNo));
 		return result;
 	}
+	
+	
 
 }
