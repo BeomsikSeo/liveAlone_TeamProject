@@ -45,16 +45,15 @@ public class BbsShareController {
 	}
 
 	@RequestMapping("delete")
-	public void delete(String id) {
+	public void delete(String bbsShareNo) {
 		System.out.println("delete 요청됨");
-		dao.delete(id);
+		dao.delete(bbsShareNo);
 	}
 
 	@RequestMapping("one")
-	public void one(String id, Model model) {
+	public void one(String bbsShareNo, Model model) {
 		System.out.println("one요청됨.");
-		System.out.println(id);
-		BbsShareVO bag = dao.one(id);
+		BbsShareVO bag = dao.one(bbsShareNo);
 		model.addAttribute("bag", bag);
 	}
 
@@ -66,9 +65,10 @@ public class BbsShareController {
 	}
 	
 	@RequestMapping("success")
-	public void success() {
+	public void success(String bbsShareNo, Model model) {
 		System.out.println("success요청됨.");
-		
+		dao.success(bbsShareNo);
+		model.addAttribute("bbsShareNo", bbsShareNo);
 	}
 
 }

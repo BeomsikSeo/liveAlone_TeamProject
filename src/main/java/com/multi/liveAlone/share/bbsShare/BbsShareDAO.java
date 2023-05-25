@@ -19,8 +19,8 @@ public class BbsShareDAO {
 		return result;
 	}
 
-	public int delete(String id) {
-		int result = my.delete("bbsshare.del", id);
+	public int delete(String bbsShareNo) {
+		int result = my.delete("bbsshare.del", Integer.parseInt(bbsShareNo));
 		return result;
 	}
 
@@ -29,8 +29,8 @@ public class BbsShareDAO {
 		return result;
 	}
 
-	public BbsShareVO one(String id) {
-		bag = my.selectOne("bbsshare.one", id);
+	public BbsShareVO one(String bbsShareNo) {
+		bag = my.selectOne("bbsshare.one", bbsShareNo);
 		return bag;
 	}
 
@@ -40,8 +40,9 @@ public class BbsShareDAO {
 		return list;
 	}
 	
-	public int success() {
-		int result = my.update("bbsshare.upsuccess", bag);
+	public int success(String bbsShareNo) {
+		int result = my.update("bbsshare.upsuccess", Integer.parseInt(bbsShareNo));
 		return result;
 	}
+
 }

@@ -13,7 +13,7 @@
 <hr>
 
 <form action="one" method="get">
-	id : <input name="id" value="apple"><br>
+	bbsShareNo : <input name="bbsShareNo" value="1"><br>
 	<button type="submit">단일 검색</button>
 </form>
 <hr>
@@ -41,7 +41,7 @@
 
 <h3>게시물 삭제</h3>
 <form action="delete" method="get">
-	id : <input name="id" value="apple"><br>
+	bbsShareNo : <input name="bbsShareNo"><br>
 	<button type="submit">서버로 전송</button>
 </form>
 <hr>
