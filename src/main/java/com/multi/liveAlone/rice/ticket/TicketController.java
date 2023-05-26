@@ -1,6 +1,8 @@
 package com.multi.liveAlone.rice.ticket;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -60,6 +62,14 @@ public class TicketController {
 		String memberID = (String)session.getAttribute("memberID");
 		TicketVO ticket = ticketDAO.selectTicketOne(ticket_ID);
 		
+		// 가지고온 티켓이 존재하지 않은 티켓일 경우 이동하지 않고 티켓 리스트로 이동
+		if(ticket == null) {
+			return "redirect:userTicket";
+		}
+		
+		
+		// 가지고온 티켓에 적힌 아이디와 현재 로그인한 사용자가 다를 경우
+		// 티켓 리스트로 강제 이동합니다.
 		if(ticket.getTicket_userID().equals(memberID)) {
 			List<OrderVO> orderList = orderDAO.selectOrderList(ticket.getTicket_ID());
 			StoreVO store = storeDAO.selectOne(ticket.getTicket_storeID());
@@ -72,6 +82,62 @@ public class TicketController {
 			return "redirect:userTicket"; 
 		}
 	} 
+	
+	// 사용자의 티켓을 업데이트 합니다.
+	@RequestMapping("userTicketUpdate")
+	public String userTicketUpdate(HttpSession session,Model model, int ticket_ID, int update) {
+		
+		String memberID = (String)session.getAttribute("memberID");
+		TicketVO ticket = ticketDAO.selectTicketOne(ticket_ID);
+		
+		if(ticket == null) {
+			System.out.println("1번째");
+			return "redirect:userTicket";
+		}
+		
+		if(!(ticket.getTicket_userID().equals(memberID))) {
+			System.out.println("2번째");
+			return "redirect:userTicket";
+		}
+		
+		String updateStr = null;
+		
+		
+		Date date = new Date(); 
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("yyyy.MM.dd a HH:mm:ss");
+		
+		switch(update) {
+		case 0 : {
+			System.out.println("3-1");
+			updateStr = "미사용";
+			ticket.setTicket_use(updateStr);
+			ticket.setTicket_end("");
+			break;
+			}
+		case 1 : {
+			System.out.println("3-2");
+			updateStr = "사용 완료";
+			ticket.setTicket_use(updateStr);
+			ticket.setTicket_end(simpleDateFormat.format(date));
+			break;
+			}
+		case 2 : {
+			System.out.println("3-3");
+			updateStr = "환불 완료";
+			ticket.setTicket_use(updateStr);
+			ticket.setTicket_end(simpleDateFormat.format(date));
+			break;
+			} 
+		default : {
+			System.out.println("3-4");
+			}
+		}
+		
+		ticketDAO.updateTicketOne(ticket);
+		
+		model.addAttribute("ticket", ticket);
+		return null;
+	}
 	
 	
 	// 티켓 페이지의 티켓 정보를 가지고 옵니다.
@@ -91,5 +157,10 @@ public class TicketController {
 		
 		model.addAttribute("ticketList",ticketList);
 		model.addAttribute("storeList",storeList);
+	}
+	
+	@RequestMapping("useTicket")
+	public void useTicket(int ticket_ID) {
+		System.out.println(ticket_ID);
 	}
 }

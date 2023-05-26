@@ -34,7 +34,6 @@ public class TicketDAO {
 
 	
 	
-	
 	// 사용자의 티켓 리스트를 가지고 옵니다.
 	public List<TicketVO> selectTicketAll(String userID) {
 		List<TicketVO> resultTicketVOList = my.selectList("ticket.selectTicketAll", userID);
@@ -46,6 +45,13 @@ public class TicketDAO {
 	public List<TicketVOPage> selectTicketPage(TicketVOInfo page) {
 		return my.selectList("ticket.selectTicketPage", page);
 		
+	}
+
+
+
+	// 티켓 사용에 관해 업데이트 합니다.
+	public void updateTicketOne(TicketVO ticket) {
+		my.update("ticket.updateTicketUse", ticket);
 	}
 
 	

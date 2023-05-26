@@ -16,4 +16,10 @@ public class MemberDAO {
 		
 		return memberInfo;
 	}
+
+
+	public void updateUserMileage(MemberVO member) {
+		my.update("member.updateUserMileage", member);
+		
+	}
 }

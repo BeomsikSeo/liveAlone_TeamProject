@@ -9,6 +9,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	$(function() {
+		// 주문 수량 input의 갯수
+		const collection = document.getElementsByClassName("menu-counter");	
+		
+		
 	<%--
 		count_button 클래스에 있는 버튼을 누르면
 		count_button 형제 요소인  menu_count 요소를 증가/감소 합니다.
@@ -28,6 +32,20 @@
 
 			$(this).siblings('.menu-counter').val(count);
 		})
+		
+		$('#submit-button').click(function(){
+			let count = 0;
+			for(let i=0; i<collection.length; i++){
+				count = count + collection[i].value;
+			}
+			
+			if(count == 0){
+				$("#error-message").text("주문하시는 메뉴는 적어도 1개 이상이어야 합니다.")
+				event.preventDefault();
+			}
+		})
+		
+	$
 	})
 </script>
 
@@ -38,9 +56,9 @@
 .order-menu {
 	display : inline-block;
 	
-	width : 90vw;
+	width : 50%;
 	
-	background-color: red;
+	border: 3px solid black;
 	
 }
 
@@ -49,21 +67,21 @@
 	
 	width : 90%;
 	
-	background-color : yellow;
-	
+	border: 3px solid black;
 	padding : 15px;
 	margin : 15px;
 }
 
 .menu {
 	display: inline-block;
+	
+	min-width : 300px;
+	
 	height : 300px;
 	width : 20%;
 	
-	border : 1px solid black;
+	border: 3px solid black;
 	margin: 5px; 
-	
-	background-color : lime;
 	
 	text-align : center;
 }
@@ -75,7 +93,7 @@
 </head>
 <body>
 	<div class = "order-menu" >
-		<form action="menuPay" method="post">
+		<form action="menuPay">
 			<div class = "order-menu-info" id="store-info">
 				<%-- 가게 정보를 표시하는 곳 입니다. --%>
 				<input type="text" name="store_name" value="${store.store_name }" style="font-size: large;">
@@ -112,7 +130,8 @@
 			
 			<%-- 결제 조건이 맞는지를 표시해주는 페이지 입니다. --%>
 			<div class ="order-menu-info" id="check-info">
-				<button type="submit">주문하기</button>
+				<div><span id="error-message"></span></div>
+				<div><button type="submit" id="submit-button">주문하기</button></div>
 			</div>
 		</form>
 	</div>

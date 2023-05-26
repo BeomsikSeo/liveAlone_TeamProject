@@ -14,7 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.multi.liveAlone.MemberDAO;
+import com.multi.liveAlone.MemberVO;
+import com.multi.liveAlone.rice.food.FoodDAO;
+import com.multi.liveAlone.rice.food.FoodVO;
 import com.multi.liveAlone.rice.store.StoreDAO;
 import com.multi.liveAlone.rice.store.StoreVO;
 import com.multi.liveAlone.rice.ticket.TicketDAO;
@@ -35,6 +40,12 @@ public class KakaoPayController {
 	@Autowired
 	StoreDAO storeDAO;
 	
+	@Autowired
+	MemberDAO memberDAO;
+	
+	@Autowired
+	FoodDAO foodDAO;
+	
 	
 	@Setter(onMethod_ = @Autowired)
     private KakaoPay kakaopay;
@@ -53,9 +64,37 @@ public class KakaoPayController {
     @PostMapping("/rice/order/kakaoPay")
     public String kakaoPay(Model model, OrderVOList list,TicketVO ticket, StoreVO store) {
     	
+    	StoreVO compareStore = storeDAO.selectOne(store.getStore_no());
+    	
+    	// 가게 번호가 일치하지 않을때 오류 발생
+    	if( !compareStore.getStore_name().equals(store.getStore_name())  || !compareStore.getStore_addr().equals(store.getStore_addr())) {
+    		return "redirect:/index.jsp";
+    	}
+    	
+    	List<FoodVO> compareFoodList = foodDAO.showMenu(compareStore.getStore_no());
+    	
+    	for(int i=0; i<list.getList().size(); i++) {
+    		for(int j=0; j <= compareFoodList.size(); j++) {
+    			if(j == compareFoodList.size()) {
+    				return "redirect:/index.jsp";
+    			}
+    			
+    			// 주문한 메뉴의 정보(이름, 가격) 실제 데이터 베이스 내의 존재하는 메뉴의 이름이나 가격과 디르다면
+    			// index페이지로 이동하게 만듭니다.
+    			if(list.getList().get(i).getOrder_fName().equals(compareFoodList.get(j).getFood_name())) {	// 주문한 메뉴와 실제 메뉴 이름이 같은지를 확인
+    					if(list.getList().get(i).getOrder_fPrice() == compareFoodList.get(j).getFood_price()) { // 주문한 메뉴 가격과 실제 메뉴 가격이 같은지 확인
+    						break;
+    					}
+    			}
+    		}
+    	}
+    	
+    	
         resultTicket = ticket;
         resultStore = store;
         resultOrderList = list;
+        
+        
         
         
     	return "redirect:" + kakaopay.kakaoPayReady(ticket);
@@ -64,7 +103,7 @@ public class KakaoPayController {
     
     //결제 성공시 이쪽으로 이동
     @GetMapping("/rice/order/kakaoPaySuccess")
-    public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, HttpSession session) {
+    public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, RedirectAttributes re ,HttpSession session) {
     	 System.out.println("결제 완료");
     	 
     	 // 티켓 발급 처리
@@ -81,7 +120,7 @@ public class KakaoPayController {
     	 resultTicket.setTicket_start(simpleDateFormat.format(date));
     	 resultTicket.setTicket_end(" ");
     	 
-    	 // 티켓 사용 여부 초기화 (0 : 미사용, 1 : 사용, 2 : 환불)
+    	 // 티켓 사용 여부 초기화 (미사용, 사용, 환불)
     	 resultTicket.setTicket_use("미사용");
     	 	
     	 // 티켓 Insert
@@ -105,15 +144,31 @@ public class KakaoPayController {
  				orderList.get(i).setTicket_ID(resultTicketOne.getTicket_ID());
  			}
     	 
-    	 
+ 			
+ 			
+ 		 MemberVO member = memberDAO.selectOne(memberID);
+ 		 System.out.println(member.getMember_id());
+		 System.out.println(member.getMileage() + ", " + resultTicketOne.getTicket_usedMileage());
+		 
+		 member.setMileage(member.getMileage() - resultTicketOne.getTicket_usedMileage());
+		 
+		 
+		 
+		 memberDAO.updateUserMileage(member);
+	 
  		// 주문 내역을 Order DB에 넣습니다.
     	 orderDAO.insertOrder(orderList);
     	 
-    	 // 주문 정보 , 가게 정보, 티켓 정보를 넘깁니다.
-    	 model.addAttribute("orderList", orderList);
-    	 model.addAttribute("store", store);
-    	 model.addAttribute("ticket", resultTicket);
+    	
+    		
+    	 model.addAttribute("ticket",resultTicketOne);
+    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
     	 
+    	 // 주문 정보 , 가게 정보, 티켓 정보를 넘깁니다.
+			/*
+			 * re.addAttribute("orderList", orderList); re.addAttribute("store", store);
+			 * re.addAttribute("ticket", resultTicket);
+			 */
     }
     
     // 결제 취소시 이쪽으로 이동
@@ -121,7 +176,7 @@ public class KakaoPayController {
     public void kakaoPayCancel(@RequestParam("pg_token") String pg_token, Model model) {
     	 System.out.println("결제 취소");
     	 
-    	 
+    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
     }
     
     // 결재 실패시 이쪽으로 이동
@@ -129,6 +184,6 @@ public class KakaoPayController {
     public void kakaoPaySuccessFail(@RequestParam("pg_token") String pg_token, Model model) {
     	 System.out.println("결제 실패");
     	 
-    	 
+    	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
     }
 }

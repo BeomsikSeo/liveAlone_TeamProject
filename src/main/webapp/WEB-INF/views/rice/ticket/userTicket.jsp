@@ -44,8 +44,6 @@
 		})
 	})
 </script>
-
-
 <script type="text/javascript">
 $(function(){
 	$(".page-button").click(function(){
@@ -73,13 +71,28 @@ $(function(){
 		})
 	})
 </script>
+<style>
+	.ticket-info {
+		min-width : 900px;
+		width : 900px;
+	}
+	.ticket-info-one {
+		text-align : center;
+		
+		margin : 15px;
+		padding : 15px;
+		
+		border:  2px solid black;
+	}
+	
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="ticket-info">
 		<div class="ticket-info-one">
-			<h3></h3>
+			<h3>내 식권 리스트</h3>
 		</div>
 		<div class="ticket-info-one" id="userTicketList">
 			

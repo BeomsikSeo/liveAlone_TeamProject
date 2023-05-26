@@ -24,6 +24,9 @@
 		from member
 	</select>
 	
+	<update id="updateUserMileage" parameterType="memberVO">
+		update member set mileage = #{mileage} where member_id = #{member_id}
+	</update>
 </mapper>
 
 

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="../../resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	$(function(){
 			<%--
@@ -54,14 +54,51 @@
 				$("#check_Mileage").text("음수 값은 불가능합니다")
 			}
 		})
+		
+		document.addEventListener('keydown', function(event) {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			  };
+			}, true);
 	})
 </script>
+<style>
+	.info-table {
+		border: 2px solid black;
+		padding : 15px;
+		margin : 15px;
+		
+		min-width : 800px;
+		
+		text-align : center;
+	}
+	
+	.pay-info {
+		border: 2px solid black;
+		padding : 15px;
+		margin : 15px;
+		
+		width : 100px;
+		min-width : 900px;
+		
+	}
+	
+	.order-info-title {
+		width : 40%;
+	}
+	.order-info-content {
+		widht : 60%;
+	} 
+	
+</style>
+
 <title>Insert title here</title>
 </head>
 <body>
 	<form method="post" action="kakaoPay">
 	<div class="pay-info">
 		<div class="pay-info-one">
+			<h3> 가게 정보 </h3>
 			<table class="info-table">
 				<tr>
 					<td><input type="hidden" readonly="readonly" name="store_no" value="${store.store_no }"></td>
@@ -79,6 +116,7 @@
 			</table>
 		</div>
 		<div class="pay-info-one">
+			<h3> 메뉴 정보 </h3>
 			<table class="info-table">
 				<tr>
 					<td class="order-info">상품 명</td>
@@ -96,29 +134,37 @@
 			</table>
 		</div>
 		<div class="pay-info-one">
+			<h3> 종합 정보 및 마일리지 </h3>
 			<table class="info-table">
 				<tr>
-					<td>주문 총 금액</td>
-					<td colspan="2"><input type="text" class="order-info" id="totalPrice" value="${totalPrice }" readonly="readonly" ></td>
+					<td class="order-info-title">주문 총 금액</td>
+					<td class="order-info-content" colspan="2"><input type="text" class="order-info" id="totalPrice" value="${totalPrice }" readonly="readonly" ></td>
 				</tr>
 				<tr>
-					<td rowspan="2">사용자 사용 마일리지</td>
-					<td colspan="2"><input type="number" class="order-info" id="userMileage" name="ticket_usedMileage" value=0 min=0>
+					<td class="order-info-title" rowspan="2">사용자 사용 마일리지</td>
+					<td class="order-info-content" colspan="2"><input type="number" class="order-info" id="userMileage" name="ticket_usedMileage" value=0 min=0>
 				</tr>
 				<tr>
 					<td colspan="2"><span id="check_Mileage">보유하고 계신 마일리지는 ${memberInfo.mileage} 입니다.</span></td>
 				</tr>
 				<tr>
-					<td>사용자 결제 금액</td>
-					<td colspan="2"><input type="text" class="order-info" id="payPrice" name="ticket_price" readonly="readonly"></td>
+					<td class="order-info-title">사용자 결제 금액</td>
+					<td class="order-info-content" colspan="2"><input type="text" class="order-info" id="payPrice" name="ticket_price" readonly="readonly"></td>
 				</tr>
 			</table>
 		</div>
-			<div>
-			<button type="submit">
-				KakaoPay결제
-			</button>
-			</div>
+		<div>
+			<table class="info-table">
+				<tr>
+					<td>
+						<button type="submit" id="payment">
+							KakaoPay결제
+						</button>
+					</td>
+				<tr>
+			</table>
+			
+		</div>
 		</div>
 	</form>
 

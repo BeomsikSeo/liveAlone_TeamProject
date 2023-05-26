@@ -12,10 +12,12 @@
 </head>
 <body>
 	<h3>Index Page</h3>
-	<a href="rice/ticket/userTicket">사용자 티켓 확인 페이지</a>
+	<span>사용자 ID : <%= session.getAttribute("memberID") %></span> <br>
+	<span><a href="rice/ticket/userTicket">사용자 티켓 확인 페이지</a></span>
 	<hr>
 	<a href="rice/order/menuOrder?storeNo=1">맘스날드 주문</a> <br>
 	<a href="rice/order/menuOrder?storeNo=2">LFC 주문</a> <br>
-	
+	<hr>
+	<a href="rice/food/foodWorldCup">월드컵</a>
 </body>
 </html>
