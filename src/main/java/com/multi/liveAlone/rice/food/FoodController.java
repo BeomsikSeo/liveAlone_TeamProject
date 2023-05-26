@@ -1,5 +1,7 @@
 package com.multi.liveAlone.rice.food;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,5 +17,11 @@ public class FoodController {
 	public void insert(FoodVO vo, Model model) {
 		dao.insert(vo);
 		model.addAttribute("vo", vo);
+	}
+	
+	@RequestMapping("rice/store/listFood")
+	public void list(int store_no, Model model) {
+		List<FoodVO> list = dao.list(store_no);
+		model.addAttribute("list", list);
 	}
 }

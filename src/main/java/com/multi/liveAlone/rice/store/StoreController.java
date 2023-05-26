@@ -27,7 +27,7 @@ public class StoreController {
 	}
 	
 	// 가게 리스트 출력
-	@RequestMapping("rice/store/list")
+	@RequestMapping("rice/store/listStore")
 	public void list(Model model) {
 		List<StoreVO> list = dao.list();
 		model.addAttribute("list", list);

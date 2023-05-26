@@ -12,9 +12,9 @@
 <form action="main.jsp"><button>메인으로</button></form>
 <hr color="blue">
 <c:forEach items="${list}" var="vo">
-<hr color="red">
+<hr color="blue">
 가게번호 : ${vo.store_no} <br>
-가게명 : ${vo.store_name} <br>
+가게명 : <a href = "one?store_no=${vo.store_no}">${vo.store_name}</a> <br>
 주소 : ${vo.store_addr} <br>
 전화번호 : ${vo.store_tel} <br>
 가게설명 : ${vo.store_info} <br>

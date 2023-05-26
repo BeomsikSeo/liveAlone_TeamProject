@@ -32,7 +32,7 @@
 	<select id="one" parameterType="int" resultType="storeVO">
 		select *
 		from store
-		where store_id = #{store_id}
+		where store_no = #{store_no}
 	</select>
 	
 </mapper>
