@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 </head>
 <body>
-	<% session.setAttribute("member_id", "user01");%>
+	<% session.setAttribute("member_id", "가나다");%>
 	 <!-- 테스트용 세션 지정 -->
 	 
 	<p style="margin-top: -5px">
