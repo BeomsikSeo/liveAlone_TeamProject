@@ -20,7 +20,7 @@ public class BbsShareController {
 	@Autowired
 	BbsShareDAO dao;
 	
-	@RequestMapping("shere/bbsShare/insert")
+	@RequestMapping("share/bbsShare/insert")
 	public void insert(BbsShareVO bag) {
 		System.out.println("insert 요청됨");
 		
@@ -40,34 +40,34 @@ public class BbsShareController {
 
 	}
 
-	@RequestMapping("shere/bbsShare/update")
+	@RequestMapping("share/bbsShare/update")
 	public void update(BbsShareVO bag) {
 		System.out.println("update 요청됨");
 		System.out.println(bag);
 		dao.update(bag);
 	}
 
-	@RequestMapping("shere/bbsShare/delete")
+	@RequestMapping("share/bbsShare/delete")
 	public void delete(String bbsShareNo) {
 		System.out.println("delete 요청됨");
 		dao.delete(bbsShareNo);
 	}
 
-	@RequestMapping("shere/bbsShare/one")
+	@RequestMapping("share/bbsShare/one")
 	public void one(String bbsShareNo, Model model) {
 		System.out.println("one요청됨.");
 		BbsShareVO bag = dao.one(bbsShareNo);
 		model.addAttribute("bag", bag);
 	}
 
-	@RequestMapping("shere/bbsShare/list")
+	@RequestMapping("share/bbsShare/list")
 	public void list(Model model) {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list();
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping("shere/bbsShare/success")
+	@RequestMapping("share/bbsShare/success")
 	public void success(String bbsShareNo, Model model) {
 		System.out.println("success요청됨.");
 		dao.success(bbsShareNo);

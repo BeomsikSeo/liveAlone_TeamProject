@@ -115,7 +115,7 @@
 			async : true,
 			type : 'POST',
 			data : {"member_id":"<%=session.getAttribute("member_id")%>"}, //세션 id
-			url : "getaddress",
+			url : "share/bbsShare/getaddress",
 			dataType : "text",
 			success : function(adr) {
 				document.getElementById("mem_address").innerHTML = adr;
@@ -143,11 +143,11 @@
 					async : true,
 					type : 'POST',
 					data : {"member_id":"<%=session.getAttribute("member_id")%>"}, //세션 id
-					url : "certi",
+					url : "share/bbsShare/certi",
 					dataType : "text",
 					success : function() {
 						alert("지역 인증이 완료되었습니다.");
-						location.href = "BbsShare.jsp";
+						location.href = "share/bbsShare/BbsShare.jsp";
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
 						alert("ERROR : " + textStatus + " : " + errorThrown);
