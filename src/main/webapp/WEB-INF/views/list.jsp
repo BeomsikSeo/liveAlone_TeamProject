@@ -42,7 +42,7 @@ td {
 			<c:if test="${status.index % 3 == 0}">
 				<tr>
 			</c:if>
-			<td>
+			<td onclick="location.href='one?bbsShareNo=${vo.bbsShareNo}'">
 				<div class="flex-row">
 					글번호 : ${vo.bbsShareNo}
 					<c:if test="${vo.bbsShareRequest == false}">

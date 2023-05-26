@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<% session.setAttribute("member_id", "user01");%>
 <h3>검색</h3>
 <a href="list">게시물 리스트</a>
 <hr>
