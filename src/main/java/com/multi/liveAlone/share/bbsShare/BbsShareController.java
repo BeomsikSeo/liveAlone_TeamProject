@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
 public class BbsShareController {
 	@Autowired
 	BbsShareDAO dao;
-
-	@RequestMapping("insert")
+	
+	@RequestMapping("shere/bbsShare/insert")
 	public void insert(BbsShareVO bag) {
 		System.out.println("insert 요청됨");
 		
@@ -40,34 +40,34 @@ public class BbsShareController {
 
 	}
 
-	@RequestMapping("update")
+	@RequestMapping("shere/bbsShare/update")
 	public void update(BbsShareVO bag) {
 		System.out.println("update 요청됨");
 		System.out.println(bag);
 		dao.update(bag);
 	}
 
-	@RequestMapping("delete")
+	@RequestMapping("shere/bbsShare/delete")
 	public void delete(String bbsShareNo) {
 		System.out.println("delete 요청됨");
 		dao.delete(bbsShareNo);
 	}
 
-	@RequestMapping("one")
+	@RequestMapping("shere/bbsShare/one")
 	public void one(String bbsShareNo, Model model) {
 		System.out.println("one요청됨.");
 		BbsShareVO bag = dao.one(bbsShareNo);
 		model.addAttribute("bag", bag);
 	}
 
-	@RequestMapping("list")
+	@RequestMapping("shere/bbsShare/list")
 	public void list(Model model) {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list();
 		model.addAttribute("list", list);
 	}
 	
-	@RequestMapping("success")
+	@RequestMapping("shere/bbsShare/success")
 	public void success(String bbsShareNo, Model model) {
 		System.out.println("success요청됨.");
 		dao.success(bbsShareNo);
