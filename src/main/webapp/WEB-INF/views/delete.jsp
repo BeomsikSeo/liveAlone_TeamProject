@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-설마?
+delete 완료
 </body>
 </html>
