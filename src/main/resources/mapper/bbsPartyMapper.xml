@@ -2,55 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbsParty">
 	
-	<insert id="in" useGeneratedKeys="true" keyProperty="partyBbs_num" parameterType="bbsPartyVO">
-		insert into partybbs values (null, #{partyBbs_title}, #{partyBbs_writer}, #{partyBbs_theme}, #{partyBbs_partyMax},#{partyBbs_date},#{partyBbs_period},#{partyBbs_thumbnail},#{partyBbs_content},#{partyBbs_category},#{partyBbs_location}, NOW())
-	</insert>
 
-	<insert id="in2" parameterType="memberPartyVO">
-		insert into partychatmember values (#{member_id}, #{partyBbs_num}, #{party_host})
-	</insert>
-	
-	<delete id="del"  parameterType="int"> 
-		delete from partybbs where partyBbs_num = #{partyBbs_num}
-	</delete>
-	
-	<update id="up"  parameterType="bbsPartyVO">
-		update partybbs set partyBbs_content = #{partyBbs_content} where partyBbs_num = #{partyBbs_num}
-	</update>
-	
-	<select id="one" parameterType="int" resultType = "bbsPartyVO">
-		select * from partybbs where partyBbs_num = #{partyBbs_num}
-	</select>
-	
-	
-	<select id="all" resultType="bbsPartyVO" parameterType="pagePartyVO">
-		select *
-		from (
-		select ROW_NUMBER() over(order by partyBbs_num desc) as partyBbs_no, b.*
-		from partybbs b) bbs2
-		where bbs2.partyBbs_no between #{start} and #{end}
-	</select>
-	
-	<select id="count" resultType="Integer">
-		select count(*) from partybbs
-	</select>
-	
-<!-- 	<select id="max" parameterType="int" resultType = "int">
-		select partyBbs_partyMax from partybbs where partyBbs_num = #{partyBbs_num}
-	</select> --> <!-- 최대 동행자 수 -->
-	
-
-<!-- 	<select id="count2" resultType="Integer">
-		select count(*) from partychatmember where partyBbs_num = #{partyBbs_num}
-	</select> -->  <!-- 동행 참여자 수 -->
-	
-<!-- 	<select id="count3" resultType="Integer">
-		select count(*) from partychatmember where member_id = #{member_id}
-	</select> -->  <!-- 이미 참여중인 참여자인지 확인 -->
-	
-	<select id="chatAll" parameterType="int" resultType = "chatPartyVO">
-		select * from partychatlog where partyBbs_num = #{partyBbs_num}
-	</select>
 	
 </mapper>
 

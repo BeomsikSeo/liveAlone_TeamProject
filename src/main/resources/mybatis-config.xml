@@ -8,9 +8,7 @@
    <typeAliases>
       <typeAlias type="com.multi.liveAlone.MemberVO" alias="memberVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.bbsParty.BbsPartyVO" alias="bbsPartyVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.party.bbsParty.MemberPartyVO" alias="memberPartyVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.party.bbsParty.PagePartyVO" alias="pagePartyVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.party.bbsParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.chatParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.voyage.RecommendVO" alias="recommendVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.voyage.VoyageVO" alias="voyageVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.food.FoodVO" alias="foodVO"></typeAlias>
