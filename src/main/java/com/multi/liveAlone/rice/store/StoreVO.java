@@ -12,7 +12,7 @@ public class StoreVO {
 	private String store_day;
 	private String store_open;
 	private String store_closed;
-	private int sCategory_no;
+	private String store_category;
 	
 	public int getStore_no() {
 		return store_no;
@@ -74,11 +74,11 @@ public class StoreVO {
 	public void setStore_closed(String store_closed) {
 		this.store_closed = store_closed;
 	}
-	public int getsCategory_no() {
-		return sCategory_no;
+	public String getStore_category() {
+		return store_category;
 	}
-	public void setsCategory_no(int sCategory_no) {
-		this.sCategory_no = sCategory_no;
+	public void setStore_category(String store_category) {
+		this.store_category = store_category;
 	}
 	
 	@Override
@@ -86,7 +86,6 @@ public class StoreVO {
 		return "StoreVO [store_no=" + store_no + ", store_name=" + store_name + ", store_addr=" + store_addr
 				+ ", store_tel=" + store_tel + ", store_info=" + store_info + ", store_single=" + store_single
 				+ ", store_img=" + store_img + ", store_day=" + store_day + ", store_open=" + store_open
-				+ ", store_closed=" + store_closed + ", sCategory_no=" + sCategory_no + "]";
+				+ ", store_closed=" + store_closed + ", store_category=" + store_category + "]";
 	}
-	
 }
