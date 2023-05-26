@@ -35,7 +35,7 @@ public class BbsShareDAO {
 	}
 
 	public List<BbsShareVO> list() {
-		List<BbsShareVO> list = my.selectList("bbsshare.all");
+		List<BbsShareVO> list = my.selectList("bbsshare.notsuccess");
 		System.out.println(list.size());
 		return list;
 	}

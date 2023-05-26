@@ -26,11 +26,4 @@ public class MemberController {
 		model.addAttribute("bag", bag);
 	}
 	
-	/*@RequestMapping("one")
-	public void one(String id, Model model) {
-		System.out.println("one요청됨.");
-		System.out.println(id);
-		MemberVO bag = dao.one(id);
-		model.addAttribute("bag", bag);
-	}*/
 }

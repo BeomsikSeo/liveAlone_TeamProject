@@ -4,10 +4,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-
 @Repository
 public class MemberDAO {
+	
 	@Autowired
 	SqlSessionTemplate my;
 	
@@ -22,9 +21,4 @@ public class MemberDAO {
 		bag = my.selectOne("member.one", member_id);
 		return bag;
 	}
-	
-	/*public MemberVO one(String id) {
-		bag = my.selectOne("member.one", id);
-		return bag;
-	}*/
 }

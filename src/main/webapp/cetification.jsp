@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>지역 인증</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">seesion.setAttribute("member_id",user01)</script>
 </head>
 <body>
+	<% session.setAttribute("member_id", "user01");%> <!-- 테스트용 세션 지정 -->
 	<p style="margin-top: -5px">
 		Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.<br>
 		<b>구 단위가 일치하면 인증이 가능합니다.</b>
@@ -112,17 +112,17 @@
 		$.ajax({
 			async : true,
 			type : 'POST',
-			data : {"member_id":"user01"}, //세션 id
+			data : {"member_id":"<%=session.getAttribute("member_id")%>"}, //세션 id
 			url : "getaddress",
 			dataType : "text",
 			success : function(adr) {
-				console.log(adr);
 				document.getElementById("mem_address").innerHTML = adr;
 			},
 			error : function() {
 				document.getElementById("mem_address").innerHTML = "데이터 베이스 접속 에러";
 			}
 		})
+		
 
 		function cert() {
 			var x = document.getElementById("now_address").innerText; //접속지역 행정동명
@@ -140,7 +140,7 @@
 				$.ajax({
 					async : true,
 					type : 'POST',
-					data : {"member_id":"<%= session.getAttribute("member_id") %>"}, //세션 id
+					data : {"member_id":"<%=session.getAttribute("member_id")%>"}, //세션 id
 					url : "certi",
 					dataType : "text",
 					success : function() {
