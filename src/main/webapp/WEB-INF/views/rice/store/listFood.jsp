@@ -8,7 +8,7 @@
 메뉴설명 : ${vo.food_info} <br>
 재료 : ${vo.food_ingre} <br>
 사진 : ${vo.food_img} <br>
-카테고리 : ${vo.food_category}
+카테고리 : ${vo.food_category} <br>
 </c:forEach>
 </body>
 </html>
