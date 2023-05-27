@@ -12,6 +12,7 @@
 여행지 정보
 <hr color="red">
 ${vo.name} <br>
+${vo.region} <br>
 ${vo.info} <br>
 
 </body>

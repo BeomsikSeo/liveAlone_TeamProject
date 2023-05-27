@@ -1,12 +1,14 @@
 package com.multi.liveAlone.party.voyage;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.List;
+
 import java.util.Random;
 
 @Component
@@ -16,8 +18,8 @@ public class VoyageDAO {
 		SqlSessionTemplate my; 
 		
 		
-		public void delete(String id) {
-			int result = my.delete("recommend.del", id); //int
+		public void deleteSelect(VoyageVO bag) {
+			int result = my.delete("voyage.deleteSelect", bag); //int
 			System.out.println(result);
 		}
 		public void update(VoyageVO bag) {
@@ -28,9 +30,18 @@ public class VoyageDAO {
 		        int result = my.update("voyage.updateBasket", bag);
 		        System.out.println(result);
 		    }
+		 public void insertSelect(VoyageVO bag) {
+			    int result = my.insert("voyage.insertSelect", bag);
+			    System.out.println(result);
+			}
 		
 		public VoyageVO one(String name) {
 			VoyageVO vo = my.selectOne("voyage.one", name); 
+			System.out.println(vo);
+			return vo;
+		}
+		public VoyageVO oneselect(String member_id) {
+			VoyageVO vo = my.selectOne("voyage.oneSelect", member_id); 
 			System.out.println(vo);
 			return vo;
 		}
@@ -50,5 +61,7 @@ public class VoyageDAO {
 		    }
 		    return randomNames;
 		}
+		
+		
 		}
 

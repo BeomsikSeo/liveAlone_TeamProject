@@ -6,29 +6,8 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-      $(document).ready(function() {
-        var name; // 정보를 저장할 변수
 
-        $('.randomNameButton').click(function() {
-          name = $(this).text(); // 버튼에 표시된 이름 가져오기
-          $.ajax({
-            url: 'one',
-            method: 'get',
-            data: { name: name, 	
-            },
-            success: function(response) {
-              // 서버로부터 받은 데이터를 처리하는 코드 작성
-              // 예: 받은 데이터를 적절한 방식으로 표시
-              console.log(response);
-            },
-            error: function(xhr, status, error) {
-              console.log('Error:', error);
-            }
-          });
-        });
-      });
-    </script>
+    
 
      <style>
     .roundButton {
@@ -54,65 +33,75 @@
     <h1>Random Names</h1>
 <ul id="randomNamesList">
   <c:forEach items="${randomNames}" var="randomName">
-    <button class="randomNameButton">${randomName}</button><br>
+    <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button><br>
   </c:forEach>
 </ul>
+<script>
+      $(document).ready(function() {
+        var name;
 
+        $('.randomNameButton').click(function() {
+          name = $(this).text();
+          $.ajax({
+            url: 'one',
+            method: 'get',
+            data: { name: name },
+            success: function(response) {
+              console.log(response);
+            },
+            error: function(xhr, status, error) {
+              console.log('Error:', error);
+            }
+          });
+        });
+      });
+
+      function insertSelect(memberId, name) {
+        $.ajax({
+          url: 'insertselect',
+          method: 'POST',
+          data: {
+            member_id: memberId,
+            select: name
+          },
+          success: function(response) {
+            console.log('데이터가 추가되었습니다.');
+            var targetButton = window.opener.$('.roundButton:empty').first();
+            if (targetButton.length > 0) {
+              targetButton.text(name);
+            }
+          },
+          error: function(xhr, status, error) {
+            console.log('Error:', error);
+          }
+        });
+      }
+    </script>
 
 <script>
   $(document).ready(function() {
     $('.randomNameButton').click(function() {
       var name = $(this).text();
+      var targetBucket = $('.roundButton:empty').first(); // 비어있는 첫 번째 roundButton 찾기
+
+	    if (targetBucket.length > 0) {
+	      targetBucket.text(name); // roundButton의 텍스트 변경
+	    }
       window.open("one?name=" + name, "_blank");
     });
+    
   });
 </script>
+
+
+
 
     <hr color="red">
     <form action="one" method="get">
         name : <input name="name" value="최참판댁"><br>
         <button type="submit">정보 보기</button>
     </form>
-<button id="button1">1번 버튼</button>
-<button id="button2">2번 버튼</button>
 
-<script>
-  $(document).ready(function() {
-    var name; // 정보를 저장할 변수
-
-    $('#button1').click(function() {
-      name = $('[name="name"]').val(); // 입력된 이름 가져오기
-      $('#button2').text(name); // 2번 버튼에 이름 설정
-    });
-    $.ajax({
-        url: 'up',
-        method: 'POST',
-        data: { name: name },
-        success: function(response) {
-          console.log('정보가 저장되었습니다.');
-        },
-        error: function(xhr, status, error) {
-          console.log('Error:', error);
-        }
-      });
-
-    $('#button2').click(function() {
-      name = null; // 변수 초기화 (정보 삭제)
-      $('#button2').text('2번 버튼'); // 2번 버튼의 텍스트 초기화
-    });
-  });
-  $.ajax({
-      url: 'del',
-      method: 'POST',
-      data: { name: name },
-      success: function(response) {
-        console.log('정보가 삭제되었습니다.');
-      },
-      error: function(xhr, status, error) {
-        console.log('Error:', error);
-      }
-    });
-</script>
 <div>
   위도: <input id="latInput" type="text" name="lat">
   경도: <input id="longiInput" type="text" name="longi">
@@ -142,19 +131,53 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
           console.log('Error:', error);
         }
+      })
+    });
+});
+
+
+ 
+</script>
+
+<div>
+  <button class="roundButton"></button>
+  <button class="roundButton"></button>
+  <button class="roundButton"></button>
+  <button class="roundButton"></button>
+  <button class="roundButton"></button>
+</div>
+<script>
+  $(document).ready(function() {
+    $('.roundButton').click(function() {
+      $(this).text(''); // 클릭한 roundButton의 텍스트를 공백으로 변경
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $('.roundButton').click(function() {
+      var button = $(this);
+      var name = button.text();
+
+      // AJAX를 통해 deleteSelect 요청 보내기
+      $.ajax({
+        url: 'deleteSelect',
+        method: 'POST',
+        data: {
+          member_id: '<%= session.getAttribute("member_id") %>',
+          select: name
+        },
+        success: function(response) {
+          console.log('데이터가 삭제되었습니다.');
+          button.text(''); // 버튼의 텍스트를 공백으로 변경
+        },
+        error: function(xhr, status, error) {
+          console.log('Error:', error);
+        }
       });
     });
   });
 </script>
-
-<div>
-  <button class="roundButton">bucket1</button>
-  <button class="roundButton">bucket2</button>
-  <button class="roundButton">bucket3</button>
-  <button class="roundButton">bucket4</button>
-  <button class="roundButton">bucket5</button>
-</div>
-
 
     <hr color="red">
 </body>
