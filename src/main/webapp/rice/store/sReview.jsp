@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-test용
+<h3>난 혼자 산다 _ 검색 페이지</h3>
+<form action=""><button></button></form>
 </body>
 </html>

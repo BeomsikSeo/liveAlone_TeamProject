@@ -8,7 +8,7 @@ public class FoodVO {
 	private String food_info;
 	private String food_ingre;
 	private String food_img;
-	private int fCategory_no;
+	private String food_category;
 	private int store_no;
 	
 	public int getFood_no() {
@@ -47,11 +47,11 @@ public class FoodVO {
 	public void setFood_img(String food_img) {
 		this.food_img = food_img;
 	}
-	public int getfCategory_no() {
-		return fCategory_no;
+	public String getFood_category() {
+		return food_category;
 	}
-	public void setfCategory_no(int fCategory_no) {
-		this.fCategory_no = fCategory_no;
+	public void setFood_category(String food_category) {
+		this.food_category = food_category;
 	}
 	public int getStore_no() {
 		return store_no;
@@ -63,8 +63,7 @@ public class FoodVO {
 	@Override
 	public String toString() {
 		return "FoodVO [food_no=" + food_no + ", food_name=" + food_name + ", food_price=" + food_price + ", food_info="
-				+ food_info + ", food_ingre=" + food_ingre + ", food_img=" + food_img + ", fCategory_no=" + fCategory_no
-				+ ", store_no=" + store_no + "]";
+				+ food_info + ", food_ingre=" + food_ingre + ", food_img=" + food_img + ", food_category="
+				+ food_category + ", store_no=" + store_no + "]";
 	}
-	
 }
