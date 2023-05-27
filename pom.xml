@@ -165,6 +165,36 @@
 			<version>1.9.1.RELEASE</version>
 		</dependency>
 		
+		<!-- jackson 라이브러리 : json데이터 처리 -->
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.10.2</version>
+        </dependency>
+        
+        <!-- vo를 json으로 변환 이 라이브러리가 @Responsebody 해줌 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.2</version>
+        </dependency>
+        
+      	<!-- 스프링에서 쓰는 웹소켓 라이브러리(서버쪽) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
+        
+        <!-- 구독자 관리, 구독자에게 메시지 뿌려주는 등 ...
+        	/ 메시지형태로 보내려고(웹소켓이 메시지만 쓰는건 아니므로) 
+        	Messagebroker가 여기서! -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency> 
+		
 	</dependencies>
 	<build>
 		<plugins>
