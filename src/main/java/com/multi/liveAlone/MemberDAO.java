@@ -10,6 +10,7 @@ public class MemberDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
+<<<<<<< HEAD
 	MemberVO bag = new MemberVO();
 
 	public int certi(String member_id) {
@@ -20,5 +21,18 @@ public class MemberDAO {
 	public MemberVO getaddress(String member_id) {
 		bag = my.selectOne("member.one", member_id);
 		return bag;
+=======
+	// 유저 정보를 가지고 옵니다.
+	public MemberVO selectOne(String memberID) {
+		MemberVO memberInfo= my.selectOne("member.one", memberID);
+		
+		return memberInfo;
+	}
+
+
+	public void updateUserMileage(MemberVO member) {
+		my.update("member.updateUserMileage", member);
+		
+>>>>>>> order
 	}
 }

@@ -1,5 +1,6 @@
 package com.multi.liveAlone.rice.food;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,3 +27,18 @@ public class FoodController {
 	}
 	
 }
+=======
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class FoodController {
+
+	@Autowired
+	FoodDAO foodDAO;
+
+
+	
+}
+>>>>>>> order

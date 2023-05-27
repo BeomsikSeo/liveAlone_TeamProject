@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order">
+	
+	
+	<insert id="insertOrder" parameterType="orderVO">
+		insert into orderDB values (#{order_ID}, #{ticket_ID}, #{order_fName}, #{order_fPrice}, #{order_fCount})
+	</insert>
+	
+	
+	<select id="selectOrderList" resultType="orderVO">
+		select * from orderDB where ticket_ID = #{ticket_ID}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

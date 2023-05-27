@@ -1,7 +1,8 @@
 package com.multi.liveAlone.rice.ticket;
 
-public class TicketVO {
+public class TicketVOPage {
 
+	private int ticket_no;
 	private int ticket_ID;
 	private String ticket_userID;
 	private int ticket_storeID;
@@ -10,6 +11,14 @@ public class TicketVO {
 	private int ticket_price;
 	private int ticket_usedMileage;
 	private String ticket_use;
+	
+	
+	public int getTicket_no() {
+		return ticket_no;
+	}
+	public void setTicket_no(int ticket_no) {
+		this.ticket_no = ticket_no;
+	}
 	public int getTicket_ID() {
 		return ticket_ID;
 	}
