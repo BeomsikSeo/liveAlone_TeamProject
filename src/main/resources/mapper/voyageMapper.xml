@@ -2,8 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="voyage">
 	
-
+<update id="up"  parameterType="VoyageVO">resultType="VoyageVO"
+		update basket 
+		set name = #{name} 
+		where member_id = #{member_id}
+	</update>
+	<update id="updateBasket" parameterType="VoyageVO">
+    UPDATE member
+    SET lat = #{lat},
+        longi = #{longi}
+    WHERE member_id = #{member_id}
+</update>
+<insert id="insertSelect" parameterType="VoyageVO">
+    
+    insert into basket 
+		values (#{member_id}, #{select})
+</insert>
+<delete id="deleteSelect"  parameterType="String">
+		delete from basket 
+		where member_id = #{member_id} and select=#{select}
+	</delete>
+<select id="oneSelect"  resultType="VoyageVO">
+		select *
+		from basket
+		where member_id=#{member_id}
+	</select>
 	
+	<select id="one" parameterType="String"  resultType="VoyageVO">
+		select * 
+		from voyage
+		where name = #{name}
+	</select>
+	
+	<select id="all"  resultType="VoyageVO">
+		select *
+		from voyage
+	</select>
+	<select id="getRandomNames" resultType="String">
+    SELECT name FROM voyage ORDER BY RAND() LIMIT 5
+</select>
+
 </mapper>
 
 
