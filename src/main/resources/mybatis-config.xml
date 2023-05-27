@@ -9,11 +9,15 @@
       <typeAlias type="com.multi.liveAlone.MemberVO" alias="memberVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.bbsParty.BbsPartyVO" alias="bbsPartyVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.chatParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.party.voyage.RecommendVO" alias="recommendVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.voyage.BasketVO" alias="basketVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.voyage.VoyageVO" alias="voyageVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.food.FoodVO" alias="foodVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.sReview.SReviewVO" alias="sReviewVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.store.StoreVO" alias="storeVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVO" alias="ticketVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVOPage" alias="ticketVOPage"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVOInfo" alias="ticketVOInfo"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.order.OrderVO" alias="orderVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
    </typeAliases>
@@ -22,12 +26,14 @@
       <mapper resource="mapper/memberMapper.xml" />
       <mapper resource="mapper/bbsPartyMapper.xml" />
       <mapper resource="mapper/chatPartyMapper.xml" />
-      <mapper resource="mapper/recommendMapper.xml" />
+      <mapper resource="mapper/basketMapper.xml" />
       <mapper resource="mapper/voyageMapper.xml" />
       <mapper resource="mapper/foodMapper.xml" />
       <mapper resource="mapper/sReviewMapper.xml" />
       <mapper resource="mapper/storeMapper.xml" />
       <mapper resource="mapper/bbsShareMapper.xml" />
       <mapper resource="mapper/chatShareMapper.xml" />
+      <mapper resource="mapper/ticketMapper.xml"/>
+      <mapper resource="mapper/orderMapper.xml"/>
    </mappers>
 </configuration>
