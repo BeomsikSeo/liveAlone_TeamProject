@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +13,16 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="resources/js/sockjs-0.3.4.js"></script>
-<script type="text/javascript" src="resources/js/stomp.js"></script>
-<script type="text/javascript" src="resources/js/webSocketSendToUserApp.js"></script>
+<script type="text/javascript" src="../../resources/js/sockjs-0.3.4.js"></script>
+<script type="text/javascript" src="../../resources/js/stomp.js"></script>
+<script type="text/javascript" src="../../resources/js/webSocketSendToUserApp.js"></script>
 <script type="text/javascript">
+<%
+int roomId = (int) session.getAttribute("partyBbs_num");
 
+%>	
 	var stompClient = null;
+	var roomId = <%= roomId %>;
 	
 	//이렇게하면 찍을수 있는지
  	$(document).ready(function() {
@@ -54,7 +59,7 @@
 	
 	function connect() {
 		//1. 소켓객체 생성
-		var socket = new SockJS('${pageContext.request.contextPath}/chat')
+		var socket = new SockJS('${pageContext.request.contextPath}/chat/' + roomId)
 		//2. 데이터를 전송하고, 받을 수 있는 stompClent객체 생성
 		stompClient = Stomp.over(socket);
 		
@@ -62,7 +67,7 @@
 		stompClient.connect({}, function(frame) {
 			setConnected(true) //css설정 
 			/* alert('연결됨. '+ frame) */
-			stompClient.subscribe('/topic/messages', function(messageOutput) {
+			stompClient.subscribe('/topic/messages/' + roomId, function(messageOutput) {
 				//서버에서 받은 메시지 출력 
 				showMessageOutput(JSON.parse(messageOutput.body));
 			})
@@ -71,14 +76,17 @@
 	}
 	
 	//서버로 메세지 보냄 
+	/* function sendMessage(roomId) { */
 	function sendMessage() {
 		//입력한 정보를 가지고 와서 
 		var from = '<%= session.getAttribute("member_id") %>' ;
 		var text = document.getElementById('text').value;
+		
 		//url을 /app/cht을 호출하고,data를 json형태의 sring으로 만들어서 보내라. 
-		stompClient.send("/app/chat", {}, JSON.stringify({
+		stompClient.send("/app/chat/"+roomId, {}, JSON.stringify({
 			'from' : from, 
 			'text' : text
+
 		}));
 	}
 	

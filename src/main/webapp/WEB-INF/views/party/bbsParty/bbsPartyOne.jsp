@@ -14,6 +14,8 @@
 		int partyBbs_num = (int)one.getPartyBbs_num();
 		
 		session.setAttribute("partyBbs_num", partyBbs_num);
+		
+		System.out.println("partyBbs_num: " + partyBbs_num);
 	%>
  <table>
    <tr>
