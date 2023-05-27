@@ -45,6 +45,11 @@ public class BbsShareDAO {
 		return result;
 	}
 	
+	public int upview(String bbsShareNo) {
+		int result = my.update("bbsshare.upview", Integer.parseInt(bbsShareNo));
+		return result;
+	}
+	
 	
 
 }

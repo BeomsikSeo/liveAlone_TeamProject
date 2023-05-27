@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title>지역 인증</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>HttpSession session = request.getSession(); session.setAttribute("member_id", "가나다"); <!-- 테스트용 세션 지정 --></script>
 </head>
 <body>
-	<% session.setAttribute("member_id", "가나다");%>
-	 <!-- 테스트용 세션 지정 -->
-	 
 	<p style="margin-top: -5px">
 		Chrome 브라우저는 https 환경에서만 geolocation을 지원합니다.<br>
 		<b>구 단위가 일치하면 인증이 가능합니다.</b>

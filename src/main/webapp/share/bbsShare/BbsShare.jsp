@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">HttpSession session = request.getSession(); session.setAttribute("member_id", "가나다");</script>
 </head>
 <body>
 
-<% session.setAttribute("member_id", "user01");%>
 <h3>검색</h3>
 <a href="list">게시물 리스트</a>
 <hr>

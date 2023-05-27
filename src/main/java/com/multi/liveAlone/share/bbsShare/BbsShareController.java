@@ -73,5 +73,11 @@ public class BbsShareController {
 		dao.success(bbsShareNo);
 		model.addAttribute("bbsShareNo", bbsShareNo);
 	}
+	
+	@RequestMapping("share/bbsShare/view")
+	public void upview(String bbsShareNo) {
+		System.out.println("upview요청됨.");
+		dao.upview(bbsShareNo);
+	}
 
 }
