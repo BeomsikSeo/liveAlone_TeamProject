@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD:src/main/webapp/index2.jsp
-test
+<<<<<<< HEAD:src/main/webapp/index.jsp
+test용
 =======
-설마?
->>>>>>> 43cecf783cb89c29621cb2538c04b2773770fcf1:src/main/webapp/test.jsp
+delete 완료
+>>>>>>> 41ff6144ef59a3078165fab587381ec022b49150:src/main/webapp/WEB-INF/views/share/bbsShare/delete.jsp
 </body>
 </html>

@@ -7,10 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD:src/main/webapp/index2.jsp
-test
-=======
-설마?
->>>>>>> 43cecf783cb89c29621cb2538c04b2773770fcf1:src/main/webapp/test.jsp
+완료 처리 되었습니다.
+<a href="one?bbsShareNo=+${bbsShareNo}"><button>이전 화면으로</button></a>
 </body>
 </html>

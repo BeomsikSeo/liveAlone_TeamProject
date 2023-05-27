@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD:src/main/webapp/index2.jsp
-test
-=======
-설마?
->>>>>>> 43cecf783cb89c29621cb2538c04b2773770fcf1:src/main/webapp/test.jsp
+update 완료
 </body>
 </html>
