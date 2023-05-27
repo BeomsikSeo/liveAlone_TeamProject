@@ -21,8 +21,10 @@
 			
 			$("#use-ticket-button").remove();
 			$("#terms-list").remove();
+			$("#cancel-tickekt-button").remove();
 		}
-		
+			
+			
 		$("#Ticket-List").click(function(){
 			location.href="userTicket";
 		})
@@ -107,11 +109,11 @@
 		<div>
 			<div class="ticket-button" id="to-ticketList-button"><button id="Ticket-List">내 티켓 리스트로</button></div>
 			<div class="ticket-button" id="use-ticket-button"><button id="Ticket-Use">식권 사용</button></div>
+			<div class="ticket-button" id="cancel-tickekt-button"><button id="Ticket-Refund">식권 환불</button></div>
 			<hr>
 		</div>
 			
 		<div id="terms-list" style="display : none;">
-			
 			<div>
 				<ol>
 						<li>사용 약관에 동의 하시겠습니까?<input type="checkbox" class="terms-checkBox" value="동의"></li>

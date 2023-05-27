@@ -17,7 +17,5 @@
 	<hr>
 	<a href="rice/order/menuOrder?storeNo=1">맘스날드 주문</a> <br>
 	<a href="rice/order/menuOrder?storeNo=2">LFC 주문</a> <br>
-	<hr>
-	<a href="rice/food/foodWorldCup">월드컵</a>
 </body>
 </html>

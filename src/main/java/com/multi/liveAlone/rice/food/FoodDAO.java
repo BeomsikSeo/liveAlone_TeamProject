@@ -18,11 +18,6 @@ public class FoodDAO {
 		return list;
 	}
 
-	public List<FoodVO> selectFoodCategory(int count) {
-		
-		
-		return null;
-	}
 	
 	
 }

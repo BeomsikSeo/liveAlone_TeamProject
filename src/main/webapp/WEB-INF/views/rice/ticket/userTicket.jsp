@@ -38,10 +38,9 @@
 					
 				}, error : function(){
 					console.log("Error");
-				}
-			})
-			
-		})
+				} // error 
+			}) // Ajax 
+		}) // 페이지 버튼
 	})
 </script>
 <script type="text/javascript">
@@ -90,6 +89,10 @@ $(function(){
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="header">
+		<a href="">마일리지 페이지</a>
+	</div>
+	<hr>
 	<div class="ticket-info">
 		<div class="ticket-info-one">
 			<h3>내 식권 리스트</h3>

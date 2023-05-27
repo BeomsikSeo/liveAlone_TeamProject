@@ -26,7 +26,9 @@ import com.multi.liveAlone.rice.ticket.TicketDAO;
 import com.multi.liveAlone.rice.ticket.TicketVO;
 
 import lombok.Setter;
+import lombok.extern.java.Log;
  
+@Log
 @Controller
 public class KakaoPayController {
 	
@@ -96,14 +98,15 @@ public class KakaoPayController {
         
         
         
+        log.info("kakaoPay post............................................");
         
-    	return "redirect:" + kakaopay.kakaoPayReady(ticket);
+        return "redirect:" + kakaopay.kakaoPayReady();
     }
     
     
     //결제 성공시 이쪽으로 이동
     @GetMapping("/rice/order/kakaoPaySuccess")
-    public void kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model, RedirectAttributes re ,HttpSession session) {
+    public void kakaoPaySuccess(@RequestParam("pg_token")String pg_token, Model model, RedirectAttributes re ,HttpSession session) {
     	 System.out.println("결제 완료");
     	 
     	 // 티켓 발급 처리
@@ -131,7 +134,6 @@ public class KakaoPayController {
     	 // Insert한 티켓을 다시 select
     	 TicketVO resultTicketOne = ticketDAO.selectTicketOne(resultTicket);
     	 
-    	 StoreVO store = storeDAO.selectOne(resultTicket.getTicket_storeID());
     	 
     	 // OrderVOList를 List로 따로 정렬합니다.
     	 List<OrderVO> orderList = new ArrayList<OrderVO>();
@@ -152,14 +154,13 @@ public class KakaoPayController {
 		 
 		 member.setMileage(member.getMileage() - resultTicketOne.getTicket_usedMileage());
 		 
-		 
+		 log.info("kakaoPaySuccess get............................................");
+	     log.info("kakaoPaySuccess pg_token : " + pg_token);
 		 
 		 memberDAO.updateUserMileage(member);
-	 
- 		// 주문 내역을 Order DB에 넣습니다.
     	 orderDAO.insertOrder(orderList);
     	 
-    	
+    	 System.out.println(pg_token.toString());
     		
     	 model.addAttribute("ticket",resultTicketOne);
     	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
@@ -183,6 +184,8 @@ public class KakaoPayController {
     @GetMapping("/rice/order/kakaoPaySuccessFail")
     public void kakaoPaySuccessFail(@RequestParam("pg_token") String pg_token, Model model) {
     	 System.out.println("결제 실패");
+    	 
+    	 
     	 
     	 model.addAttribute("info", kakaopay.kakaoPayInfo(pg_token));
     }
