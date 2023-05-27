@@ -24,4 +24,5 @@ public class FoodController {
 		List<FoodVO> list = dao.list(store_no);
 		model.addAttribute("list", list);
 	}
+	
 }

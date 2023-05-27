@@ -12,6 +12,5 @@
 <form action="main.jsp"><button>메인</button></form>
 <form action="listStore"><button>검색 페이지</button></form>
 <form action="store.jsp"><button>가게 등록</button></form>
-<form action="sReview.jsp"><button>리뷰 등록</button></form>
 </body>
 </html>
