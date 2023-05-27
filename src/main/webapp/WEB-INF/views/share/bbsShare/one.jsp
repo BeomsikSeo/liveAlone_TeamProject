@@ -6,23 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
+<script type="text/javascript">
 	function imgError(image) {
 		image.onerror = "";
 		image.src = "../../resources/noimage.jpg";
 		return true;
-	}
-	HttpSession session = request.getSession();
-	
-	
-	session.setAttribute("viewcheck", 1);
-	session.setAttribute("viewcheck_time", System.currentTimeMillis());
-
-	// 매 요청마다 세션의 유효 시간을 확인
-	long currentTime = System.currentTimeMillis();
-	long sessionTime = (long) session.getAttribute("viewcheck_time");
-	if (currentTime - sessionTime > 5*60*1000) {
-	    session.removeAttribute("viewcheck");
 	}
 </script>
 <style type="text/css">
@@ -45,7 +33,9 @@ div {
 </style>
 </head>
 <body>
-<% session.setAttribute("viewcheck", "1");%>
+	<%
+		session.setAttribute("viewcheck", "1");
+	%>
 	<a href="list"><button>목록으로</button></a>
 	<br>
 	<br>
@@ -59,26 +49,30 @@ div {
 				<span class="right-align"><b>나눔</b></span>
 			</c:if>
 		</div>
-		
-		<h2>${bag.bbsShareTitle}</h2>
-		
-		<div class="q2">
-			작성자 : ${bag.bbsShareWriter}
-			<span class="right-align">작성일 : ${bag.bbsShareDate}</span>
+		<div class="q2" style="padding-top: 10px; padding-bottom: 10px">
+			<span style="font-weight: bold; font-size: 24px;">${bag.bbsShareTitle}</span>
+			<c:choose>
+				<c:when test="${bag.bbsShareSuccess}">
+					<span class="right-align">완료</span> <!-- 완료가 true일경우 출력 -->
+				</c:when>
+			</c:choose>
+
 		</div>
-		<br> category : ${bag.bbsShareCategory} <br>
-		view : ${bag.bbsShareView} <br> interest :
-		${bag.bbsShareInterest} <br> <br> content :
-		${bag.bbsShareContent} <br> success : ${bag.bbsShareSuccess}
+		<div class="q2">
+			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
+				${bag.bbsShareDate}</span>
+		</div>
+		<br> category : ${bag.bbsShareCategory} <br> view :
+		${bag.bbsShareView} <br> interest : ${bag.bbsShareInterest} <br>
+		<br> content : ${bag.bbsShareContent} <br>
 		<c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
 			<form action="success" method="get">
 				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
 				<button type="submit">완료처리</button>
 			</form>
 		</c:if>
-		<br>
-		<br>
-		<img src="share/bbsShare/img/${bag.bbsShareImage}" onerror="imgError(this)">
+		<br> <br> <img src="share/bbsShare/img/${bag.bbsShareImage}"
+			onerror="imgError(this)">
 	</div>
 </body>
 </html>

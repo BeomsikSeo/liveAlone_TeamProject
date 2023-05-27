@@ -37,21 +37,23 @@ table {
 
 td {
 	width: 300px;
-	padding: 40px;
+	padding: 20px;
 	vertical-align: top;
 	border: 4px solid black;
 	border-collapse: collapse;
 }
 
 td img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	height: auto;
 }
 </style>
 </head>
 <body>
-<% session.setAttribute("member_id", "가나다");%>
-	 <!-- 테스트용 세션 지정 -->
+	<%
+		session.setAttribute("member_id", "가나다");
+	%>
+	<!-- 테스트용 세션 지정 -->
 	<table>
 		<c:forEach items="${list}" var="vo" varStatus="status">
 			<c:if test="${status.index % 3 == 0}">
@@ -67,11 +69,10 @@ td img {
 						<span class="right-align"><b>나눔</b></span>
 					</c:if>
 				</div>
-				<h3>
-				${fn:length(vo.bbsShareTitle) > 10 ? fn:substring(vo.bbsShareTitle, 0, 10).concat('...') : vo.bbsShareTitle}</h3>
+				<h3>${fn:length(vo.bbsShareTitle) > 10 ? fn:substring(vo.bbsShareTitle, 0, 10).concat('...') : vo.bbsShareTitle}</h3>
 				<div class="flex-row">
 					작성자 : ${vo.bbsShareWriter} <span class="right-align">작성일 :
-					
+
 						${fn:length(vo.bbsShareDate) > 10 ? fn:substring(vo.bbsShareDate, 0, 10) : vo.bbsShareDate}</span>
 				</div>
 				<div class="flex-row">
@@ -81,18 +82,31 @@ td img {
 				<div class="flex-row">
 					카테고리 : ${vo.bbsShareCategory} <span class="right-align"> 관심수
 						: ${vo.bbsShareInterest}</span><br>
-				</div> <br>
-			<br>
+				</div> <br> <br>
 				<div class="breakword" style="max-width: 300px;">
 					${fn:length(vo.bbsShareContent) > 100 ? fn:substring(vo.bbsShareContent, 0, 100) : vo.bbsShareContent}
-				</div> <br>
-			<br> <img src="share/bbsShare/img/${vo.bbsShareImage}" onerror="imgError(this)" >
+				</div> <br> <br> <img
+				src="share/bbsShare/img/${vo.bbsShareImage}"
+				onerror="imgError(this)">
 			</td>
 			<c:if test="${status.index % 3 == 2 || status.last}">
 				</tr>
 			</c:if>
 		</c:forEach>
 	</table>
-
+	
+	
+	<%
+	String pagenoStr = request.getParameter("pageno");
+    int pageno = 1;
+    if (pagenoStr != null) {
+        pageno = Integer.parseInt(pagenoStr);
+    }
+    pageContext.setAttribute("pageno", pageno);
+%>
+<c:if test="${pageno > 1}">
+    <a href="list?pageno=${pageno-1}">이전</a>
+</c:if>
+<a href="list?pageno=${pageno+1}">다음</a>
 </body>
 </html>

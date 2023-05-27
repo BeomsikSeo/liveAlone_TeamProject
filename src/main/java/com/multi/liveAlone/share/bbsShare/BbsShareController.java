@@ -61,9 +61,9 @@ public class BbsShareController {
 	}
 
 	@RequestMapping("share/bbsShare/list")
-	public void list(Model model) {
+	public void list(String pageno, Model model) {
 		System.out.println("list요청됨.");
-		List<BbsShareVO> list = dao.list();
+		List<BbsShareVO> list = dao.list(pageno);
 		model.addAttribute("list", list);
 	}
 	

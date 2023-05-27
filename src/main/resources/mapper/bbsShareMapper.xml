@@ -1,61 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bbsshare">
-	
+
 	<insert id="create" parameterType="BbsShareVO">
-		insert into bbsshare values (NULL, #{bbsShareRequest}, #{bbsShareTitle}, #{bbsShareContent}, #{bbsShareWriter}, #{bbsShareDate}, #{bbsShareCategory}, #{bbsShareView}
-		, #{bbsShareInterest}, #{bbsShareSuccess}, #{bbsShareImage})
+		insert into bbsshare values
+		(NULL, #{bbsShareRequest}, #{bbsShareTitle}, #{bbsShareContent},
+		#{bbsShareWriter}, #{bbsShareDate}, #{bbsShareCategory},
+		#{bbsShareView}
+		, #{bbsShareInterest}, #{bbsShareSuccess},
+		#{bbsShareImage})
 	</insert>
-	
-	
-	
-	<delete id="del"  parameterType="BbsShareVO">
-		delete from bbsshare where bbsshareno = #{bbsShareNo}
+
+
+
+	<delete id="del" parameterType="BbsShareVO">
+		delete from bbsshare where
+		bbsshareno = #{bbsShareNo}
 	</delete>
-	
-	
-	
-	<update id="uprequest"  parameterType="BbsShareVO">
-		update bbsshare set bbssharerequest = #{bbsShareRequest} where bbsshareno = #{bbsShareNo}
+
+
+
+	<update id="uprequest" parameterType="BbsShareVO">
+		update bbsshare set
+		bbssharerequest = #{bbsShareRequest} where bbsshareno = #{bbsShareNo}
 	</update>
-	
-	<update id="upcontent"  parameterType="BbsShareVO">
-		update bbsshare set bbssharetitle = #{bbsShareTitle}, bbssharecontent = #{bbsShareContent}, bbssharecategory = #{bbsShareCategory}, bbsshareimage = #{bbsShareImage} where bbsshareno = #{bbsShareNo}
+
+	<update id="upcontent" parameterType="BbsShareVO">
+		update bbsshare set
+		bbssharetitle = #{bbsShareTitle}, bbssharecontent =
+		#{bbsShareContent}, bbssharecategory = #{bbsShareCategory},
+		bbsshareimage = #{bbsShareImage} where bbsshareno = #{bbsShareNo}
 	</update>
-	
-	<update id="upview"  parameterType="BbsShareVO">
-		update bbsshare set bbsshareview = #{bbsShareView}+1 where bbsshareno = #{bbsShareNo}
+
+	<update id="upview" parameterType="BbsShareVO">
+		update bbsshare set
+		bbsshareview = #{bbsShareView}+1 where bbsshareno = #{bbsShareNo}
 	</update>
-	
-	<update id="upinterest"  parameterType="BbsShareVO">
-		update bbsshare set bbsshareinterest = #{bbsShareInterest}+1 where bbsshareno = #{bbsShareNo}
+
+	<update id="upinterest" parameterType="BbsShareVO">
+		update bbsshare set
+		bbsshareinterest = #{bbsShareInterest}+1 where bbsshareno =
+		#{bbsShareNo}
 	</update>
-	
-	<update id="upsuccess"  parameterType="BbsShareVO">
-		update bbsshare set bbssharesuccess = 1 where bbsshareno = #{bbsShareNo}
+
+	<update id="upsuccess" parameterType="BbsShareVO">
+		update bbsshare set
+		bbssharesuccess = 1 where bbsshareno = #{bbsShareNo}
 	</update>
-	
-	
-	
-	
-	
+
+
+
+
+
 	<select id="one" parameterType="String" resultType="BbsShareVO">
-		select * from bbsshare where bbsshareno = #{bbsShareNo}
+		select * from
+		bbsshare where bbsshareno = #{bbsShareNo}
 	</select>
-	
+
 	<select id="all" resultType="BbsShareVO">
-		select * from bbsshare
+		SELECT * FROM (SELECT *,
+		ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) as rn FROM bbsshare ) sub
+		WHERE rn between (#{pageno} * 6- 5) and (#{pageno} * 6;)
 	</select>
-	
+
 	<select id="notsuccess" resultType="BbsShareVO">
-		select * from bbsshare where bbssharesuccess = false
+		SELECT * FROM (
+		SELECT *, ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) as rn
+		FROM (SELECT * FROM bbsshare WHERE bbssharesuccess = false) sub1
+		) sub2
+		WHERE rn BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6;
+
 	</select>
-	
+
 	<select id="allcerti" resultType="BbsShareVO">
-		SELECT A.* FROM bbsshare as A LEFT JOIN member as B ON A.bbssharewriter= B.member_id WHERE B.address=  (select address from member where member_id = 'writer1')
+		SELECT A.* FROM bbsshare as A LEFT JOIN member as B ON
+		A.bbssharewriter= B.member_id WHERE B.address= (select address from
+		member where member_id = 'writer1')
 		<!-- writer1대신 사용자 세션의 아이디 사용 -->
 	</select>
-	
+
 </mapper>
 
 

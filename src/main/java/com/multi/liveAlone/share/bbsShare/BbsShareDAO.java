@@ -34,9 +34,8 @@ public class BbsShareDAO {
 		return bag;
 	}
 
-	public List<BbsShareVO> list() {
-		List<BbsShareVO> list = my.selectList("bbsshare.notsuccess");
-		System.out.println(list.size());
+	public List<BbsShareVO> list(String pageno) {
+		List<BbsShareVO> list = my.selectList("bbsshare.notsuccess",Integer.parseInt(pageno));
 		return list;
 	}
 	

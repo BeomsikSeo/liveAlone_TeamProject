@@ -10,7 +10,7 @@
 <body>
 
 <h3>검색</h3>
-<a href="list">게시물 리스트</a>
+<a href="list?pageno=1">게시물 리스트</a>
 <hr>
 
 <form action="one" method="get">
