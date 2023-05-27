@@ -1,21 +1,21 @@
 package com.multi.liveAlone;
 
-public class MemberVO {
-	private String member_id;
+public class MemberVO_real {
+	private String id;
 	private String address;
 	private String nickname;
 	private int certification;
 	private String point;
 	private int count;
-	private String password;
+	private String passwore;
 	private int mileage;
 	private int admin;
 	
-	public String getMember_id() {
-		return member_id;
+	public String getid() {
+		return id;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setid(String id) {
+		this.id = id;
 	}
 	public String getAddress() {
 		return address;
@@ -47,11 +47,11 @@ public class MemberVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getPassword() {
-		return password;
+	public String getPasswore() {
+		return passwore;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPasswore(String passwore) {
+		this.passwore = passwore;
 	}
 	public int getMileage() {
 		return mileage;
@@ -68,9 +68,9 @@ public class MemberVO {
 	
 	@Override
 	public String toString() {
-		return "MemberVO [member_id=" + member_id + ", address=" + address + ", nickname=" + nickname
-				+ ", certification=" + certification + ", point=" + point + ", count=" + count + ", password="
-				+ password + ", mileage=" + mileage + ", admin=" + admin + "]";
+		return "MemberVO [id=" + id + ", address=" + address + ", nickname=" + nickname
+				+ ", certification=" + certification + ", point=" + point + ", count=" + count + ", passwore="
+				+ passwore + ", mileage=" + mileage + ", admin=" + admin + "]";
 	}
 	
 	

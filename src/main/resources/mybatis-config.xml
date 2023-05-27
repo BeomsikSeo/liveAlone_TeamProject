@@ -19,7 +19,8 @@
       <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVOInfo" alias="ticketVOInfo"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.order.OrderVO" alias="orderVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.chatRoomShare.ChatRoomShareVO" alias="chatRoomShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.messageShare.MessageShareVO" alias="messageShareVO"></typeAlias>
    </typeAliases>
    <mappers>
    <!-- SQL문 정의하는 파일들의 목록을 지정. 테이블당 한개 사용 -->
@@ -32,8 +33,13 @@
       <mapper resource="mapper/sReviewMapper.xml" />
       <mapper resource="mapper/storeMapper.xml" />
       <mapper resource="mapper/bbsShareMapper.xml" />
+<<<<<<< HEAD
       <mapper resource="mapper/chatShareMapper.xml" />
       <mapper resource="mapper/ticketMapper.xml"/>
       <mapper resource="mapper/orderMapper.xml"/>
+=======
+      <mapper resource="mapper/chatRoomShareMapper.xml" />
+      <mapper resource="mapper/messageShareMapper.xml" />
+>>>>>>> shareChat
    </mappers>
 </configuration>

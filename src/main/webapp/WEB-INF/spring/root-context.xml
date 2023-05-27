@@ -7,7 +7,8 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<mongo:mongo-client host="localhost" port="27017"
+		<!-- mongoDB -->
+	<!-- <mongo:mongo-client host="localhost" port="27017"
 		credentials="winner:1234@shop2">
 		<mongo:client-options connections-per-host="50"
 			threads-allowed-to-block-for-connection-multiplier="10"
@@ -19,7 +20,7 @@
 		class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg ref="mongo" />
 		<constructor-arg name="databaseName" value="shop2" />
-	</bean>
+	</bean> -->
 	
 	
 	<bean id="my" class="org.mybatis.spring.SqlSessionTemplate">
