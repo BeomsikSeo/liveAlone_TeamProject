@@ -19,7 +19,16 @@ public class BbsShareSearchDAO {
 	public List<BbsShareVO> search(String keyword, String pageno) {
 		bag.setKeyword(keyword);
 		bag.setPageno(pageno);
+		bag.setAddress("x");
 		List<BbsShareVO> result = my.selectList("bbsshare.search", bag);
+		return result;
+	}
+	
+	public List<BbsShareVO> searchcerti(String keyword, String pageno, String address) {
+		bag.setKeyword(keyword);
+		bag.setPageno(pageno);
+		bag.setAddress(address);
+		List<BbsShareVO> result = my.selectList("bbsshare.searchcerti", bag);
 		return result;
 	}
 }

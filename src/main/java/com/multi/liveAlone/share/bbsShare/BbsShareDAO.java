@@ -13,6 +13,7 @@ public class BbsShareDAO {
 	SqlSessionTemplate my;
 
 	BbsShareVO bag = new BbsShareVO();
+	BbsShareSearchVO bag2 = new BbsShareSearchVO();
 
 	public int insert(BbsShareVO bag) {
 		int result = my.insert("bbsshare.create", bag);
@@ -36,6 +37,14 @@ public class BbsShareDAO {
 
 	public List<BbsShareVO> list(String pageno) {
 		List<BbsShareVO> list = my.selectList("bbsshare.notsuccess",Integer.parseInt(pageno));
+		return list;
+	}
+	
+	public List<BbsShareVO> listcerti(String pageno,String address) {
+		bag2.setPageno(pageno);
+		bag2.setAddress(address);
+		bag2.setKeyword("x");
+		List<BbsShareVO> list = my.selectList("bbsshare.notsuccesscerti",bag2);
 		return list;
 	}
 	

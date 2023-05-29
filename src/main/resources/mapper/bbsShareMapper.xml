@@ -74,25 +74,74 @@
 		#{pageno} * 6 - 5 AND #{pageno} * 6;
 	</select>
 
+
+
+	<select id="notsuccesscerti" parameterType="BbsShareSearchVO" resultType="BbsShareVO">
+		SELECT * FROM (
+		SELECT *,
+		ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) as rn
+		FROM (
+		SELECT bbsshare.*
+		FROM member
+		JOIN bbsshare ON member.member_id = bbsshare.bbssharewriter
+		WHERE member.address LIKE CONCAT(#{address}, '%') AND
+		bbsshare.bbssharesuccess = false
+		) sub1
+		) sub2
+		WHERE rn BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6;
+
+		<!-- SELECT * FROM ( SELECT *, ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) 
+			as rn FROM (SELECT * FROM bbsshare WHERE bbssharesuccess = false) sub1 ) 
+			sub2 WHERE rn BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6; -->
+	</select>
+
 	<select id="search" parameterType="BbsShareSearchVO"
 		resultType="BbsShareVO">
 
 		SELECT * FROM (
-		SELECT t.*, @rownum := @rownum + 1 AS row_num
+		SELECT t.*, @rownum := @rownum + 1 AS
+		row_num
 		FROM (SELECT * FROM bbsshare WHERE bbssharesuccess = false and
 		(bbssharecontent LIKE CONCAT('%', #{keyword}, '%') OR bbssharetitle
 		LIKE CONCAT('%', #{keyword},'%')) ORDER BY bbsshareno desc) t, (SELECT
 		@rownum := 0) r
-		) x
-		WHERE row_num BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6
+		)
+		x
+		WHERE row_num BETWEEN #{pageno} * 6 - 5 AND #{pageno}
+		* 6
 
 	</select>
 
-	<select id="allcerti" resultType="BbsShareVO">
-		SELECT A.* FROM bbsshare as A LEFT JOIN member as B ON
-		A.bbssharewriter= B.member_id WHERE B.address= (select address from
-		member where member_id = 'writer1')
-		<!-- writer1대신 사용자 세션의 아이디 사용 -->
+	<select id="searchcerti" parameterType="BbsShareSearchVO"
+		resultType="BbsShareVO">
+
+		SELECT * FROM (
+		SELECT t.*, @rownum := @rownum + 1 AS row_num
+		FROM (
+		SELECT bbsshare.*
+		FROM member
+		JOIN bbsshare ON member.member_id =
+		bbsshare.bbssharewriter
+		WHERE member.address LIKE CONCAT(#{address},
+		'%') AND
+		bbsshare.bbssharesuccess = false AND (bbsshare.bbssharecontent
+		LIKE
+		CONCAT('%', #{keyword}, '%') OR bbsshare.bbssharetitle LIKE
+		CONCAT('%',
+		#{keyword},'%'))
+		ORDER BY bbsshare.bbsshareno DESC
+		) t,
+		(SELECT @rownum := 0) r
+		) x
+		WHERE row_num BETWEEN #{pageno} * 6 - 5 AND
+		#{pageno} * 6;
+
+		<!-- SELECT * FROM ( SELECT t.*, @rownum := @rownum + 1 AS row_num FROM 
+			(SELECT * FROM bbsshare WHERE bbssharesuccess = false and (bbssharecontent 
+			LIKE CONCAT('%', #{keyword}, '%') OR bbssharetitle LIKE CONCAT('%', #{keyword},'%')) 
+			ORDER BY bbsshareno desc) t, (SELECT @rownum := 0) r ) x WHERE row_num BETWEEN 
+			#{pageno} * 6 - 5 AND #{pageno} * 6 -->
+
 	</select>
 
 </mapper>

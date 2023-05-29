@@ -24,8 +24,10 @@ public class BbsShareSearchController {
 	BbsShareDAO dao2;
 
 	@RequestMapping("share/bbsShare/search")
-	public String searchA(String keyword,String pageno, Model model, RedirectAttributes redirectAttributes) {
+	public String search(String keyword,String pageno, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println("search요청됨.");
+
+		if(keyword == " ") {keyword = "";}
 		if(pageno == null) {pageno = "1";}
 		if ("".equals(keyword)) { //빈칸 검색시 리스트 1페이지로
 			List<BbsShareVO> list = dao2.list("1");
@@ -45,17 +47,32 @@ public class BbsShareSearchController {
 			return "share/bbsShare/search";
 		}
 	}
+	
+	@RequestMapping("share/bbsShare/searchcerti")
+	public String searchcerti(String keyword,String pageno, Model model, RedirectAttributes redirectAttributes,HttpServletRequest request) {
+		System.out.println("searchcerti요청됨.");
+		HttpSession session = request.getSession();
+		String address = (String) session.getAttribute("address");
+		if(pageno == null) {pageno = "1";}
+		if ("".equals(keyword)) { //빈칸 검색시 리스트 1페이지로
+			List<BbsShareVO> list = dao2.list("1");
+	            model.addAttribute("list", list);
+	            System.out.println("empty 검색 실행");
+	            return "redirect:/share/bbsShare/listcerti?pageno=1";
+		}
+		
+		List<BbsShareVO> list = dao.searchcerti(keyword, pageno, address);
+		if (list.isEmpty()) {
+			// list가 empty인 경우
+	        model.addAttribute("message", "검색 결과가 없습니다.");
+	        return "share/bbsShare/searchcerti";
+		} else {
+			// list가 empty가 아닌 경우
+			model.addAttribute("list", list);
+			return "share/bbsShare/searchcerti";
+		}
+	}
 
-	/*
-	 * @RequestMapping("share/bbsShare/search") public String search(String keyword,
-	 * String pageno, Model model, RedirectAttributes redirectAttributes) {
-	 * System.out.println("search요청됨."); if (pageno == null) { pageno = "1"; }
-	 * List<BbsShareVO> list = dao.search(keyword, pageno); int x =
-	 * Integer.parseInt(pageno) - 1; if (list.isEmpty()) { // list가 empty인 경우
-	 * redirectAttributes.addFlashAttribute("message", "검색 결과가 없거나 잘못된 페이지입니다");
-	 * return "redirect:/share/bbsShare/search?pageno=" + x; } else { // list가
-	 * empty가 아닌 경우 model.addAttribute("search", list); return
-	 * "share/bbsShare/search"; } }
-	 */
+
 
 }

@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+<a href="sessiondelete">세션 초기화</a>
+	<a href="member1">유저 : 가나다</a>
+	<a href="member2">유저 : 나다라</a>
 	<h3>검색</h3>
 	<a href="list?pageno=1">게시물 리스트</a>
-	
-	<a href="sessiondelete">세션 초기화</a>
+	<br>
 	<hr>
 
 	<form action="one" method="get">

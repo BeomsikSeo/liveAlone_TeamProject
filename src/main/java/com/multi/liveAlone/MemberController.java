@@ -12,6 +12,7 @@ public class MemberController {
 	@Autowired
 	MemberDAO dao;
 	
+	
 	@RequestMapping("share/bbsShare/certi")
 	public void certi(String member_id) {
 		System.out.println("certi요청됨.");

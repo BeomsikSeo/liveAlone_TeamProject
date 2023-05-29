@@ -2,6 +2,7 @@ package com.multi.liveAlone.share.bbsShare;
 
 import org.springframework.stereotype.Controller;
 import java.util.List;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.multi.liveAlone.MemberDAO;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
@@ -77,6 +79,24 @@ public class BbsShareController {
         }
 	}
 	
+	@RequestMapping("share/bbsShare/listcerti")
+	public String listcerti(String pageno, Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) {
+		System.out.println("list요청됨.");
+		HttpSession session = request.getSession();
+		String address = (String) session.getAttribute("address");
+		List<BbsShareVO> list = dao.listcerti(pageno, address);
+        int x = Integer.parseInt(pageno) - 1;
+		if (list.isEmpty()) {
+            // list가 empty인 경우
+            redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
+            return "redirect:/share/bbsShare/listcerti?pageno="+x;
+        } else {
+            // list가 empty가 아닌 경우
+            model.addAttribute("list", list);
+            return "share/bbsShare/listcerti";
+        }
+	}
+	
 	@RequestMapping("share/bbsShare/success")
 	public void success(String bbsShareNo, Model model) {
 		System.out.println("success요청됨.");
@@ -94,5 +114,15 @@ public class BbsShareController {
 	public void session_delete() {
 		System.out.println("세션 초기화");
 	}
+	
+	@RequestMapping("share/bbsShare/member1")
+	public void member1() {
+		System.out.println("member_id 세션 : 가나다");
+	}
+	@RequestMapping("share/bbsShare/member2")
+	public void member2() {
+		System.out.println("member_id 세션 : 나다라");
+	}
+
 
 }
