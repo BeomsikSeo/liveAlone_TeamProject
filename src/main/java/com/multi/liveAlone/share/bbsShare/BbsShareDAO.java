@@ -49,6 +49,5 @@ public class BbsShareDAO {
 		return result;
 	}
 	
-	
 
 }

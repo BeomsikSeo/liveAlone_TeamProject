@@ -14,16 +14,28 @@
         return true;
     }
      */
+<%String bbsShareNo = request.getParameter("bbsShareNo");%>
+     
     function viewplus() {
         $.ajax({
-            url: '/share/bbsShare/view',
-            data : {"bbsShareNo":"<%=request.getParameter("bbsShareNo")%>"},
-			type : 'GET',
-			success : function(data) {
-				// Handle the response data here
+			async : true,
+			type : 'POST',
+            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+			url : 'view',
+			dataType : "text",
+			success : function() {
 			}
 		});
 	}
+     
+     $(document).ready(function() {
+         var sessionValue = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>";
+						console.log(sessionValue);
+						if (sessionValue !== "1") {
+							viewplus();
+<%session.setAttribute("viewBbsShareNo" + bbsShareNo, "1");%>
+	}
+					});
 </script>
 <style type="text/css">
 img {
@@ -46,9 +58,8 @@ div {
 </head>
 <body>
 	<%
-		session.setAttribute("viewcheck", "1");
-	String pageno = (String) session.getAttribute("pageno");
-	if (pageno == null) {
+		String pageno = (String) session.getAttribute("pageno"); //거쳐온 페이지 번호
+	if (pageno == null) { //바로 온경우 pageno 1로 설정
 		pageno = "1";
 		session.setAttribute("pageno", pageno);
 	}
@@ -89,7 +100,8 @@ div {
 				<button type="submit">완료처리</button>
 			</form>
 		</c:if>
-		<br> <br> <img src="../../resources/noimage.jpg" <%-- "share/bbsShare/img/${bag.bbsShareImage}" --%> onerror="imgError(this)">
+		<br> <br> <img src="../../resources/noimage.jpg"
+			<%-- "share/bbsShare/img/${bag.bbsShareImage}" --%> onerror="imgError(this)">
 	</div>
 </body>
 </html>

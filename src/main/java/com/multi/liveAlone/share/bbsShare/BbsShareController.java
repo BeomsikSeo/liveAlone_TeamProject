@@ -89,5 +89,10 @@ public class BbsShareController {
 		System.out.println("upview요청됨.");
 		dao.upview(bbsShareNo);
 	}
+	
+	@RequestMapping("share/bbsShare/sessiondelete")
+	public void session_delete() {
+		System.out.println("세션 초기화");
+	}
 
 }

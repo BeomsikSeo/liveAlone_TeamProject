@@ -9,6 +9,8 @@
 <body>
 	<h3>검색</h3>
 	<a href="list?pageno=1">게시물 리스트</a>
+	
+	<a href="sessiondelete">세션 초기화</a>
 	<hr>
 
 	<form action="one" method="get">
