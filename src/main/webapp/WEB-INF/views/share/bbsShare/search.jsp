@@ -50,24 +50,22 @@ td img {
 </style>
 </head>
 <body>
-	<!-- 빈 페이지일 경우 경고 -->
+	<!-- 검색창 -->
+	<form action="search" method="get">
+		<input type="text" name="keyword" placeholder="검색어를 입력하세요"> <input
+			type="submit" value="검색">
+	</form>
+	<b><%=request.getParameter("keyword") %></b> 검색 결과입니다
+	<br>
+	<br>
+	
+	<!-- 검색 결과가 없을경우 경고 -->
 	<c:if test="${not empty message}">
-		<script>
-			alert("${message}");
-		</script>
+		<p>${message}</p><br>
+		<button onclick="history.back()">뒤로가기</button>
 	</c:if>
 
-	<!-- 검색창 -->
-	<form  action="search" method="get" accept-charset="utf-8">
-		<input type="text" name="keyword" placeholder="검색어를 입력하세요">
-		<input type="hidden" name="pageno" value="1">
-		<input type="submit" value="검색">
-	</form>
-	<br>
-
-
-
-	<table>
+<table>
 		<c:forEach items="${list}" var="vo" varStatus="status">
 			<c:if test="${status.index % 3 == 0}">
 				<tr>
@@ -110,18 +108,17 @@ td img {
 
 
 	<%
-		String pagenoStr = request.getParameter("pageno");
-	session.setAttribute("pageno", pagenoStr);
-	int pageno = 1;
-	if (pagenoStr != null) {
-		pageno = Integer.parseInt(pagenoStr);
-	}
-	pageContext.setAttribute("pageno", pageno);
+	pageContext.setAttribute("pageno",request.getParameter("pageno"));
+	pageContext.setAttribute("keywords", request.getParameter("keyword"));
 	%>
 	<c:if test="${pageno > 1}">
-		<a href="list?pageno=${pageno-1}"><button>이전</button></a>
+		<a href="search?keyword=${keywords}&pageno=${pageno-1}"><button>이전</button></a>
+		
 	</c:if>
-	<a href="list?pageno=${pageno+1}"><button>다음</button></a>
+	<a href="search?keyword=${keywords}&pageno=${pageno+1}"><button>다음</button></a>
+
+
+
 
 </body>
 </html>

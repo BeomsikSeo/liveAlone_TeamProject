@@ -65,10 +65,26 @@
 
 	<select id="notsuccess" resultType="BbsShareVO">
 		SELECT * FROM (
-		SELECT *, ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) as rn
-		FROM (SELECT * FROM bbsshare WHERE bbssharesuccess = false) sub1
+		SELECT *,
+		ROW_NUMBER() OVER (ORDER BY bbsshareno DESC) as rn
+		FROM (SELECT * FROM
+		bbsshare WHERE bbssharesuccess = false) sub1
 		) sub2
-		WHERE rn BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6;
+		WHERE rn BETWEEN
+		#{pageno} * 6 - 5 AND #{pageno} * 6;
+	</select>
+
+	<select id="search" parameterType="BbsShareSearchVO"
+		resultType="BbsShareVO">
+
+		SELECT * FROM (
+		SELECT t.*, @rownum := @rownum + 1 AS row_num
+		FROM (SELECT * FROM bbsshare WHERE bbssharesuccess = false and
+		(bbssharecontent LIKE CONCAT('%', #{keyword}, '%') OR bbssharetitle
+		LIKE CONCAT('%', #{keyword},'%')) ORDER BY bbsshareno desc) t, (SELECT
+		@rownum := 0) r
+		) x
+		WHERE row_num BETWEEN #{pageno} * 6 - 5 AND #{pageno} * 6
 
 	</select>
 

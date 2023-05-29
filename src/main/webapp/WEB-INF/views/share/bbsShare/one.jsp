@@ -64,7 +64,7 @@ div {
 		session.setAttribute("pageno", pageno);
 	}
 	%>
-	<a href="list?pageno=<%=pageno%>"><button>목록으로</button></a>
+	<button onclick="history.back()">뒤로가기</button>
 	<br>
 	<br>
 	<div class="q1">

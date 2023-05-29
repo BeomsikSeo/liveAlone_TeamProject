@@ -15,6 +15,7 @@
       <typeAlias type="com.multi.liveAlone.rice.sReview.SReviewVO" alias="sReviewVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.store.StoreVO" alias="storeVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareSearchVO" alias="bbsShareSearchVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
    </typeAliases>
    <mappers>

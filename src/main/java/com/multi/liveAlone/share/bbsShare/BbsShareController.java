@@ -69,7 +69,7 @@ public class BbsShareController {
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
-            return "redirect:/share/bbsShare/list?pageno=" + x;
+            return "redirect:/share/bbsShare/list?pageno="+x;
         } else {
             // list가 empty가 아닌 경우
             model.addAttribute("list", list);
