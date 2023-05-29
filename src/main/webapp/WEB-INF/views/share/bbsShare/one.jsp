@@ -6,11 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	function imgError(image) {
-		image.onerror = "";
-		image.src = "../../resources/noimage.jpg";
-		return true;
+   /*  function imgError(image) {
+        image.onerror = "";
+        image.src = "/resources/noimage.jpg";
+        return true;
+    }
+     */
+    function viewplus() {
+        $.ajax({
+            url: '/share/bbsShare/view',
+            data : {"bbsShareNo":"<%=request.getParameter("bbsShareNo")%>"},
+			type : 'GET',
+			success : function(data) {
+				// Handle the response data here
+			}
+		});
 	}
 </script>
 <style type="text/css">
@@ -35,8 +47,13 @@ div {
 <body>
 	<%
 		session.setAttribute("viewcheck", "1");
+	String pageno = (String) session.getAttribute("pageno");
+	if (pageno == null) {
+		pageno = "1";
+		session.setAttribute("pageno", pageno);
+	}
 	%>
-	<a href="list"><button>목록으로</button></a>
+	<a href="list?pageno=<%=pageno%>"><button>목록으로</button></a>
 	<br>
 	<br>
 	<div class="q1">
@@ -53,7 +70,8 @@ div {
 			<span style="font-weight: bold; font-size: 24px;">${bag.bbsShareTitle}</span>
 			<c:choose>
 				<c:when test="${bag.bbsShareSuccess}">
-					<span class="right-align">완료</span> <!-- 완료가 true일경우 출력 -->
+					<span class="right-align">완료</span>
+					<!-- 완료가 true일경우 출력 -->
 				</c:when>
 			</c:choose>
 
@@ -71,8 +89,7 @@ div {
 				<button type="submit">완료처리</button>
 			</form>
 		</c:if>
-		<br> <br> <img src="share/bbsShare/img/${bag.bbsShareImage}"
-			onerror="imgError(this)">
+		<br> <br> <img src="../../resources/noimage.jpg" <%-- "share/bbsShare/img/${bag.bbsShareImage}" --%> onerror="imgError(this)">
 	</div>
 </body>
 </html>

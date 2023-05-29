@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
+<script type="text/javascript">
 	function imgError(image) {
 		image.onerror = "";
 		image.src = "../../resources/noimage.jpg";
@@ -50,10 +50,11 @@ td img {
 </style>
 </head>
 <body>
-	<%
-		session.setAttribute("member_id", "가나다");
-	%>
-	<!-- 테스트용 세션 지정 -->
+	<c:if test="${not empty message}">
+		<script>
+			alert("${message}");
+		</script>
+	</c:if>
 	<table>
 		<c:forEach items="${list}" var="vo" varStatus="status">
 			<c:if test="${status.index % 3 == 0}">
@@ -94,19 +95,24 @@ td img {
 			</c:if>
 		</c:forEach>
 	</table>
-	
-	
+
+
 	<%
-	String pagenoStr = request.getParameter("pageno");
-    int pageno = 1;
-    if (pagenoStr != null) {
-        pageno = Integer.parseInt(pagenoStr);
-    }
-    pageContext.setAttribute("pageno", pageno);
-%>
-<c:if test="${pageno > 1}">
-    <a href="list?pageno=${pageno-1}">이전</a>
-</c:if>
-<a href="list?pageno=${pageno+1}">다음</a>
+		String pagenoStr = request.getParameter("pageno");
+	session.setAttribute("pageno", pagenoStr);
+	int pageno = 1;
+	if (pagenoStr != null) {
+		pageno = Integer.parseInt(pagenoStr);
+	}
+	pageContext.setAttribute("pageno", pageno);
+	
+	
+	
+	%>
+	<c:if test="${pageno > 1}">
+		<a href="list?pageno=${pageno-1}"><button>이전</button></a>
+	</c:if>
+	<a href="list?pageno=${pageno+1}"><button>다음</button></a>
+
 </body>
 </html>

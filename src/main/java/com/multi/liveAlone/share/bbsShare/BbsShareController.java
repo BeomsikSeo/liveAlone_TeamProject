@@ -9,6 +9,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.multi.liveAlone.MemberDAO;
 
@@ -61,10 +62,19 @@ public class BbsShareController {
 	}
 
 	@RequestMapping("share/bbsShare/list")
-	public void list(String pageno, Model model) {
+	public String list(String pageno, Model model,RedirectAttributes redirectAttributes) {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list(pageno);
-		model.addAttribute("list", list);
+        int x = Integer.parseInt(pageno) - 1;
+		if (list.isEmpty()) {
+            // list가 empty인 경우
+            redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
+            return "redirect:/share/bbsShare/list?pageno=" + x;
+        } else {
+            // list가 empty가 아닌 경우
+            model.addAttribute("list", list);
+            return "share/bbsShare/list";
+        }
 	}
 	
 	@RequestMapping("share/bbsShare/success")

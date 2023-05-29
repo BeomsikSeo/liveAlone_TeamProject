@@ -34,7 +34,7 @@
 
 	<update id="upview" parameterType="BbsShareVO">
 		update bbsshare set
-		bbsshareview = #{bbsShareView}+1 where bbsshareno = #{bbsShareNo}
+		bbsshareview = bbsshareview+1 where bbsshareno = #{bbsShareNo}
 	</update>
 
 	<update id="upinterest" parameterType="BbsShareVO">
