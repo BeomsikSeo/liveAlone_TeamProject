@@ -8,14 +8,12 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-   /*  function imgError(image) {
-        image.onerror = "";
-        image.src = "/resources/noimage.jpg";
-        return true;
-    }
-     */
-<%String bbsShareNo = request.getParameter("bbsShareNo");%>
-     
+
+<%String bbsShareNo = request.getParameter("bbsShareNo");
+String certification = (String) session.getAttribute("certification");
+System.out.println(certification);%>
+var certification = "<%=certification%>";
+
     function viewplus() {
         $.ajax({
 			async : true,
@@ -27,15 +25,34 @@
 			}
 		});
 	}
+    
+    function interestplus() {
+        $.ajax({
+			async : true,
+			type : 'POST',
+            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+			url : 'interest',
+			dataType : "text",
+			success : function() {
+			}
+		});
+	}
      
      $(document).ready(function() {
-         var sessionValue = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>";
-						console.log(sessionValue);
-						if (sessionValue !== "1") {
-							viewplus();
-<%session.setAttribute("viewBbsShareNo" + bbsShareNo, "1");%>
-	}
-					});
+		var sessionValue = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>";
+		if (certification !== "0") {
+		console.log("x");
+		document.getElementById("interestplus-button").style.display = "block";
+		}
+		document.getElementById("interestplus-button").onclick = function() {
+			interestplus();
+			}
+		
+		if (sessionValue !== "1") {
+			viewplus();
+			<%session.setAttribute("viewBbsShareNo" + bbsShareNo, "1");%>
+			}
+		});
 </script>
 <style type="text/css">
 img {
@@ -91,9 +108,12 @@ div {
 			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
 				${bag.bbsShareDate}</span>
 		</div>
-		<br> category : ${bag.bbsShareCategory} <br> view :
-		${bag.bbsShareView} <br> interest : ${bag.bbsShareInterest} <br>
-		<br> content : ${bag.bbsShareContent} <br>
+		<br>
+		<%-- category : ${bag.bbsShareCategory} --%>
+		<br> view : ${bag.bbsShareView} <br> interest :
+		${bag.bbsShareInterest}
+		<button id="interestplus-button" style="display: none;">관심등록</button>
+		<br> <br> content : ${bag.bbsShareContent} <br>
 		<c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
 			<form action="success" method="get">
 				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">

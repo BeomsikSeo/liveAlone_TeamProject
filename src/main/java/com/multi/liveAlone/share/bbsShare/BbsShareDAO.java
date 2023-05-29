@@ -60,5 +60,15 @@ public class BbsShareDAO {
 		return result;
 	}
 	
+	public int upinterestup(String bbsShareNo) {
+		int result = my.update("bbsshare.upinterestup", Integer.parseInt(bbsShareNo));
+		return result;
+	}
+	
+	public int upinterestdown(String bbsShareNo) {
+		int result = my.update("bbsshare.upinterestdown", Integer.parseInt(bbsShareNo));
+		return result;
+	}
+	
 
 }

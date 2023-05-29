@@ -37,9 +37,15 @@
 		bbsshareview = bbsshareview+1 where bbsshareno = #{bbsShareNo}
 	</update>
 
-	<update id="upinterest" parameterType="BbsShareVO">
+	<update id="upinterestup" parameterType="BbsShareVO">
 		update bbsshare set
-		bbsshareinterest = #{bbsShareInterest}+1 where bbsshareno =
+		bbsshareinterest = bbsShareInterest+1 where bbsshareno =
+		#{bbsShareNo}
+	</update>
+	
+	<update id="upinterestdown" parameterType="BbsShareVO">
+		update bbsshare set
+		bbsshareinterest = bbsShareInterest-1 where bbsshareno =
 		#{bbsShareNo}
 	</update>
 

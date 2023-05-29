@@ -110,6 +110,18 @@ public class BbsShareController {
 		dao.upview(bbsShareNo);
 	}
 	
+	@RequestMapping("share/bbsShare/upinterestup")
+	public void upinterestup(String bbsShareNo) {
+		System.out.println("upinterestup요청됨.");
+		dao.upinterestup(bbsShareNo);
+	}
+	
+	@RequestMapping("share/bbsShare/upinterestdown")
+	public void upinterestdown(String bbsShareNo) {
+		System.out.println("upinterestdown요청됨.");
+		dao.upinterestdown(bbsShareNo);
+	}
+	
 	@RequestMapping("share/bbsShare/sessiondelete")
 	public void session_delete() {
 		System.out.println("세션 초기화");
