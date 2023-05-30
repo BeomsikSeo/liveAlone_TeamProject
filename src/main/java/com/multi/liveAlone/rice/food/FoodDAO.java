@@ -21,4 +21,12 @@ public class FoodDAO {
 		List<FoodVO> list = my.selectList("food.list", store_no);
 		return list;
 	}
+	public List<FoodVO> showMenu(int storeNo) {
+		List<FoodVO> list = my.selectList("food.selectAllMenu",storeNo);
+	
+		return list;
+	}
+
+	
+	
 }

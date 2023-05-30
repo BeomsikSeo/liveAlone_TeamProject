@@ -1,10 +1,13 @@
 package com.multi.liveAlone.rice.store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.multi.liveAlone.rice.ticket.TicketVOPage;
 
 @Component
 public class StoreDAO {
@@ -32,4 +35,22 @@ public class StoreDAO {
 		StoreVO vo = my.selectOne("store.one", store_no);
 		return vo;
 	}
+
+	public StoreVO selectOne(int ticket_storeID) {
+		
+		// 가게 고유번호를 활용해 가게 정보를 찾습니다.
+		return my.selectOne("store.selectOne", ticket_storeID);
+	}
+
+	
+	public List<StoreVO> selectStorePage(List<TicketVOPage> ticketList) {
+		List<StoreVO> store = new ArrayList<>();
+		for(int i=0;i<ticketList.size();i++) {
+			store.add(my.selectOne("store.selectOne-page", ticketList.get(i)));
+		}
+		
+		return store;
+	}
+
+	
 }

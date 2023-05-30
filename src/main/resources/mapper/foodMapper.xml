@@ -20,6 +20,10 @@
 		where store_no = #{store_no}
 	</select>
 
+	<select id="selectAllMenu" resultType="FoodVO" >
+		select * from food where store_no = #{storeNo}
+	</select>
+	
 </mapper>
 
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="store">
-	
 	<insert id="create" parameterType="storeVO">
 		insert into store values
 		(null,
@@ -33,6 +32,13 @@
 		select *
 		from store
 		where store_no = #{store_no}
+	</select>
+	<select id="selectOne" resultType="storeVO">
+		select * from store where store_no = #{ticket_storeID}
+	</select>
+	
+	<select id="selectOne-page" parameterType="ticketVOPage" resultType="storeVO"> 
+		select * from store where store_no = #{ticket_storeID}
 	</select>
 	
 </mapper>
