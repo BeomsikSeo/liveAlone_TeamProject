@@ -17,11 +17,12 @@ public class BbsPartyDAO {
 	}
 
 	public List<ChatPartyVO> chatAll(int partyBbs_num) {
-		/*
-		 * ChatPartyVO vo = new ChatPartyVO(); vo.setPartyBbs_num(partyBbs_num);
-		 */
+
 		return my.selectList("bbsParty.chatAll", partyBbs_num);
 	}
+	public List<MemberPartyVO> memList(BbsPartyVO vo) {
+		return my.selectList("bbsParty.memList", vo);
+	}                                                               
 	
 	public int count() {
 		return my.selectOne("bbsParty.count");
@@ -32,6 +33,9 @@ public class BbsPartyDAO {
 	public int count3(MemberPartyVO vo) {
 		return my.selectOne("bbsParty.count3", vo);
 	}                                                               
+	public int count4(MemberPartyVO vo) {
+		return my.selectOne("bbsParty.count4", vo);
+	} //blacklist에 올라가 있는지 확인                                                           
 	public BbsPartyVO one(BbsPartyVO vo) {
 		return my.selectOne("bbsParty.one", vo);
 	}                                                               
@@ -47,6 +51,9 @@ public class BbsPartyDAO {
 	public int insert3(ChatPartyVO vo) {
 		return my.insert("bbsParty.in3", vo);
 	}
+	public int insert4(MemberPartyVO vo) {
+		return my.insert("bbsParty.in4", vo);
+	}//black list 추가
 	public int up(BbsPartyVO vo) {
 		return my.update("bbsParty.up", vo);
 	}
@@ -58,6 +65,12 @@ public class BbsPartyDAO {
 	}
 	public int del3(BbsPartyVO vo) {
 		return my.delete("bbsParty.del3", vo);
+	}
+	public int del4(MemberPartyVO vo) {
+		return my.delete("bbsParty.del4", vo);
+	}// 파티 멤버에서 제외
+	public int del5(BbsPartyVO vo) {
+		return my.delete("bbsParty.del5", vo);
 	}
 
 }

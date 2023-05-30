@@ -32,15 +32,6 @@ td {
 <body>
 <h3>전체 bbs 글 count: ${count}</h3>
 <hr color="red">
-<%
-	int pages = (int)request.getAttribute("pages");
-	for(int p = 1; p <= pages; p++){
-%>
-	<button style="background: lime; color: red; width: 50px;" class="pages"><%= p %></button>
-<%		
-	}
-%>
-<hr color="red">
 <div id="d1">
  <table>
    <tr>
@@ -55,11 +46,26 @@ td {
       <td class="right">${one.partyBbs_writer}</td>
    </tr>
    </c:forEach>
-   <br>
-   <% if(session.getAttribute("member_id") != null){%>
-   <a href="bbsPartyWrite.jsp">게시물 작성</a>
-   <%} %>
-</table>
+ </table>
 </div>
+   <br>
+   <hr color="red">
+   
+   <div id = "d2">
+   
+		<%
+			int pages = (int)request.getAttribute("pages");
+			for(int p = 1; p <= pages; p++){
+		%>
+			<button style="background: lime; color: red; width: 50px;" class="pages"><%= p %></button>
+		<%		
+			}
+		%><br><br>
+		
+	   <% if(session.getAttribute("member_id") != null){%>
+	   <button type="button" style="float: right;" onclick="location.href='bbsPartyWrite.jsp'">게시물 작성</button>
+<!-- 	   <a href="bbsPartyWrite.jsp">게시물 작성</a> -->
+	   <%} %>   
+   </div>
 </body>
 </html>

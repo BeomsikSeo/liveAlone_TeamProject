@@ -26,7 +26,7 @@ public class BbsPartyController {
 	@RequestMapping(value="party/bbsParty/SummerNoteImageFile" , method = RequestMethod.POST)
 	public @ResponseBody JSONVO SummerNoteImageFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
 		//JsonObject jsonObject = pls.up(file);
-		JSONVO vo = pls.up(file, request );
+		JSONVO vo = pls.up(file, request);
 		System.out.println(vo);
 		return vo;
 	}
@@ -48,7 +48,10 @@ public class BbsPartyController {
 	@RequestMapping("party/bbsParty/bbsPartyOne")
 	public void one(BbsPartyVO vo, Model model) {
 		BbsPartyVO one = dao.one(vo);
+		List<MemberPartyVO> memList = dao.memList(vo);
 		model.addAttribute("one", one);
+		model.addAttribute("memList", memList);
+		
 		System.out.println(one);
 	}
 	
@@ -63,6 +66,7 @@ public class BbsPartyController {
 	public String delete(BbsPartyVO vo, Model model) {
 		dao.del2(vo);
 		dao.del3(vo);
+		dao.del5(vo);//blacklist에서 해당방 블랙리스트 삭제
 		
 		int result = dao.del(vo);
 	
@@ -76,7 +80,7 @@ public class BbsPartyController {
 	
 	}
 
-/*	@RequestMapping("party/bbsParty/bbsPartyJoin")
+	@RequestMapping("party/bbsParty/bbsPartyJoin")
 	public String join(BbsPartyVO vo, Model model, HttpSession session) {
 		
 		MemberPartyVO vo2 = new MemberPartyVO();
@@ -84,25 +88,53 @@ public class BbsPartyController {
 		vo2.setParty_host(0);
 		vo2.setPartyBbs_num((int)session.getAttribute("partyBbs_num"));
 
+		/* vo.setPartyBbs_num((int)session.getAttribute("partyBbs_num")); */
 		
 		int bbsMemberCount = dao.count2(vo); //현재인원
 		int max = dao.one2(vo); // 최대인원
 		int already = dao.count3(vo2); //이미 가입한 인원
+		int blackList = dao.count4(vo2);
+		
 		
 		if(already == 1) {
-			return "redirect:chatparty.jsp"; 
+			return "redirect:chatParty.jsp"; 
 		}else {
 			if (bbsMemberCount >= max) {
 				model.addAttribute("message", "이미 최대 인원에 도달했습니다.");
-				return "alert";
+				return "party/bbsParty/alert";
 			}else {
-				dao.insert2(vo2);
-				return "redirect:chatparty.jsp";
+				if (blackList == 1) {
+					model.addAttribute("message", "강제 퇴장당하여 참여하실 수 없습니다");
+					return "party/bbsParty/alert";
+				}else {
+					dao.insert2(vo2);
+					return "redirect:chatParty.jsp";					
+				}
 			}
+		}	
+	}
+
+	@RequestMapping("party/bbsParty/bbsPartyFire")
+	public String fire(String member_id, Model model, HttpSession session) {
+		MemberPartyVO vo2 = new MemberPartyVO();
+		int roomNum = (int)session.getAttribute("partyBbs_num");
+		
+		String host = (String)session.getAttribute("member_id");
+		
+		if (host.equals(member_id)) {
+			model.addAttribute("message", "본인을 강제퇴장시킬 수 없습니다.");
+			return "party/bbsParty/alert";
 		}
 		
-	}*/
-
+		vo2.setMember_id(member_id);
+		vo2.setPartyBbs_num(roomNum);
+		dao.del4(vo2);
+		dao.insert4(vo2);
+		
+		return "redirect:bbsPartyOne?partyBbs_num=" + roomNum;
+	}
+	
+	
 	@RequestMapping("party/bbsParty/bbsPartyInsert")
 	public String insert(BbsPartyVO vo, Model model, HttpSession session) {
 
@@ -130,6 +162,12 @@ public class BbsPartyController {
 
 	}
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("party/bbsParty/chatLog")
 	@ResponseBody
 	public List<ChatPartyVO> chatAll(HttpSession session) {
@@ -140,7 +178,7 @@ public class BbsPartyController {
 		  return list;
 	}
 	
-
+	
 	
 	
 }

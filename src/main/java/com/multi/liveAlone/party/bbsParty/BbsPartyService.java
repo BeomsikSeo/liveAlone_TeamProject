@@ -21,8 +21,10 @@ public class BbsPartyService {
 		JsonObject jsonObject = new JsonObject();
 		JSONVO jsonvo  = new JSONVO();
 		
-		String fileRoot = request.getContextPath();
+		/* String fileRoot = request.getContextPath(); */
+		String fileRoot = "C:\\Users\\Administrator\\TeamProject\\liveAlone_TeamProject\\src\\main\\webapp\\resources\\img\\";
 		System.out.println(fileRoot);
+		System.out.println("파일루트");
 		String originalFileName = file.getOriginalFilename();
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
 
@@ -35,13 +37,14 @@ public class BbsPartyService {
 			InputStream fileStream = file.getInputStream();
 
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-			String url = "/liveAlone/resources/img/" + saveFileName; 
+			String url = "/summerNoteImg/" + saveFileName; 
 			
 			jsonObject.addProperty("url", url );
 			jsonObject.addProperty("responseCode", "succcess");
 			System.out.println(jsonObject.toString());
 			jsonvo.setUrl(url);
 			jsonvo.setResponseCode("succcess");
+			System.out.println(jsonvo.toString());
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);
 			jsonObject.addProperty("responseCode", "error");

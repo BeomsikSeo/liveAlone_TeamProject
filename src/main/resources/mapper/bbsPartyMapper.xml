@@ -13,6 +13,10 @@
 	<insert id="in3" parameterType="chatPartyVO">
 		insert into partychatlog values (#{member_id}, #{chat_log}, #{partyBbs_num}, #{chat_time})
 	</insert>
+
+	<insert id="in4" parameterType="MemberPartyVO">
+		insert into partyblacklist values (#{member_id}, #{partyBbs_num})
+	</insert> <!-- 블랙리스트 추가 -->
 	
 	<delete id="del"  parameterType="int"> 
 		delete from partybbs where partyBbs_num = #{partyBbs_num}
@@ -23,6 +27,14 @@
 	<delete id="del3"  parameterType="int"> 
 		delete from partychatmember where partyBbs_num = #{partyBbs_num}
 	</delete>
+
+	<delete id="del4"  parameterType="MemberPartyVO"> 
+		delete from partychatmember where partyBbs_num = #{partyBbs_num} and member_id = #{member_id}
+	</delete> <!-- 채팅멤버에서 삭제 -->
+
+	<delete id="del5"  parameterType="int"> 
+		delete from partyblacklist where partyBbs_num = #{partyBbs_num}
+	</delete> <!-- 채팅멤버에서 삭제 -->
 	
 	<update id="up"  parameterType="bbsPartyVO">
 		update partybbs set partyBbs_content = #{partyBbs_content} where partyBbs_num = #{partyBbs_num}
@@ -32,10 +44,13 @@
 		select * from partybbs where partyBbs_num = #{partyBbs_num}
 	</select>
 
-<!-- 	<select id="one2" parameterType="int" resultType = "bbsPartyVO">
-		select * from partybbs where partyBbs_num = #{partyBbs_num}
-	</select> --> <!-- 최대인원수 -->
+ 	<select id="one2" parameterType="int" resultType = "int">
+		select partyBbs_partyMax from partybbs where partyBbs_num = #{partyBbs_num}
+	</select>  <!-- 최대인원수 -->
 	
+	<select id="memList" parameterType="BbsPartyVO" resultType = "memberPartyVO">
+		select * from partychatmember where partyBbs_num = #{partyBbs_num}
+	</select>
 	
 	<select id="all" resultType="bbsPartyVO" parameterType="pagePartyVO">
 		select *
@@ -49,9 +64,9 @@
 		select count(*) from partybbs
 	</select>
 	
-<!-- 	<select id="max" parameterType="int" resultType = "int">
+ 	<select id="max" parameterType="int" resultType = "Integer">
 		select partyBbs_partyMax from partybbs where partyBbs_num = #{partyBbs_num}
-	</select> --> <!-- 최대 동행자 수 -->
+	</select> <!-- 최대 동행자 수 -->
 	
 
  	<select id="count2" resultType="Integer">
@@ -61,6 +76,10 @@
  	<select id="count3" parameterType="memberPartyVO" resultType="Integer">
 		select count(*) from partychatmember where member_id = #{member_id} and partyBbs_num = #{partyBbs_num}
 	</select>   <!-- 이미 참여중인 참여자인지 확인 -->
+ 	
+ 	<select id="count4" parameterType="memberPartyVO" resultType="Integer">
+		select count(*) from partyblacklist where member_id = #{member_id} and partyBbs_num = #{partyBbs_num}
+	</select>   <!-- 블랙리스트인지 확인 -->
 	
 	<select id="chatAll" parameterType="int" resultType = "chatPartyVO">
 		select * from partychatlog where partyBbs_num = #{partyBbs_num}

@@ -34,12 +34,14 @@ int roomId = (int) session.getAttribute("partyBbs_num");
 				console.log(array.length);
 				for(i = 0; i < array.length; i++){
 					var p = document.createElement('p'); //p태그를 만들어라.
-					//p.style.wordWrap = 'break-word';
-					//p.appendChild(document.createTextNode(array[i].member_id + ": "
-						//	+ array[i].chat_log + " (" + array[i].chat_time + ")"));
-					//response.appendChild(p);
 					$('#pre_response').append('<p>' + array[i].member_id + ": " +  array[i].chat_log + " (" + array[i].chat_time + ")</p>")
 				}//for
+<%-- 				if (<%=session.getAttribute("newJoin")%> == 1) {
+					console.log("새로운사람");
+					var p = document.createElement('p');
+					$('#response').append('<p>'+ "<%= session.getAttribute("member_id") %>" + '님이 새로 채팅방에 가입하셨습니다.</p>')
+					/* location.href="http://localhost:8887/liveAlone/party/bbsParty/newJoinParty.jsp"; */
+				}//if --%>
 				console.log("(완료)");
 			} //success
 		})//ajax
@@ -88,6 +90,7 @@ int roomId = (int) session.getAttribute("partyBbs_num");
 			'text' : text
 
 		}));
+		$("#text").val("");
 	}
 	
 	//받은 데이터를 원하는 위치에 넣음. ==> 받은 데이터를 채팅목록으로 쌓는다. 
@@ -97,7 +100,6 @@ int roomId = (int) session.getAttribute("partyBbs_num");
 		//</p>
 		var response = document.getElementById('response');
 		
-		//아래 부분 for문으로 돌리기
 		var p = document.createElement('p'); //p태그를 만들어라.
 		p.style.wordWrap = 'break-word';
 		p.appendChild(document.createTextNode(messageOutput.from + ": "
@@ -128,11 +130,11 @@ int roomId = (int) session.getAttribute("partyBbs_num");
 		</div>
 		<br />
 		<div id="conversationDiv">
-			<input type="text" id="text" placeholder="Write a message..." class="form-control" />
-			<button id="sendMessage" onclick="sendMessage();"
-				class="btn btn-primary">Send</button>
 			<div id="pre_response" class="alert alert-success">"이전 채팅 기록"</div>
 			<div id="response" class="alert alert-success"></div>
+			<input type="text" id="text" placeholder="Write a message..." class="form-control" onkeyup="if(window.event.keyCode==13){sendMessage()}" />
+			<button id="sendMessage" onclick="sendMessage();"
+				class="btn btn-primary">Send</button>
 		</div>
 	</div>
 	<%-- ${pageContext.request.contextPath} --%>

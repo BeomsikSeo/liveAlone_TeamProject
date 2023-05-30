@@ -14,10 +14,4 @@
       <td class="right">${one.partyBbs_writer}</td>
    </tr>
    </c:forEach>
-   <br>
-   
-   	<% if(session.getAttribute("member_id") != null){%>
-   	<a href="bbsPartyWrite.jsp">게시물 작성</a>
-   	<%} %>
-   
 </table>
