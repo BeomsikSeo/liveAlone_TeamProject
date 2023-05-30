@@ -5,7 +5,7 @@ public class MemberVO {
 	private String address;
 	private String nickname;
 	private int certification;
-	private String point;
+	private int point;
 	private int count;
 	private String password;
 	private int mileage;
@@ -35,10 +35,10 @@ public class MemberVO {
 	public void setCertification(int certification) {
 		this.certification = certification;
 	}
-	public String getPoint() {
+	public int getPoint() {
 		return point;
 	}
-	public void setPoint(String point) {
+	public void setPoint(int point) {
 		this.point = point;
 	}
 	public int getCount() {
@@ -65,10 +65,10 @@ public class MemberVO {
 	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
-	
 	@Override
 	public String toString() {
-		return "MemberVO [member_id=" + member_id + ", address=" + address + ", nickname=" + nickname
+
+	return "MemberVO [member_id=" + member_id + ", address=" + address + ", nickname=" + nickname
 				+ ", certification=" + certification + ", point=" + point + ", count=" + count + ", password="
 				+ password + ", mileage=" + mileage + ", admin=" + admin + "]";
 	}

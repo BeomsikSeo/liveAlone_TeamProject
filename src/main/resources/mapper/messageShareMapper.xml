@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="messageshare">
+	
+	<insert id="insert" parameterType="messageShareVO" useGeneratedKeys="true" keyProperty="messageNo">
+		<!-- (roomNo, sender, content, time) 이거 없애보기 -->
+		insert into MESSAGESHARE (roomNo, sender, content, time)
+		values (#{roomNo}, #{sender}, #{content}, #{time})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
