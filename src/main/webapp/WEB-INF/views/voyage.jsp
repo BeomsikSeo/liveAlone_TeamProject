@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -35,6 +36,7 @@
   <c:forEach items="${randomNames}" var="randomName">
     <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button><br>
   </c:forEach>
+ 
 </ul>
 <script>
       $(document).ready(function() {
@@ -56,20 +58,17 @@
         });
       });
 
-      function insertSelect(memberId, name) {
+      function insertSelect(member_id, name) {
         $.ajax({
           url: 'insertselect',
           method: 'POST',
           data: {
-            member_id: memberId,
-            select: name
+            member_id: '<%= session.getAttribute("member_id") %>',
+            selection: name
           },
           success: function(response) {
             console.log('데이터가 추가되었습니다.');
-            var targetButton = window.opener.$('.roundButton:empty').first();
-            if (targetButton.length > 0) {
-              targetButton.text(name);
-            }
+          
           },
           error: function(xhr, status, error) {
             console.log('Error:', error);
@@ -82,11 +81,7 @@
   $(document).ready(function() {
     $('.randomNameButton').click(function() {
       var name = $(this).text();
-      var targetBucket = $('.roundButton:empty').first(); // 비어있는 첫 번째 roundButton 찾기
-
-	    if (targetBucket.length > 0) {
-	      targetBucket.text(name); // roundButton의 텍스트 변경
-	    }
+     
       window.open("one?name=" + name, "_blank");
     });
     
@@ -96,10 +91,12 @@
 
 
 
+
     <hr color="red">
-    <form action="one" method="get">
-        name : <input name="name" value="최참판댁"><br>
+    <form id="infoForm" action="one" method="get">
+        추가할 여행지 : <input id="nameInput" name="name" value=""><br>
         <button type="submit">정보 보기</button>
+        <button type="button" onclick="addInfo()">추가하기</button>
     </form>
 
 <div>
@@ -138,38 +135,25 @@ $(document).ready(function() {
 
  
 </script>
-
-<div>
-  <button class="roundButton"></button>
-  <button class="roundButton"></button>
-  <button class="roundButton"></button>
-  <button class="roundButton"></button>
-  <button class="roundButton"></button>
-</div>
+ <c:forEach items="${roundButtons}" var="roundButton">
+  ${roundButton}
+</c:forEach>
 <script>
   $(document).ready(function() {
     $('.roundButton').click(function() {
-      $(this).text(''); // 클릭한 roundButton의 텍스트를 공백으로 변경
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    $('.roundButton').click(function() {
-      var button = $(this);
-      var name = button.text();
-
-      // AJAX를 통해 deleteSelect 요청 보내기
+      var name = $(this).text(); // 클릭한 roundButton의 텍스트 가져오기
+      var member_id = '<%= session.getAttribute("member_id") %>'; // 회원 ID 가져오기
+		console.log(name)
       $.ajax({
-        url: 'deleteSelect',
+        url: 'deleteselect',
         method: 'POST',
         data: {
-          member_id: '<%= session.getAttribute("member_id") %>',
-          select: name
+          member_id: member_id,
+          selection: name
         },
         success: function(response) {
           console.log('데이터가 삭제되었습니다.');
-          button.text(''); // 버튼의 텍스트를 공백으로 변경
+         
         },
         error: function(xhr, status, error) {
           console.log('Error:', error);
@@ -178,6 +162,15 @@ $(document).ready(function() {
     });
   });
 </script>
+<script>
+  $(document).ready(function() {
+    $('.roundButton').click(function() {
+      $(this).text(''); // 클릭한 roundButton의 텍스트를 공백으로 변경
+    });
+  });
+  
+</script>
+
 
     <hr color="red">
 </body>

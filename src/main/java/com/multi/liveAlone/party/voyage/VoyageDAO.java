@@ -1,15 +1,17 @@
 package com.multi.liveAlone.party.voyage;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
+import java.util.Set;
 
 @Component
 public class VoyageDAO {
@@ -18,10 +20,7 @@ public class VoyageDAO {
 		SqlSessionTemplate my; 
 		
 		
-		public void deleteSelect(VoyageVO bag) {
-			int result = my.delete("voyage.deleteSelect", bag); //int
-			System.out.println(result);
-		}
+	
 		public void update(VoyageVO bag) {
 			int result = my.update("voyage.up", bag); //bag
 			System.out.println(result);
@@ -33,7 +32,11 @@ public class VoyageDAO {
 		 public void insertSelect(VoyageVO bag) {
 			    int result = my.insert("voyage.insertSelect", bag);
 			    System.out.println(result);
-			}
+			} 
+		 public void deleteSelect(VoyageVO bag) {
+		    int result=my.delete("voyage.deleteSelect", bag);
+		   System.out.println(result);
+		  }
 		
 		public VoyageVO one(String name) {
 			VoyageVO vo = my.selectOne("voyage.one", name); 
@@ -53,13 +56,18 @@ public class VoyageDAO {
 		}
 
 		public List<String> getRandomNames(int count) {
-		    List<String> randomNames = new ArrayList<>();
+		    Set<String> randomNames = new HashSet<>();
 		    Random random = new Random();
-		    for (int i = 0; i < count; i++) {
+
+		    while (randomNames.size() < count) {
 		        int index = random.nextInt(this.list().size());
 		        randomNames.add(this.list().get(index).getName());
 		    }
-		    return randomNames;
+
+		    return new ArrayList<>(randomNames);
+		}
+		public List<String> getButtonName(String member_id) {
+		    return my.selectList("voyage.getButtonName", member_id);
 		}
 		
 		

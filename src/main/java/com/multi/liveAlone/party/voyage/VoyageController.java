@@ -1,6 +1,9 @@
 package com.multi.liveAlone.party.voyage;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
+
 public class VoyageController {
 	 
 
@@ -35,19 +39,22 @@ public class VoyageController {
 	        bag.setLongi(longi);
 	        dao.updateBasket(bag);
 	    }	
-		@RequestMapping("deleteselect")
-		public void deleteSelect(String member_id,String select) {
-			VoyageVO bag = new VoyageVO();
-		    bag.setMember_id(member_id);
-		    bag.setSelect(select);
-		    dao.deleteSelect(bag);
-		}
-		@RequestMapping(value = "insertselect", method = RequestMethod.POST)
+		@RequestMapping(value = "deleteselect", method = RequestMethod.POST)
 		@ResponseBody
-		public void insertSelect(String member_id, String select) {
+		public void deleteSelect(String member_id, String selection) {
 		    VoyageVO bag = new VoyageVO();
 		    bag.setMember_id(member_id);
-		    bag.setSelect(select);
+		    bag.setSelection(selection);
+		    dao.deleteSelect(bag);
+		}
+		
+	
+		@RequestMapping(value = "insertselect", method = RequestMethod.POST)
+		@ResponseBody
+		public void insertSelect(String member_id, String selection) {
+		    VoyageVO bag = new VoyageVO();
+		    bag.setMember_id(member_id);
+		    bag.setSelection(selection);
 		    dao.insertSelect(bag);
 		    
 		}
@@ -85,5 +92,36 @@ public class VoyageController {
 		    return "voyage";
 		}
 		
-	}
+		@RequestMapping("getButtonName")
+		public String getButtonName(Model model, HttpSession session) {
+		    String member_id = (String) session.getAttribute("member_id");
+		    System.out.println(member_id);
+		    List<String> selectionnames = dao.getButtonName(member_id);
+		    System.out.println(selectionnames);
+
+		    int buttonCount = 5; // 항상 5개의 roundButton 생성
+
+		    List<String> roundButtons = new ArrayList<>();
+		    for (int i = 0; i < buttonCount; i++) {
+		        String buttonTag;
+		        if (i < selectionnames.size()) {
+		            if (!selectionnames.get(i).isEmpty()) {
+		                buttonTag = "<button class=\"roundButton\">" + selectionnames.get(i) + "</button>";
+		            } else {
+		                buttonTag = "<button class=\"roundButton\"></button>";
+		            }
+		        } else {
+		            buttonTag = "<button class=\"roundButton\"></button>";
+		        }
+		        roundButtons.add(buttonTag);
+		    }
+
+		    model.addAttribute("roundButtons", roundButtons);
+
+		    return "voyage";
+		}
+		
+}
+
+
 

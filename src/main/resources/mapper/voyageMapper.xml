@@ -16,11 +16,11 @@
 <insert id="insertSelect" parameterType="VoyageVO">
     
     insert into basket 
-		values (#{member_id}, #{select})
+		values (#{member_id}, #{selection})
 </insert>
-<delete id="deleteSelect"  parameterType="String">
+<delete id="deleteSelect"  parameterType="VoyageVO">
 		delete from basket 
-		where member_id = #{member_id} and select=#{select}
+		where member_id = #{member_id} and selection=#{selection}
 	</delete>
 <select id="oneSelect"  resultType="VoyageVO">
 		select *
@@ -40,8 +40,13 @@
 	</select>
 	<select id="getRandomNames" resultType="String">
     SELECT name FROM voyage ORDER BY RAND() LIMIT 5
+    
 </select>
-
+	<select id="getButtonName" resultType="String">
+    SELECT selection 
+    from basket
+		where member_id=#{member_id}
+</select>
 </mapper>
 
 

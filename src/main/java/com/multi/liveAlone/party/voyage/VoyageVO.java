@@ -10,15 +10,15 @@ public class VoyageVO {
 	private String tag3;
 	private String info;
 	private String member_id;
-	private String select;
+	private String selection;
 	
 	
 	
-	public String getSelect() {
-		return select;
+	public String getSelection() {
+		return selection;
 	}
-	public void setSelect(String select) {
-		this.select = select;
+	public void setSelection(String selection) {
+		this.selection = selection;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -77,8 +77,8 @@ public class VoyageVO {
 	@Override
 	public String toString() {
 		return "VoyageVO [name=" + name + ", region=" + region + ", longi=" + longi + ", lat=" + lat + ", tag1=" + tag1
-				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", info=" + info + ", member_id=" + member_id + ", select="
-				+ select + "]";
+				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", info=" + info + ", member_id=" + member_id + ", selection="
+				+ selection + "]";
 	}
 	
 }

@@ -17,32 +17,32 @@
          </li>
       </c:forEach>
    </ul>
-
    <script>
-      $(document).ready(function() {
+     $(document).ready(function() {
          $('.nameButton').click(function() {
-            var name = $(this).data('name');
+            var name = $(this).text();
+            insertSelect(name);
             window.open("one?name=" + name, "_blank");
-            $.ajax({
-              url: 'insertselect',
-              method: 'POST',
-              data: {
-                member_id: '<%= session.getAttribute("member_id") %>',
-                select: name
-              },
-              success: function(response) {
-                console.log('데이터가 추가되었습니다.');
-                var targetButton = window.opener.$('.roundButton:empty').first();
-                if (targetButton.length > 0) {
-                  targetButton.text(name);
-                }
-              },
-              error: function(xhr, status, error) {
-                console.log('Error:', error);
-              }
-            });
          });
       });
+      
+     function insertSelect(name) {
+    	  $.ajax({
+    	    url: 'insertselect',
+    	    method: 'POST',
+    	    data: {
+    	      member_id: '<%= session.getAttribute("member_id") %>',
+    	      selection: name
+    	    },
+    	    success: function(response) {
+    	      console.log('데이터가 추가되었습니다.');
+    	     
+    	    },
+    	    error: function(xhr, status, error) {
+    	      console.log('Error:', error);
+    	    }
+    	  });
+    	}
    </script>
 </body>
 </html>
