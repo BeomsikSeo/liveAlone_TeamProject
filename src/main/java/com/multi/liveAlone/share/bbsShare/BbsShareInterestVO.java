@@ -1,13 +1,13 @@
 package com.multi.liveAlone.share.bbsShare;
 
 public class BbsShareInterestVO {
-	private String val1;
+	private int val1;
 	private String val2;
 	
-	public String getVal1() {
+	public int getVal1() {
 		return val1;
 	}
-	public void setVal1(String val1) {
+	public void setVal1(int val1) {
 		this.val1 = val1;
 	}
 	public String getVal2() {

@@ -62,16 +62,20 @@ public class BbsShareDAO {
 	}
 	
 	public void upinterestup(String bbsShareNo, String member_id) {
-		bag3.setVal1(bbsShareNo);
+		int bbsshareI = Integer.parseInt(bbsShareNo);
+		bag3.setVal1(bbsshareI);
 		bag3.setVal2(member_id);
 		my.update("bbsshare.upinterestup1", bbsShareNo);
 		my.update("bbsshare.upinterestup2", bag3);
 	}
 	
 	public void upinterestdown(String bbsShareNo, String member_id) {
-		bag3.setVal1(bbsShareNo);
+		int bbsshareI = Integer.parseInt(bbsShareNo);
+		bag3.setVal1(bbsshareI);
 		bag3.setVal2(member_id);
 
+		System.out.println(bbsShareNo);
+		System.out.println(member_id);
 		my.update("bbsshare.upinterestdown1", bbsShareNo);
 		my.update("bbsshare.upinterestdown2", bag3);
 	}

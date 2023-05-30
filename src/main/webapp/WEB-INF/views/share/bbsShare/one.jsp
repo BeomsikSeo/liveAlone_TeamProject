@@ -21,14 +21,11 @@ $.ajax({
 	type : 'POST',
 	data: {
         "bbsShareNo": "<%=bbsShareNo%>",
-        "member_id": "<%=session.getAttribute("member_id")%>"
     },
 	url : 'checkinterest',
 	dataType : "text",
 	success : function(response) {
-		console.log(response);
 		var x = String(1);
-		console.log(x);
 		if (response == x) {
 	        document.getElementById("interest-button").textContent = "관심해제";
 		    document.getElementById("interest-button").onclick = function() {

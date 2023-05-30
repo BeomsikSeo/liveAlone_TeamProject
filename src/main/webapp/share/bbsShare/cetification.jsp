@@ -129,7 +129,7 @@
 			var x1 = x.split(' ');
 			var x2 = x1[0] + " " + x1[1];
 			var y = document.getElementById("mem_address").innerText; //등록지역 행정동명
-			var y1 = y.split(' ');
+			var y1 = y.split('_');
 			var y2 = y1[0] + " " + y1[1];
 
 			
