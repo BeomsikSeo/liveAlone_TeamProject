@@ -115,7 +115,7 @@ td img {
 						${vo.bbsShareView}</span><br>
 				</div>
 				<div class="flex-row">
-					카테고리 : ${vo.bbsShareCategory} <span class="right-align"> 관심수
+					포인트 : ${vo.bbsSharePoint} <span class="right-align"> 관심수
 						: ${vo.bbsShareInterest}</span><br>
 				</div> <br> <br>
 				<div class="breakword" style="max-width: 300px;">

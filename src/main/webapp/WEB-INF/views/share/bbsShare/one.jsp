@@ -148,7 +148,7 @@ div {
 				${bag.bbsShareDate}</span>
 		</div>
 		<br>
-		<%-- category : ${bag.bbsShareCategory} --%>
+		포인트 : ${bag.bbsSharePoint}
 		<br> view : ${bag.bbsShareView} <br> interest :
 		${bag.bbsShareInterest}
 		<button id="interest-button" style="display: none;">관심등록</button>
