@@ -8,13 +8,17 @@
    <typeAliases>
       <typeAlias type="com.multi.liveAlone.MemberVO" alias="memberVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.bbsParty.BbsPartyVO" alias="bbsPartyVO"></typeAlias>
-      <typeAlias type="com.multi.liveAlone.party.chatParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.bbsParty.MemberPartyVO" alias="memberPartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.bbsParty.PagePartyVO" alias="pagePartyVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.party.bbsParty.ChatPartyVO" alias="chatPartyVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.voyage.RecommendVO" alias="recommendVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.party.voyage.VoyageVO" alias="voyageVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.food.FoodVO" alias="foodVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.sReview.SReviewVO" alias="sReviewVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.store.StoreVO" alias="storeVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareSearchVO" alias="bbsShareSearchVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareInterestVO" alias="bbsShareInterestVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
    </typeAliases>
    <mappers>
