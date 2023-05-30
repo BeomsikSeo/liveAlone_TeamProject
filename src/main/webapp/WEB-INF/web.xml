@@ -30,6 +30,10 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> order
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter
@@ -47,6 +51,10 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> order
 
 </web-app>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class StoreController {
+<<<<<<< HEAD
 
 	@Autowired
 	StoreDAO dao;
@@ -38,5 +39,7 @@ public class StoreController {
 		StoreVO vo = dao.one(store_no);
 		model.addAttribute("vo", vo);
 	}
+=======
+>>>>>>> order
 	
 }

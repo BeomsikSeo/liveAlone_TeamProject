@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chatroomshare">
+	
+	<select id="all" resultType="chatRoomShareVO">
+		select *
+		from  chatroomshare <!-- db에 소문자로 저장되어 있는데 도대체 왜...? -->
+	</select>
+	
+	<select id="room" parameterType="int" resultType="chatRoomShareVO">
+		select *
+		from  chatroomshare 
+		where bbsNo = #{bbsNo}
+	</select>
+	
+	<!-- useGeneratedKeys="true" keyProperty="roomId" : auto_increment 속성 -->
+	<insert id="insert" parameterType="chatRoomShareVO" useGeneratedKeys="true" keyProperty="roomId">
+		insert into CHATROOMSHARE (bbsNo, chatRequestor, chatReceiver)
+		values (#{bbsNo}, #{chatRequestor}, #{chatReceiver})
+	</insert>
+	
+	<select id="one" parameterType="chatRoomShareVO" resultType="chatRoomShareVO">
+		select *
+		from CHATROOMSHARE
+		where bbsNo = #{bbsNo} and chatRequestor = #{chatRequestor}
+	</select>
+	
+	<select id="one_roomId" parameterType="chatRoomShareVO" resultType="chatRoomShareVO">
+		select *
+		from CHATROOMSHARE
+		where roomId = #{roomId}
+	</select>
+	
+	<select id="message" parameterType="int" resultType="messageShareVO">
+		select *
+		from MESSAGESHARE
+		where roomId = #{roomId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
