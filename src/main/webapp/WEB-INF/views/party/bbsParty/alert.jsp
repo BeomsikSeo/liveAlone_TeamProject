@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-test용
+    <script>
+        alert("${message}");
+        history.back();
+    </script>
+
 </body>
 </html>
