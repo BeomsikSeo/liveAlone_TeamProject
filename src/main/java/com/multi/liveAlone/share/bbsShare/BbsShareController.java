@@ -111,13 +111,17 @@ public class BbsShareController {
 	}
 	
 	@RequestMapping("share/bbsShare/interestplus")
-	public void upinterestup(String bbsShareNo, String member_id) {
+	public void upinterestup(String bbsShareNo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String member_id = (String) session.getAttribute("member_id");
 		System.out.println("upinterestup요청됨.");
 		dao.upinterestup(bbsShareNo,member_id);
 	}
 	
 	@RequestMapping("share/bbsShare/interestminus")
-	public void upinterestdown(String bbsShareNo, String member_id) {
+	public void upinterestdown(String bbsShareNo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String member_id = (String) session.getAttribute("member_id");
 		System.out.println("upinterestdown요청됨.");
 		dao.upinterestdown(bbsShareNo,member_id);
 	}

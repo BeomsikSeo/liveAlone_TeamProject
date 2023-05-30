@@ -42,7 +42,7 @@
 	</update>
 
 	<update id="upinterestup2" parameterType="BbsShareInterestVO">
-    UPDATE membershareinterest SET bbsshareinterest = CONCAT(bbsshareinterest, '#{val1},') WHERE member_id = #{val2};
+    UPDATE membershareinterest SET bbsshareinterest = CONCAT(bbsshareinterest, #{val1}, ',') WHERE member_id = #{val2};
 	</update>
 	
 	<update id="upinterestdown1" parameterType="String">
@@ -50,7 +50,7 @@
 	</update>
 	
 	<update id="upinterestdown2" parameterType="BbsShareInterestVO">
-    UPDATE membershareinterest SET bbsshareinterest = REPLACE(bbsshareinterest, '#{val1},', '') WHERE member_id = #{val2};
+    UPDATE membershareinterest SET bbsshareinterest = REPLACE(bbsshareinterest, CONCAT(#{val1}, ',') , '') WHERE member_id = #{val2};
 	</update>
 	
 

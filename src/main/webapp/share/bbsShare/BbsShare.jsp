@@ -27,7 +27,7 @@
 		content : <input name="bbsShareContent" value="content"><br>
 		category : <input name="bbsShareCategory" value="11010"><br>
 		request : <input name="bbsShareRequest" value="0"><br>
-		image : <input name="bbsShareImage" value="image01.jpg"><br>
+		image : <input name="bgbsShareImage" value="image01.jpg"><br>
 		<button type="submit">insert</button>
 	</form>
 	<hr>
