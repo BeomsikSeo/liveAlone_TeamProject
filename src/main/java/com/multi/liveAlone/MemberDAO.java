@@ -34,9 +34,8 @@ public class MemberDAO {
 		my.update("member.updateUserMileage", member);
 	}
 	
-	public int login(MemberVO bag) {
-		int result = my.selectOne("member.login", bag.getMember_id());
-		System.out.println("로그인 결과는?! : " + result);
+	public MemberVO login(String login_id) {
+		MemberVO result = my.selectOne("member.login", login_id);
 		return result;
 	}
 }

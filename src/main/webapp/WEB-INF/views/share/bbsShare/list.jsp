@@ -56,6 +56,8 @@ td img {
     // session의 certification 값을 가져옵니다.
     String certification = (String) session.getAttribute("certification");
 	String address = (String) session.getAttribute("address");
+    System.out.println("list certi" + certification);
+    System.out.println("list address" + address);
 
     // certification 값이 "1"일 경우
     if ("1".equals(certification)) {

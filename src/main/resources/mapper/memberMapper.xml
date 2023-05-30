@@ -10,10 +10,12 @@
 		select * from member where member_id = #{member_id}
 	</select>
 	
-	<select id="login" parameterType="memberVO" resultType="int">
-		select count(*) from member
-		where member_id = #{member_id}
+	<select id="login" parameterType="String" resultType="memberVO">
+		select * from member
+		where member_id = #{login_id}
 	</select>
+	
+	
 	
 	<select id="all" resultType="memberVO">
 		select *

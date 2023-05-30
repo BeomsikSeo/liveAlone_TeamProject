@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.multi.liveAlone.share.bbsShare.BbsShareDAO;
 import com.multi.liveAlone.share.messageShare.MessageShareVO;
 
 @Controller
@@ -15,6 +16,9 @@ public class ChatRoomShareController {
 
 	@Autowired
 	ChatRoomShareDAO dao;
+	
+	@Autowired
+	BbsShareDAO dao2;
 	
 	// 채팅방 insert 동시에 채팅방 페이지(채팅이 이루어지는 공간)로 이동 + roomInfo(roomNo, chatRequestor) 데이터 보내기
 	@RequestMapping("share/chatShare/chatRoom")
@@ -85,6 +89,7 @@ public class ChatRoomShareController {
 		}
 		else if ((chatcode == 1 && nowSession.equals(receiver)) || (chatcode == 2 && nowSession.equals(requestor))) {
 			bag2.setChatCode(3);
+			dao2.success(bag2.getBbsNo()+"");
 		}
 		
 		dao.codeUpdate(bag2);

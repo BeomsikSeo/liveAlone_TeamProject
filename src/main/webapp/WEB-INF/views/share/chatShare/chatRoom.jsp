@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	var stompClient = null;
 	var roomNo = ${roomInfo.roomNo};
-	var nowSession = "${id}";
+	var nowSession = "${member_id}";
 	var requestor = "${roomInfo.chatRequestor}";
 	var receiver = "${roomInfo.chatReceiver}";
 	var chatcode = ${roomInfo.chatCode};
@@ -38,7 +38,7 @@
 		// /chat2처럼 하위를 무조건 써줘야 함 이유는 모름.. + /app은 생략가능 마찬가지로 이유는 모름
 		stompClient.send("/app/chat2/" + roomNo, {}, JSON.stringify({ 
 			'roomNo' : ${roomInfo.roomNo},
-			'sender' : "${id}", // -> "" 안해주면 변수로 처리!
+			'sender' : "${member_id}", // -> "" 안해주면 변수로 처리!
 			'content' : $('#message').val()
 		}));
 	}
@@ -108,11 +108,11 @@
 		<button id="sendMessage" onclick="sendMessage();">Send</button>
 		<span id="state">
 			<c:choose>
-				<c:when test="${roomInfo.chatCode eq 1 && roomInfo.chatRequestor eq id}">
+				<c:when test="${roomInfo.chatCode eq 1 && roomInfo.chatRequestor eq member_id}">
 					거래수락
 				</c:when>
 				
-				<c:when test="${roomInfo.chatCode eq 2 && roomInfo.chatReceiver eq id}">
+				<c:when test="${roomInfo.chatCode eq 2 && roomInfo.chatReceiver eq member_id}">
 					거래수락
 				</c:when>
 				

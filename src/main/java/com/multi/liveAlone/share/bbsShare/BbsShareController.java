@@ -68,6 +68,7 @@ public class BbsShareController {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list(pageno);
         int x = Integer.parseInt(pageno) - 1;
+        
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");

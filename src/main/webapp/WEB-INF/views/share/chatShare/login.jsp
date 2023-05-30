@@ -8,9 +8,10 @@
 </head>
 <body>
 <h3>로그인 성공</h3>
-현재 세션 : <%= session.getAttribute("id")%>
+현재 세션 : <%= session.getAttribute("member_id")%>
 <hr color="red">
-<form action="list" method="get">
+<a href="../bbsShare/list?pageno=1"><button>버튼</button></a>
+<form action="../bbsShare/list" method="get">
 	<button type="submit">게시물 리스트</button>
 </form>
 </body>
