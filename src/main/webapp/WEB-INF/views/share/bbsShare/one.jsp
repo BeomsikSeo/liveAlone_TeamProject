@@ -9,10 +9,41 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
+
+
 <%String bbsShareNo = request.getParameter("bbsShareNo");
 String certification = (String) session.getAttribute("certification");
 System.out.println(certification);%>
 var certification = "<%=certification%>";
+
+$.ajax({
+	async : true,
+	type : 'POST',
+	data: {
+        "bbsShareNo": "<%=bbsShareNo%>",
+        "member_id": "<%=session.getAttribute("member_id")%>"
+    },
+	url : 'checkinterest',
+	dataType : "text",
+	success : function(response) {
+		console.log(response);
+		var x = String(1);
+		console.log(x);
+		if (response == x) {
+	        document.getElementById("interest-button").textContent = "관심해제";
+		    document.getElementById("interest-button").onclick = function() {
+		        interestminus();
+		    }
+		} else {
+		    document.getElementById("interest-button").onclick = function() {
+		        interestplus();
+		    }
+		}
+	}
+    
+	});
+
+
 
     function viewplus() {
         $.ajax({
@@ -31,28 +62,39 @@ var certification = "<%=certification%>";
 			async : true,
 			type : 'POST',
             data : {"bbsShareNo":"<%=bbsShareNo%>"},
-			url : 'interest',
+			url : 'interestplus',
 			dataType : "text",
 			success : function() {
+				location.reload();
+			}
+		});
+	}
+    
+    function interestminus() {
+        $.ajax({
+			async : true,
+			type : 'POST',
+            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+			url : 'interestminus',
+			dataType : "text",
+			success : function() {
+				location.reload();
 			}
 		});
 	}
      
      $(document).ready(function() {
-		var sessionValue = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>";
+		var bbsShareNo = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>";
 		if (certification !== "0") {
-		console.log("x");
-		document.getElementById("interestplus-button").style.display = "block";
+		document.getElementById("interest-button").style.display = "block";
 		}
-		document.getElementById("interestplus-button").onclick = function() {
-			interestplus();
-			}
 		
-		if (sessionValue !== "1") {
+		if (bbsShareNo !== 1) {
 			viewplus();
 			<%session.setAttribute("viewBbsShareNo" + bbsShareNo, "1");%>
 			}
 		});
+		
 </script>
 <style type="text/css">
 img {
@@ -112,7 +154,7 @@ div {
 		<%-- category : ${bag.bbsShareCategory} --%>
 		<br> view : ${bag.bbsShareView} <br> interest :
 		${bag.bbsShareInterest}
-		<button id="interestplus-button" style="display: none;">관심등록</button>
+		<button id="interest-button" style="display: none;">관심등록</button>
 		<br> <br> content : ${bag.bbsShareContent} <br>
 		<c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
 			<form action="success" method="get">
@@ -121,7 +163,8 @@ div {
 			</form>
 		</c:if>
 		<br> <br> <img src="../../resources/noimage.jpg"
-			<%-- "share/bbsShare/img/${bag.bbsShareImage}" --%> onerror="imgError(this)">
+			<%-- "share/bbsShare/img/${bag.bbsShareImage}" onerror="imgError(this)" --%>>
 	</div>
+	
 </body>
 </html>

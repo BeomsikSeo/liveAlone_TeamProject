@@ -14,6 +14,7 @@ public class BbsShareDAO {
 
 	BbsShareVO bag = new BbsShareVO();
 	BbsShareSearchVO bag2 = new BbsShareSearchVO();
+	BbsShareInterestVO bag3 = new BbsShareInterestVO();
 
 	public int insert(BbsShareVO bag) {
 		int result = my.insert("bbsshare.create", bag);
@@ -60,13 +61,26 @@ public class BbsShareDAO {
 		return result;
 	}
 	
-	public int upinterestup(String bbsShareNo) {
-		int result = my.update("bbsshare.upinterestup", Integer.parseInt(bbsShareNo));
-		return result;
+	public void upinterestup(String bbsShareNo, String member_id) {
+		bag3.setVal1(bbsShareNo);
+		bag3.setVal2(member_id);
+		my.update("bbsshare.upinterestup1", bbsShareNo);
+		my.update("bbsshare.upinterestup2", bag3);
 	}
 	
-	public int upinterestdown(String bbsShareNo) {
-		int result = my.update("bbsshare.upinterestdown", Integer.parseInt(bbsShareNo));
+	public void upinterestdown(String bbsShareNo, String member_id) {
+		bag3.setVal1(bbsShareNo);
+		bag3.setVal2(member_id);
+
+		my.update("bbsshare.upinterestdown1", bbsShareNo);
+		my.update("bbsshare.upinterestdown2", bag3);
+	}
+	
+	public String checkinterest(String bbsShareNo, String member_id) {
+		bag2.setPageno(bbsShareNo);
+		bag2.setAddress(member_id);
+		bag2.setKeyword("x");
+		String result = my.selectOne("bbsshare.checkinterest", bag2);
 		return result;
 	}
 	

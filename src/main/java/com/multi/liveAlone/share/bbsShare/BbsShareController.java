@@ -110,16 +110,26 @@ public class BbsShareController {
 		dao.upview(bbsShareNo);
 	}
 	
-	@RequestMapping("share/bbsShare/upinterestup")
-	public void upinterestup(String bbsShareNo) {
+	@RequestMapping("share/bbsShare/interestplus")
+	public void upinterestup(String bbsShareNo, String member_id) {
 		System.out.println("upinterestup요청됨.");
-		dao.upinterestup(bbsShareNo);
+		dao.upinterestup(bbsShareNo,member_id);
 	}
 	
-	@RequestMapping("share/bbsShare/upinterestdown")
-	public void upinterestdown(String bbsShareNo) {
+	@RequestMapping("share/bbsShare/interestminus")
+	public void upinterestdown(String bbsShareNo, String member_id) {
 		System.out.println("upinterestdown요청됨.");
-		dao.upinterestdown(bbsShareNo);
+		dao.upinterestdown(bbsShareNo,member_id);
+	}
+	
+	@RequestMapping("share/bbsShare/checkinterest")
+	public String checkinterest(String bbsShareNo, HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		System.out.println("checkinterest요청됨.");
+		String x = dao.checkinterest(bbsShareNo,member_id);
+		model.addAttribute("result", x);
+		return "share/bbsShare/checkinterest";
 	}
 	
 	@RequestMapping("share/bbsShare/sessiondelete")
