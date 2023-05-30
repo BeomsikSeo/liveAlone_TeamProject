@@ -46,8 +46,7 @@
 	<form action="delete" method="get">
 		bbsShareNo : <input name="bbsShareNo"><br>
 		<button type="submit">서버로 전송</button>
+		<br>
 	</form>
-	<hr>
-
 </body>
 </html>
