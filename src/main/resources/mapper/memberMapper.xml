@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="member_test">
+<mapper namespace="member">
 	<!-- insert, delete, update는 무조건 resultType="int"이므로
 		 프로그래머가 써주지 않아도 이미 resultType="int"가
 		 있는 것으로 본다.!
@@ -24,8 +24,8 @@
 	</select>
 	 -->
 	<select id="login" parameterType="memberVO" resultType="int">
-		select count(*) from member_test
-		where id = #{id}
+		select count(*) from member
+		where member_id = #{member_id}
 	</select>
 	
 	<!-- VO와 db table이 같을 때는 자동으로 컬럼명과 동일한 vo의 변수에 넣어줌.

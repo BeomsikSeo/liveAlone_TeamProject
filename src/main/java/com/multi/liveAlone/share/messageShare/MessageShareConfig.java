@@ -20,7 +20,7 @@ public class MessageShareConfig extends AbstractWebSocketMessageBrokerConfigurer
 		@Override
 		public void registerStompEndpoints(StompEndpointRegistry registry) {
 			//chat : 소켓연결주소
-			registry.addEndpoint("/chat/{roomId}"); //자바 소켓 통신 가능 
-			registry.addEndpoint("/chat/{roomId}").withSockJS(); //자바 스크립트 소켓 통신 
+			registry.addEndpoint("/chat"); //자바 소켓 통신 가능 
+			registry.addEndpoint("/chat").withSockJS(); //자바 스크립트 소켓 통신 
 		}
 }

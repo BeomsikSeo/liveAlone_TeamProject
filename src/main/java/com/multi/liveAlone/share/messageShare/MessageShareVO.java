@@ -2,7 +2,7 @@ package com.multi.liveAlone.share.messageShare;
 
 public class MessageShareVO {
 	private int messageNo;
-	private int roomId;
+	private int roomNo;
 	private String sender;
 	private String content;
 	private String time;
@@ -12,11 +12,11 @@ public class MessageShareVO {
 	public void setMessageNo(int messageNo) {
 		this.messageNo = messageNo;
 	}
-	public int getRoomId() {
-		return roomId;
+	public int getroomNo() {
+		return roomNo;
 	}
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
+	public void setroomNo(int roomNo) {
+		this.roomNo = roomNo;
 	}
 	public String getSender() {
 		return sender;
@@ -38,7 +38,7 @@ public class MessageShareVO {
 	}
 	@Override
 	public String toString() {
-		return "MessageShareVO [messageNo=" + messageNo + ", roomId=" + roomId + ", sender=" + sender + ", content="
+		return "MessageShareVO [messageNo=" + messageNo + ", roomNo=" + roomNo + ", sender=" + sender + ", content="
 				+ content + ", time=" + time + "]";
 	}
 	

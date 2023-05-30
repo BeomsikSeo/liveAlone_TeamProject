@@ -1,16 +1,16 @@
 package com.multi.liveAlone.share.chatRoomShare;
 
 public class ChatRoomShareVO {
-	private int roomId;
+	private int roomNo;
 	private int bbsNo;
 	private String chatRequestor;
 	private String chatReceiver;
-	private String chatCode;
-	public int getRoomId() {
-		return roomId;
+	private int chatCode;
+	public int getroomNo() {
+		return roomNo;
 	}
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
+	public void setroomNo(int roomNo) {
+		this.roomNo = roomNo;
 	}
 	public int getBbsNo() {
 		return bbsNo;
@@ -30,15 +30,15 @@ public class ChatRoomShareVO {
 	public void setChatReceiver(String chatReceiver) {
 		this.chatReceiver = chatReceiver;
 	}
-	public String getChatCode() {
+	public int getChatCode() {
 		return chatCode;
 	}
-	public void setChatCode(String chatCode) {
+	public void setChatCode(int chatCode) {
 		this.chatCode = chatCode;
 	}
 	@Override
 	public String toString() {
-		return "ChatRoomShareVO [roomId=" + roomId + ", bbsNo=" + bbsNo + ", chatRequestor=" + chatRequestor
+		return "ChatRoomShareVO [roomNo=" + roomNo + ", bbsNo=" + bbsNo + ", chatRequestor=" + chatRequestor
 				+ ", chatReceiver=" + chatReceiver + ", chatCode=" + chatCode + "]";
 	}
 }

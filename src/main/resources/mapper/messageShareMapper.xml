@@ -3,9 +3,9 @@
 <mapper namespace="messageshare">
 	
 	<insert id="insert" parameterType="messageShareVO" useGeneratedKeys="true" keyProperty="messageNo">
-		<!-- (roomId, sender, content, time) 이거 없애보기 -->
-		insert into MESSAGESHARE (roomId, sender, content, time)
-		values (#{roomId}, #{sender}, #{content}, #{time})
+		<!-- (roomNo, sender, content, time) 이거 없애보기 -->
+		insert into MESSAGESHARE (roomNo, sender, content, time)
+		values (#{roomNo}, #{sender}, #{content}, #{time})
 	</insert>
 	
 </mapper>

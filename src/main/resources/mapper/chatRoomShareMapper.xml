@@ -13,8 +13,8 @@
 		where bbsNo = #{bbsNo}
 	</select>
 	
-	<!-- useGeneratedKeys="true" keyProperty="roomId" : auto_increment 속성 -->
-	<insert id="insert" parameterType="chatRoomShareVO" useGeneratedKeys="true" keyProperty="roomId">
+	<!-- useGeneratedKeys="true" keyProperty="roomNo" : auto_increment 속성 -->
+	<insert id="insert" parameterType="chatRoomShareVO" useGeneratedKeys="true" keyProperty="roomNo">
 		insert into CHATROOMSHARE (bbsNo, chatRequestor, chatReceiver)
 		values (#{bbsNo}, #{chatRequestor}, #{chatReceiver})
 	</insert>
@@ -25,17 +25,28 @@
 		where bbsNo = #{bbsNo} and chatRequestor = #{chatRequestor}
 	</select>
 	
-	<select id="one_roomId" parameterType="chatRoomShareVO" resultType="chatRoomShareVO">
+	<select id="one_roomNo" parameterType="chatRoomShareVO" resultType="chatRoomShareVO">
 		select *
 		from CHATROOMSHARE
-		where roomId = #{roomId}
+		where roomNo = #{roomNo}
 	</select>
 	
 	<select id="message" parameterType="int" resultType="messageShareVO">
 		select *
 		from MESSAGESHARE
-		where roomId = #{roomId}
+		where roomNo = #{roomNo}
 	</select>
+	
+	<update id="update" parameterType="chatRoomShareVO">
+		update CHATROOMSHARE
+		set chatCode = #{chatCode}
+		where roomNo = #{roomNo}
+	</update>
+	
+	<!-- <update id="up" parameterType="memberVO">
+		update member set tel = #{tel}
+		where id = #{id}
+	</update> -->
 </mapper>
 
 

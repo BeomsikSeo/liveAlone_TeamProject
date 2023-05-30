@@ -15,7 +15,7 @@
 	 ?뒤에 파라미터 정해서 전달! -->
 ${list.chatRequestor} <br>
 <form action="chatRoom">
-	<input type="hidden" name="roomId" value="${list.roomId}"> 
+	<input type="hidden" name="roomNo" value="${list.roomNo}"> 
 	<button>채팅</button>
 </form>
 </c:forEach>

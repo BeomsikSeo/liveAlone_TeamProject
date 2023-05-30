@@ -14,7 +14,7 @@ public class MemberDAO { // CRUD
 	SqlSessionTemplate my;
 	
 	public int login(MemberVO bag) {
-		int result = my.selectOne("member_test.login", bag.getid());
+		int result = my.selectOne("member.login", bag.getMember_id());
 		System.out.println("로그인 결과는?! : " + result);
 		return result;
 	}

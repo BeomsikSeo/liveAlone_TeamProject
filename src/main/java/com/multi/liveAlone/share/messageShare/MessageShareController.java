@@ -19,8 +19,8 @@ public class MessageShareController {
 	MessageShareDAO dao;
 	
 	//ws프로토콜로 요청을 받음.
-	@MessageMapping("/chat2/{roomId}") // chat으로 요청을 받으면 아래 실행하라는 말 
-	@SendTo("/topic/{roomId}") // /share/message에 가입된 사람들 모두에게 return output;
+	@MessageMapping("/chat2/{roomNo}") // chat으로 요청을 받으면 아래 실행하라는 말 
+	@SendTo("/topic/{roomNo}") // /share/message에 가입된 사람들 모두에게 return output;
 	// @DestinationVariable String roomId 안해줘도 넘어오네..? -> 메소드에서 roomId안쓸거면 굳이 해줄 필요 없는듯
 	// 알아서 roomId넘어와서 {roomId}에 들어가는 듯? 일단 패스
 	public MessageShareVO send(MessageShareVO bag) {

@@ -10,7 +10,7 @@
 <h3>로그인 화면입니다. </h3>
 <hr color="red">
 <form action="login" method="get">
-	id : <input name="id"><br>
+	id : <input name="member_id"><br>
 	<button type="submit">로그인</button>
 </form>
 <%

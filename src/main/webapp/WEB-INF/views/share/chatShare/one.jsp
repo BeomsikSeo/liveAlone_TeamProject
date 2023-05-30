@@ -9,8 +9,8 @@
 </head>
 <body>
 게시물 상세 페이지 <br>
-게시글번호 : ${bag.no} <br>
-게시글 작성자 : ${bag.writer} <br>
+게시글번호 : ${bag.bbsShareNo} <br>
+게시글 작성자 : ${bag.bbsShareWriter} <br>
 
 <%-- <c:set var="writer" value="${bag.writer}"/> --%>
 현재세션 : <c:out value="${id}"/> <br>
@@ -18,19 +18,19 @@
 
 <c:choose>
  <%-- = <c:when test = "${writer eq id}"> --%>
- <c:when test = "${bag.writer eq id}">
+ <c:when test = "${bag.bbsShareWriter eq id}">
  	<form action="bbsChatList" method="get">
  		<!-- type은 디폴트가 submit( -> form제출) -->
- 		<input type="hidden" name="bbsNo" value="${bag.no}">
+ 		<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
 		<button type="submit">채팅 목록</button>
 	</form>
  </c:when>
  
   <c:otherwise>
   	<form action="chatRoom">
- 		 <input type="hidden" name="bbsNo" value="${bag.no}"> 
+ 		 <input type="hidden" name="bbsNo" value="${bag.bbsShareNo}"> 
  		 <input type="hidden" name="chatRequestor" value="${id}"> 
- 		 <input type="hidden" name="chatReceiver" value="${bag.writer}"> 
+ 		 <input type="hidden" name="chatReceiver" value="${bag.bbsShareWriter}"> 
  		 <button>채팅요청</button>
    </form>
    <!-- 밑에 저거 왜 안돼? -->
