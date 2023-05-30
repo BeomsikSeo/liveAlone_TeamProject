@@ -116,7 +116,8 @@
 			url : "getaddress",
 			dataType : "text",
 			success : function(adr) {
-				document.getElementById("mem_address").innerHTML = adr;
+				var adrspace = adr.replace(/_/g, ' ');
+				document.getElementById("mem_address").innerHTML = adrspace;
 			},
 			error : function() {
 				document.getElementById("mem_address").innerHTML = "데이터 베이스 접속 에러";
@@ -129,7 +130,7 @@
 			var x1 = x.split(' ');
 			var x2 = x1[0] + " " + x1[1];
 			var y = document.getElementById("mem_address").innerText; //등록지역 행정동명
-			var y1 = y.split('_');
+			var y1 = y.split(' ');
 			var y2 = y1[0] + " " + y1[1];
 
 			
