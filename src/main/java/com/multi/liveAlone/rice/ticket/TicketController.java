@@ -83,6 +83,7 @@ public class TicketController {
 		}
 	} 
 	
+	
 	// 사용자의 티켓을 업데이트 합니다.
 	@RequestMapping("userTicketUpdate")
 	public String userTicketUpdate(HttpSession session,Model model, int ticket_ID, int update) {
@@ -97,6 +98,10 @@ public class TicketController {
 		
 		if(!(ticket.getTicket_userID().equals(memberID))) {
 			System.out.println("2번째");
+			return "redirect:userTicket";
+		}
+		
+		if(!ticket.getTicket_use().equals("미사용")) {
 			return "redirect:userTicket";
 		}
 		
@@ -116,7 +121,7 @@ public class TicketController {
 			}
 		case 1 : {
 			System.out.println("3-2");
-			updateStr = "사용 완료";
+			updateStr = "사용";
 			ticket.setTicket_use(updateStr);
 			ticket.setTicket_end(simpleDateFormat.format(date));
 			break;
@@ -146,7 +151,6 @@ public class TicketController {
 	public void userTicketAjax(Model model,HttpSession session,int pageNo) {
 		TicketVOInfo page = new TicketVOInfo(pageNo, (String)session.getAttribute("memberID"));
 		
-		System.out.println(page.getPageNo() + " " + page.getUserID());
 		
 		// 페이징한 리스트들을 가지고 옵니다.
 		List<TicketVOPage> ticketList = ticketDAO.selectTicketPage(page);

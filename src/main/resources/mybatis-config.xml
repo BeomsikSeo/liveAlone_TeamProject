@@ -17,6 +17,9 @@
       <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVO" alias="ticketVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVOPage" alias="ticketVOPage"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.ticket.TicketVOInfo" alias="ticketVOInfo"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.mileage.MileageVO" alias="mileageVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.mileage.MileageVOInfo" alias="mileageVOInfo"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.rice.mileage.MileageVOPage" alias="mileageVOPage"></typeAlias>
       <typeAlias type="com.multi.liveAlone.rice.order.OrderVO" alias="orderVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareVO" alias="bbsShareVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.chatShare.ChatShareVO" alias="chatShareVO"></typeAlias>
@@ -35,5 +38,6 @@
       <mapper resource="mapper/chatShareMapper.xml" />
       <mapper resource="mapper/ticketMapper.xml"/>
       <mapper resource="mapper/orderMapper.xml"/>
+      <mapper resource="mapper/mileageMapper.xml"/>
    </mappers>
 </configuration>

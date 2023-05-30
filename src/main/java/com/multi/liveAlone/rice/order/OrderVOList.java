@@ -12,6 +12,4 @@ public class OrderVOList {
 	public void setList(List<OrderVO> list) {
 		this.list = list;
 	}
-
-	
 }

@@ -3,13 +3,12 @@
 <mapper namespace="ticket">
 	
 	<insert id="insertTicket" parameterType="ticketVO">
-		insert into ticket values (#{ticket_ID} ,#{ticket_userID}, #{ticket_storeID}, #{ticket_start}, #{ticket_end} ,#{ticket_price}, #{ticket_usedMileage}, #{ticket_use})
+		insert into ticket values (#{ticket_ID}, #{ticket_tid} ,#{ticket_userID}, #{ticket_storeID}, #{ticket_start}, #{ticket_end} ,#{ticket_price}, #{ticket_usedMileage}, #{ticket_use})
 	</insert>
 	
 	
-	
 	<select id="selectTicketOne-Ticket" parameterType="ticketVO" resultType="ticketVO">
-		select * from ticket where ticket_userID = #{ticket_userID} and ticket_start = #{ticket_start}
+		select * from ticket where ticket_userID = #{ticket_userID} and ticket_tid = #{ticket_tid}
 	</select>
 	
 	<select id="selectTicketOne-ID" resultType="ticketVO">

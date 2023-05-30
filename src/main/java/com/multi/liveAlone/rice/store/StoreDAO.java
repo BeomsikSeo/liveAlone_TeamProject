@@ -22,7 +22,7 @@ public class StoreDAO {
 	}
 
 	
-	// 페이징한 이름의 
+	//
 	public List<StoreVO> selectStorePage(List<TicketVOPage> ticketList) {
 		List<StoreVO> store = new ArrayList<>();
 		for(int i=0;i<ticketList.size();i++) {
@@ -31,7 +31,6 @@ public class StoreDAO {
 		
 		return store;
 	}
-	
-	
+
 	
 }

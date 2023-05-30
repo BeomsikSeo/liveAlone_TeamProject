@@ -55,11 +55,11 @@
 /*	전체 	*/
 .order-menu {
 	display : inline-block;
-	
-	width : 50%;
-	
 	border: 3px solid black;
 	
+	width : 1200px;
+	
+	text-align: center;
 }
 
 .order-menu-info {
@@ -70,6 +70,8 @@
 	border: 3px solid black;
 	padding : 15px;
 	margin : 15px;
+	
+	text-align : center;
 }
 
 .menu {
@@ -80,13 +82,27 @@
 	height : 300px;
 	width : 20%;
 	
-	border: 3px solid black;
 	margin: 5px; 
 	
 	text-align : center;
 }
 
+.menu-info-image-one {
+	 border : 3px black solid;
+	 border-radius : 30px;
+	 object-fit: contain;
+	 
+	 width : 300px;
+	 height : 100%;
+}
 
+#store-info {
+	text-align: left;
+}
+
+#check-info {
+	text-align : right;
+}
 
 </style>
 <title>Insert title here</title>
@@ -105,20 +121,24 @@
 				<%-- 음식 메뉴 정보들을 정렬해 놓은 곳 입니다. --%>
 				<% int num = 0; %>
 				<c:forEach items="${list }" var="menu">
-					
 					<div class="menu" id="menu_<%= num %>">
 					
 						<%-- 메뉴 하나의 정보 --%>
 						<div class="menu-info">
-							<input class = "menu-info-detail" name="list[<%= num %>].order_fName" readonly="readonly" value='${menu.food_name}'>
-							<input class = "menu-info-detail" name="list[<%= num %>].order_fPrice" readonly="readonly" value='${menu.food_price}'>
-							<input class = "menu-info-detail" readonly="readonly" value="${menu.food_info}">
+							<div class="menu-info-split">
+								<img class="menu-info-image-one" alt="error" src="${pageContext.request.contextPath}/resources/upload/rice/storeMenu/sample_Image.png">
+							</div>
+							<div class="menu-info-split">
+								<span><input class = "menu-info-detail" name="list[<%= num %>].order_fName" readonly="readonly" value='${menu.food_name}' style="text-align : center;"></span>
+								<span><input class = "menu-info-detail" name="list[<%= num %>].order_fPrice" readonly="readonly" value='${menu.food_price}' style="text-align : center;"></span>
+								<span><input class = "menu-info-detail" readonly="readonly" value="${menu.food_info}" style="text-align : center;"></span>
+							</div>
 						</div>
 						
 						<%-- 메뉴 수량  --%>
 						<div class="menu-count">
 							<button class="count_button" value="minus" type="button">-1</button>
-							<input type="text" value='0' readonly="readonly" class="menu-counter" name="list[<%=num%>].order_fCount">
+							<input type="text" value='0' readonly="readonly" class="menu-counter" name="list[<%=num%>].order_fCount" style="text-align : center;">
 							<button class="count_button" value="plus" type="button">+1</button>
 						</div>
 						

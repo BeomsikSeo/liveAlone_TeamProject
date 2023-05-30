@@ -15,7 +15,6 @@
 		<th>발행 일자</th>
 		<th>마감 일자</th>
 		<th>사용 여부</th>
-		<!-- <th>사용하기</th> -->
 	</tr>
 	<c:forEach var="ticket" items="${ticketList}" varStatus="status">
 		<tr class="ticketList-ticket-row">
