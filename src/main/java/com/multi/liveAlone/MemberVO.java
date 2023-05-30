@@ -7,7 +7,7 @@ public class MemberVO {
 	private int certification;
 	private String point;
 	private int count;
-	private String passwore;
+	private String password;
 	private int mileage;
 	private int admin;
 	
@@ -47,11 +47,11 @@ public class MemberVO {
 	public void setCount(int count) {
 		this.count = count;
 	}
-	public String getPasswore() {
-		return passwore;
+	public String getPassword() {
+		return password;
 	}
-	public void setPasswore(String passwore) {
-		this.passwore = passwore;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public int getMileage() {
 		return mileage;
@@ -69,8 +69,8 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [member_id=" + member_id + ", address=" + address + ", nickname=" + nickname
-				+ ", certification=" + certification + ", point=" + point + ", count=" + count + ", passwore="
-				+ passwore + ", mileage=" + mileage + ", admin=" + admin + "]";
+				+ ", certification=" + certification + ", point=" + point + ", count=" + count + ", password="
+				+ password + ", mileage=" + mileage + ", admin=" + admin + "]";
 	}
 	
 	
