@@ -29,7 +29,6 @@ public class MemberDAO {
 		return memberInfo;
 	}
 
-	
 	public void updateUserMileage(MemberVO member) {
 		my.update("member.updateUserMileage", member);
 	}
@@ -37,6 +36,10 @@ public class MemberDAO {
 	public MemberVO login(String login_id) {
 		MemberVO result = my.selectOne("member.login", login_id);
 		return result;
+	}
+	
+	public void updatePoint(MemberVO bag) {
+		my.update("member.updatePoint", bag);
 	}
 }
 
