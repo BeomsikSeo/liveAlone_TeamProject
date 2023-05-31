@@ -32,7 +32,6 @@ public class MemberController {
 	@RequestMapping("share/chatShare/login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
 	// jsp에서는 HttpSession이 기본으로 내장, but java에서는 추가해줘야 함
 	public String login(String login_id, HttpSession session) {
-		System.out.println("x");
 		MemberVO result = dao.login(login_id); // 1,0
 		
 		if (login_id.equals(result.getMember_id())) {

@@ -132,8 +132,7 @@ public class BbsShareController {
 		HttpSession session = request.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		System.out.println("checkinterest요청됨.");
-		String x = dao.checkinterest(bbsShareNo,member_id);
-		model.addAttribute("result", x);
+		model.addAttribute("result", dao.checkinterest(bbsShareNo,member_id));
 		return "share/bbsShare/checkinterest";
 	}
 	

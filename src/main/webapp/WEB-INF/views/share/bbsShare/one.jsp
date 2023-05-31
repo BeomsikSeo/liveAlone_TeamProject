@@ -9,44 +9,15 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-
-
-<%String bbsShareNo = request.getParameter("bbsShareNo");
-String certification = (String) session.getAttribute("certification");
-System.out.println(certification);%>
-var certification = "<%=certification%>";
-
-$.ajax({
-	async : true,
-	type : 'POST',
-	data: {
-        "bbsShareNo": "<%=bbsShareNo%>",
-    },
-	url : 'checkinterest',
-	dataType : "text",
-	success : function(response) {
-		var x = String(1);
-		if (response == x) {
-	        document.getElementById("interest-button").textContent = "관심해제";
-		    document.getElementById("interest-button").onclick = function() {
-		        interestminus();
-		    }
-		} else {
-		    document.getElementById("interest-button").onclick = function() {
-		        interestplus();
-		    }
-		}
-	}
-    
-	});
-
-
-
+	var bbsShareNo = '<%= request.getParameter("bbsShareNo") %>';
+    var certification = '<%= session.getAttribute("certification") %>';
+	var viewcheck = '<%=session.getAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo"))%>';
+	
     function viewplus() {
         $.ajax({
 			async : true,
 			type : 'POST',
-            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+            data : {"bbsShareNo":bbsShareNo},
 			url : 'view',
 			dataType : "text",
 			success : function() {
@@ -58,7 +29,7 @@ $.ajax({
         $.ajax({
 			async : true,
 			type : 'POST',
-            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+            data : {"bbsShareNo":bbsShareNo},
 			url : 'interestplus',
 			dataType : "text",
 			success : function() {
@@ -71,7 +42,7 @@ $.ajax({
         $.ajax({
 			async : true,
 			type : 'POST',
-            data : {"bbsShareNo":"<%=bbsShareNo%>"},
+            data : {"bbsShareNo":bbsShareNo},
 			url : 'interestminus',
 			dataType : "text",
 			success : function() {
@@ -80,18 +51,47 @@ $.ajax({
 		});
 	}
      
-     $(document).ready(function() {
-		var bbsShareNo = "<%=session.getAttribute("viewBbsShareNo" + bbsShareNo)%>
-	";
-						if (certification !== "0") {
-							document.getElementById("interest-button").style.display = "block";
-						}
+   
+    	
+    	$(document).ready(function() {
+    		
+    		if (certification == "1"){
+				document.getElementById("interest-button").style.display = "block";
+				
+				 $.ajax({
+				    	async : true,
+				    	type : 'POST',
+				    	data: {"bbsShareNo": bbsShareNo},
+				    	url : 'checkinterest',
+				    	dataType : "text",
+				    	success : function(response) {				    		
+				    		
+				    		if (response == "1") {
+				    	        document.getElementById("interest-button").textContent = "관심해제";
+				    		    document.getElementById("interest-button").onclick = function() {
+				    		        interestminus();
+				    		    }
+				    		} else {
+				    	        document.getElementById("interest-button").textContent = "관심등록";
+				    		    document.getElementById("interest-button").onclick = function() {
+				    		        interestplus();
+				    		    }
+				    		}
+				    	}
+				        
+				    	});
+				
+				
+    		}
+    		
+    		if (viewcheck !== "1") {
+    		<%System.out.println("viewcheck : " + session.getAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo")));%>
+    		<%session.setAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo"), "1");%>
+    		viewplus();
+    		}
 
-						if (bbsShareNo !== 1) {
-							viewplus();
-<%session.setAttribute("viewBbsShareNo" + bbsShareNo, "1");%>
-	}
-					});
+    		});
+     
 </script>
 <style type="text/css">
 img {
@@ -147,11 +147,9 @@ div {
 			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
 				${bag.bbsShareDate}</span>
 		</div>
-		<br>
-		포인트 : ${bag.bbsSharePoint}
-		<br> view : ${bag.bbsShareView} <br> interest :
-		${bag.bbsShareInterest}
-		<button id="interest-button" style="display: none;">관심등록</button>
+		<br> 포인트 : ${bag.bbsSharePoint} <br> view :
+		${bag.bbsShareView} <br> interest : ${bag.bbsShareInterest}
+		<button id="interest-button" style="display: none;"></button>
 		<%-- <c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
 			<form action="success" method="get">
 				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
@@ -175,8 +173,9 @@ div {
 			<c:otherwise>
 				<form action="../chatShare/chatRoom">
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
-					<input type="hidden" name="chatRequestor" value="${member_id}"> <input
-						type="hidden" name="chatReceiver" value="${bag.bbsShareWriter}">
+					<input type="hidden" name="chatRequestor" value="${member_id}">
+					<input type="hidden" name="chatReceiver"
+						value="${bag.bbsShareWriter}">
 					<button>채팅요청</button>
 				</form>
 				<!-- 밑에 저거 왜 안돼? -->
