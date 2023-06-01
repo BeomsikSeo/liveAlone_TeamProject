@@ -77,21 +77,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> 
-
+    <%@ include file="/resources/public/header.jsp" %>
+	
 	<section class="breadcumb-area bg-img bg-overlay" <%-- style="background-image: url(${pageContext.request.contextPath}/resources/img/bg-img/breadcumb3.jpg); --%>">
         <div class="bradcumbContent">
             <p>메뉴 주문</p>
             <h2>${store.store_name }</h2>
         </div>
     </section>
+    
 	<section class="events-area section-padding-100">
 	<form action="menuPay">
         <div class="container">
@@ -133,24 +127,27 @@
 	                	</div>
 	                    <div class="load-more-btn text-center mt-70">
 	                    	<p id="error-message" style="color: red"></p>
-	                        <button type="submit" class="btn oneMusic-btn" id="submit-button">결제하기<i class="fa fa-angle-double-right"></i></button>
+	                        <button type="submit" class="btn oneMusic-btn" id="submit-button">결제하기<i class="fa fa-angle-double-right"></i></button><br>
+	                        <a href="javascript:history.back();"><button type="button" class="btn oneMusic-btn mt-30">이전 페이지</button></a> 
 	                    </div>
 	                </div>
 	       </div>
         </div>
     </form>
     </section>
+    
+    <%@ include file="/resources/public/footer.jsp" %>
 	<div>
-    <!-- jQuery-2.2.4 js -->
-    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 	</div>
 </body>
 </html>

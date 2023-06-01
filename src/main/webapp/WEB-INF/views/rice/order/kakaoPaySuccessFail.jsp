@@ -6,14 +6,37 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-	<%-- $(function(){
-			계속해서 결제가 되는 것을 막기위 바로 redirect로 다른 페이지로 넘깁니다.	
-		location.href="/liveAlone/index.jsp"
-	}) --%>
+	$(function(){
+		
+		$(function(){
+			location.href="/liveAlone/index.jsp"
+		}) 
+	})
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <title>Insert title here</title>
+
 </head>
 <body>
-	결제 실패
+	<div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> 
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 </body>
 </html>

@@ -79,6 +79,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+	 <%@ include file="/resources/public/header.jsp" %>
+    
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/templa/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>최종 결제 정보</p>
+            <h2>${store.store_name }</h2>
+        </div>
+    </section>
+    
 	<section class="login-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">
@@ -135,13 +144,16 @@
                                     <input type="text" id="payPrice" class="form-control" name="ticket_price" value=0 min=0>
                                 </div>
                         </div>
-                        <button type="submit" class="btn oneMusic-btn mt-30">카카오 페이 결제</button>
+                        <button type="submit" class="btn oneMusic-btn mt-30">카카오 페이 결제</button><br>
+                        <a href="javascript:history.back();"><button type="button" class="btn oneMusic-btn mt-30">이전 페이지</button></a> 
                     </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    
+    <%@ include file="/resources/public/footer.jsp" %>
 	<div>
     <!-- jQuery-2.2.4 js -->
     <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
