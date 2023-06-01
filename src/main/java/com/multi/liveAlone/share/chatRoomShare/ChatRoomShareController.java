@@ -66,12 +66,11 @@ public class ChatRoomShareController {
 	}
 	
 	// 모든 채팅방 목록
-//	@RequestMapping("allChatList")
-//	public void list(Model model) {
-//		List<ChatRoomShareVO> list = dao.list();
-//		
-//		model.addAttribute("list", list);
-//	}
+	@RequestMapping("mypage/userChatList")
+	public void userChatList(String nowSession, Model model) {
+		List<ChatRoomBbsJoinVO> list = dao.userChatList(nowSession);
+		model.addAttribute("list", list);
+	}
 	
 	// 게시물 채팅방 목록
 	@RequestMapping("share/chatShare/bbsChatList")

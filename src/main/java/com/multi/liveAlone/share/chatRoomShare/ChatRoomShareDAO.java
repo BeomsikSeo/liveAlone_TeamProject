@@ -19,9 +19,9 @@ public class ChatRoomShareDAO {
 		System.out.println("저장완료");
 	}
 	
-	// 전체 채팅방 리스트
-	public List<ChatRoomShareVO> allchatlist(){
-		List<ChatRoomShareVO> list = my.selectList("chatroomshare.all");
+	// 유저 채팅방 리스트
+	public List<ChatRoomBbsJoinVO> userChatList(String nowSession){
+		List<ChatRoomBbsJoinVO> list = my.selectList("chatroomshare.userChatList", nowSession);
 		System.out.println("전체 채팅방 개수 : " + list.size());
 		return list;
 	}
@@ -46,12 +46,10 @@ public class ChatRoomShareDAO {
 	// 채팅방 메시지 리스트
 	public List<MessageShareVO> messageList(int roomNo){
 		List<MessageShareVO> list = my.selectList("chatroomshare.message", roomNo);
-		System.out.println("메시지 개수 : " + list.size());
 		return list;
 	}
 	
 	public void codeUpdate(ChatRoomShareVO bag) {
 		my.update("chatroomshare.update", bag);
-		System.out.println("찍히냐?");
 	}
 }

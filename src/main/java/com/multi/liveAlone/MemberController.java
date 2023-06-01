@@ -50,6 +50,11 @@ public class MemberController {
 			return "share/chatShare/login"; // views아래 파일이름.jsp
 		}
 	}
+
+	@RequestMapping("mypage/mypage")
+	public void mypage() {
+
+	}
 }
 
 

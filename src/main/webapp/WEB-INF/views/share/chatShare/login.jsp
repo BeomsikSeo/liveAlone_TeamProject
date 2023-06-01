@@ -14,5 +14,6 @@
 <form action="../bbsShare/list" method="get">
 	<button type="submit">게시물 리스트</button>
 </form>
+<a href="../../mypage/mypage"><button>마이페이지</button></a>
 </body>
 </html>
