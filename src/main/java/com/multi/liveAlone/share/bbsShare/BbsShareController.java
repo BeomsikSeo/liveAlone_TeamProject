@@ -24,11 +24,12 @@ public class BbsShareController {
 	BbsShareDAO dao;
 	
 	@RequestMapping("share/bbsShare/insert")
-	public void insert(BbsShareVO bag) {
+	public void insert(BbsShareVO bag, HttpServletRequest request) {
 		System.out.println("insert 요청됨");
-		
-		String userID = "user01"; //userId session 넣기
-		bag.setBbsShareWriter(userID);
+
+		HttpSession session = request.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		bag.setBbsShareWriter(member_id);
 		
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -68,6 +69,7 @@ public class BbsShareController {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list(pageno);
         int x = Integer.parseInt(pageno) - 1;
+        
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
@@ -131,8 +133,7 @@ public class BbsShareController {
 		HttpSession session = request.getSession();
 		String member_id = (String) session.getAttribute("member_id");
 		System.out.println("checkinterest요청됨.");
-		String x = dao.checkinterest(bbsShareNo,member_id);
-		model.addAttribute("result", x);
+		model.addAttribute("result", dao.checkinterest(bbsShareNo,member_id));
 		return "share/bbsShare/checkinterest";
 	}
 	

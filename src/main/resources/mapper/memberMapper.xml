@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">
+
+	<insert id="signup" parameterType="memberVO">
+		insert into member values
+		(#{member_id}, #{address}, #{nickname}, 0, 0, 0, #{password},0 , null)
+	</insert>
 	
 	<update id="upcerti"  parameterType="String">
 		update member set certification = 1 where member_id = #{member_id}
@@ -10,10 +15,19 @@
 		select * from member where member_id = #{member_id}
 	</select>
 	
-	<select id="login" parameterType="memberVO" resultType="int">
-		select count(*) from member
-		where member_id = #{member_id}
+	<select id="login" parameterType="String" resultType="memberVO">
+		select * from member where member_id = #{member_id}
 	</select>
+	
+	<select id="checkid" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE member_id = #{member_id}
+	</select>
+	
+	<select id="checknick" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE nickname = #{nickname}
+	</select>
+	
+	
 	
 	<select id="all" resultType="memberVO">
 		select *
