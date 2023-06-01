@@ -52,8 +52,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("mypage/mypage")
-	public void mypage() {
-
+	public void mypage(String login_id, Model model) {
+		MemberVO bag = dao.login(login_id);
+		model.addAttribute("bag", bag);
 	}
 }
 
