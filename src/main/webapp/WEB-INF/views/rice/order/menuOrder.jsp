@@ -14,10 +14,10 @@
 		
 		
 	<%--
-		count_button 클래스에 있는 버튼을 누르면
-		count_button 형제 요소인  menu_count 요소를 증가/감소 합니다.
+		count-button 클래스에 있는 버튼을 누르면
+		count-button 형제 요소인  menu_count 요소를 증가/감소 합니다.
 	--%>
-	$('.count_button').click(function() {
+	$('.count-button').click(function() {
 			let num = $(this).val()
 
 			let count = $(this).siblings('.menu-counter').val()
@@ -40,7 +40,7 @@
 			}
 			
 			if(count == 0){
-				$("#error-message").text("주문하시는 메뉴는 적어도 1개 이상이어야 합니다.")
+				$("#error-message").text("주문하시는 메뉴의 수량은 1개 이상이어야 합니다.")
 				event.preventDefault();
 			}
 		})
@@ -49,111 +49,108 @@
 	})
 </script>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <%-- CSS 부분입니다. --%>
 <style type="text/css">
+	
+	button.count-button {
+		border-radius : 5px;
+	
+		height : 30px;
+		width : 40px;
+		
+	}
+	
+	input.menu-counter{
+	
+		font-weight : 750;
+		height : 30px;
+		width : 80px;
+	}
 
-/*	전체 	*/
-.order-menu {
-	display : inline-block;
-	border: 3px solid black;
-	
-	width : 1200px;
-	
-	text-align: center;
-}
-
-.order-menu-info {
-	display : block;
-	
-	width : 90%;
-	
-	border: 3px solid black;
-	padding : 15px;
-	margin : 15px;
-	
-	text-align : center;
-}
-
-.menu {
-	display: inline-block;
-	
-	min-width : 300px;
-	
-	height : 300px;
-	width : 20%;
-	
-	margin: 5px; 
-	
-	text-align : center;
-}
-
-.menu-info-image-one {
-	 border : 3px black solid;
-	 border-radius : 30px;
-	 object-fit: contain;
-	 
-	 width : 300px;
-	 height : 100%;
-}
-
-#store-info {
-	text-align: left;
-}
-
-#check-info {
-	text-align : right;
-}
-
+	p#error-message {
+		text-align :center;
+		
+		font-weight: bold;
+	}
 </style>
 <title>Insert title here</title>
 </head>
 <body>
-	<div class = "order-menu" >
-		<form action="menuPay">
-			<div class = "order-menu-info" id="store-info">
-				<%-- 가게 정보를 표시하는 곳 입니다. --%>
-				<input type="text" name="store_name" value="${store.store_name }" style="font-size: large;">
-				<input type="hidden" name="store_no" value="${store.store_no }">
-			</div>
-			<hr>
-			
-			<div class ="order-menu-info" id="menu-list">
-				<%-- 음식 메뉴 정보들을 정렬해 놓은 곳 입니다. --%>
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> 
+
+	<section class="breadcumb-area bg-img bg-overlay" <%-- style="background-image: url(${pageContext.request.contextPath}/resources/img/bg-img/breadcumb3.jpg); --%>">
+        <div class="bradcumbContent">
+            <p>메뉴 주문</p>
+            <h2>${store.store_name }</h2>
+        </div>
+    </section>
+	<section class="events-area section-padding-100">
+	<form action="menuPay">
+        <div class="container">
+        	<input type="hidden" name="store_name" value="${store.store_name }">
+       		<input type="hidden" name="store_no" value="${store.store_no }">
+            <div class="row">
 				<% int num = 0; %>
 				<c:forEach items="${list }" var="menu">
-					<div class="menu" id="menu_<%= num %>">
-					
-						<%-- 메뉴 하나의 정보 --%>
-						<div class="menu-info">
-							<div class="menu-info-split">
-								<img class="menu-info-image-one" alt="error" src="${pageContext.request.contextPath}/resources/upload/rice/storeMenu/sample_Image.png">
-							</div>
-							<div class="menu-info-split">
-								<span><input class = "menu-info-detail" name="list[<%= num %>].order_fName" readonly="readonly" value='${menu.food_name}' style="text-align : center;"></span>
-								<span><input class = "menu-info-detail" name="list[<%= num %>].order_fPrice" readonly="readonly" value='${menu.food_price}' style="text-align : center;"></span>
-								<span><input class = "menu-info-detail" readonly="readonly" value="${menu.food_info}" style="text-align : center;"></span>
-							</div>
-						</div>
-						
-						<%-- 메뉴 수량  --%>
-						<div class="menu-count">
-							<button class="count_button" value="minus" type="button">-1</button>
-							<input type="text" value='0' readonly="readonly" class="menu-counter" name="list[<%=num%>].order_fCount" style="text-align : center;">
-							<button class="count_button" value="plus" type="button">+1</button>
-						</div>
-						
-					</div>
-					<% num = num + 1; %>
+	                <!-- Single Event Area -->
+	                <div class="col-12 col-md-6 col-lg-4">
+	                    <div class="single-event-area mb-30">
+	                        <div class="event-thumbnail">
+	                          <img alt="error" src="${pageContext.request.contextPath}/resources/upload/rice/storeMenu/sample_Image.png">
+							 </div>
+	                        <div class="event-text">
+	                            <h4>${menu.food_name}</h4>
+	                            <input type="hidden" name="list[<%= num %>].order_fName" value='${menu.food_name}'>
+	                            <div class="event-meta-data">
+	                                <a href="#" class="event-place">${menu.food_info}</a>
+	                                <a href="#" class="event-date">${menu.food_price}원</a>
+									<input type="hidden" name="list[<%= num %>].order_fPrice" value='${menu.food_price}'>
+	                            </div>
+	                            
+	                            <div class="menu-count">
+									<button class="count-button" value="minus" type="button">-1</button>
+									<input type="text" value='0' readonly="readonly" class="menu-counter" name="list[<%=num%>].order_fCount" style="text-align : center;">
+									<button class="count-button" value="plus" type="button">+1</button>
+								</div>
+	                        </div>
+	                    </div>
+	                </div>
+	           		<% num = num + 1; %>
 				</c:forEach>
-			</div>
-			<hr>
-			
-			<%-- 결제 조건이 맞는지를 표시해주는 페이지 입니다. --%>
-			<div class ="order-menu-info" id="check-info">
-				<div><span id="error-message"></span></div>
-				<div><button type="submit" id="submit-button">주문하기</button></div>
-			</div>
-		</form>
+	        </div>
+	        <div class="row">
+	                <div class="col-12">
+	                	<div >
+	                		
+	                	</div>
+	                    <div class="load-more-btn text-center mt-70">
+	                    	<p id="error-message" style="color: red"></p>
+	                        <button type="submit" class="btn oneMusic-btn" id="submit-button">결제하기<i class="fa fa-angle-double-right"></i></button>
+	                    </div>
+	                </div>
+	       </div>
+        </div>
+    </form>
+    </section>
+	<div>
+    <!-- jQuery-2.2.4 js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 	</div>
 </body>
 </html>

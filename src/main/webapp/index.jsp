@@ -9,6 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 </head>
 <body>
 	<h3>Index Page</h3>
@@ -19,5 +20,6 @@
 	<a href="rice/order/menuOrder?storeNo=1">맘스날드 주문</a> <br>
 	<a href="rice/order/menuOrder?storeNo=2">LFC 주문</a> <br>
 	<hr>
+	
 </body>
 </html>

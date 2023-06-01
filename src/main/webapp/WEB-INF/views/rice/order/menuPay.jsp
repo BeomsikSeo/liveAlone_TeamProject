@@ -45,7 +45,7 @@
 				$("#userMileage").val(maxMileage)
 				$("#payPrice").val(Number(totalPrice-maxMileage))
 				
-				$("#check_Mileage").text("회원님이 보유하신 " + maxMileage + "마일리지 이상 사용하실수 없습니다.")
+				$("#check_Mileage").text("회원님이 보유하신 " + maxMileage + "마일리지 이상을 사용하실 수 없습니다.")
 				
 			} else if( userMileage < 0) {
 				$("#userMileage").val(0)
@@ -62,111 +62,98 @@
 			}, true);
 	})
 </script>
+
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <style>
-	.info-table {
-		border: 2px solid black;
-		padding : 15px;
-		margin : 15px;
+	table {
+		border-spacing: 5px;
 		
-		min-width : 800px;
-		
-		text-align : center;
+		border-collapse: separate;
 	}
-	
-	.pay-info {
-		border: 2px solid black;
-		padding : 15px;
-		margin : 15px;
-		
-		width : 100px;
-		min-width : 900px;
-		
+	td.header{
+		width:50px;
 	}
-	
-	.order-info-title {
-		width : 40%;
-	}
-	.order-info-content {
-		widht : 60%;
-	} 
-	
 </style>
 
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="kakaoPay">
-	<div class="pay-info">
-		<div class="pay-info-one">
-			<h3> 가게 정보 </h3>
-			<table class="info-table">
-				<tr>
-					<td><input type="hidden" readonly="readonly" name="store_no" value="${store.store_no }"></td>
-				</tr>
-				<tr>
-					<%-- 가게 이름 --%>
-					<td> 가게 이름 </td>
-					<td><input type="text" readonly="readonly" name="store_name" value="${store.store_name}"></td>
-				</tr>
-				<tr>
-					<%-- 가게 정보 --%>
-					<td> 가게 위치 </td>
-					<td><input type="text" readonly="readonly" name="store_addr" value="${store.store_addr}"></td>
-				</tr>
-			</table>
-		</div>
-		<div class="pay-info-one">
-			<h3> 메뉴 정보 </h3>
-			<table class="info-table">
-				<tr>
-					<td class="order-info">상품 명</td>
-					<td class="order-info">상품 가격(개별)</td>
-					<td class="order-info">상품 개수</td>
-				</tr>
-				<c:forEach items="${orderList }" var="order">
-					<tr>
-						<td><input type="text" class="order-info" name="list[<%= num %>].order_fName" value="${order.order_fName}" readonly="readonly"></td>
-						<td><input type="text" class="order-info" name="list[<%= num %>].order_fPrice" value="${order.order_fPrice}" readonly="readonly"></td>
-						<td><input type="text" class="order-info" name="list[<%= num %>].order_fCount" value="${order.order_fCount}" readonly="readonly"></td>
-					</tr>
-				<% num = num + 1; %>
-				</c:forEach>
-			</table>
-		</div>
-		<div class="pay-info-one">
-			<h3> 종합 정보 및 마일리지 </h3>
-			<table class="info-table">
-				<tr>
-					<td class="order-info-title">주문 총 금액</td>
-					<td class="order-info-content" colspan="2"><input type="text" class="order-info" id="totalPrice" value="${totalPrice }" readonly="readonly" ></td>
-				</tr>
-				<tr>
-					<td class="order-info-title" rowspan="2">사용자 사용 마일리지</td>
-					<td class="order-info-content" colspan="2"><input type="number" class="order-info" id="userMileage" name="ticket_usedMileage" value=0 min=0>
-				</tr>
-				<tr>
-					<td colspan="2"><span id="check_Mileage">보유하고 계신 마일리지는 ${memberInfo.mileage} 입니다.</span></td>
-				</tr>
-				<tr>
-					<td class="order-info-title">사용자 결제 금액</td>
-					<td class="order-info-content" colspan="2"><input type="text" class="order-info" id="payPrice" name="ticket_price" readonly="readonly"></td>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<table class="info-table">
-				<tr>
-					<td>
-						<button type="submit" id="payment">
-							KakaoPay결제
-						</button>
-					</td>
-				<tr>
-			</table>
-		</div>
-		</div>
-	</form>
-
+	<section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                 <form method="post" action="kakaoPay">
+                    <div class="login-content">
+                        <h3>가게정보</h3>
+                        <div class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">가게 이름</label>
+                                    <input type="hidden" class="form-control" readonly="readonly" name="store_no" value="${store.store_no }">
+                                    <input type="text" class="form-control" readonly="readonly" name="store_name" value="${store.store_name}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">가게 위치</label>
+                                    <input type="text" class="form-control" readonly="readonly" name="store_addr" value="${store.store_addr}">
+                                </div>
+                                <hr>
+                        </div>
+                        <h3>주문 정보</h3>
+                        <div class="login-form">
+                        	<table>
+                        		<tr>
+                        			<td></td>
+                        			<td><label for="exampleInputEmail1"><b>상품 이름</b></label></td>
+                        			<td><label for="exampleInputEmail1"><b>상품 가격 (원)</b></label></td>
+                        			<td><label for="exampleInputEmail1"><b>주문 갯수</b></label></td>
+                        		</tr>
+                        		<c:forEach items="${orderList }" var="order">
+									<tr>
+										<td class="header"><h5><%= num+1 %></h5></td>
+										<td><input type="text" class="form-control" name="list[<%= num %>].order_fName" value="${order.order_fName}" readonly="readonly"></td>
+										<td><input type="text" class="form-control" name="list[<%= num %>].order_fPrice" value="${order.order_fPrice}" readonly="readonly"></td>
+										<td><input type="text" class="form-control" name="list[<%= num %>].order_fCount" value="${order.order_fCount}" readonly="readonly"></td>
+									</tr>
+								<% num = num + 1; %>
+								</c:forEach>
+                        	</table>
+                        	<hr>
+                        </div>
+                        <h3>마일리지 사용 여부</h3>
+                        <div class="login-form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">주문 총 금액</label>
+                                    <input type="text" class="form-control" class="order-info" id="totalPrice" value="${totalPrice }" readonly="readonly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">보유 마일리지</label>
+                                    <input type="text" id="userMileage" class="form-control" name="ticket_usedMileage" value=0 min=0>
+                                    <small id="check_Mileage" class="form-text text-muted">보유하고 계신 마일리지는 ${memberInfo.mileage} 입니다.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">사용자 결제 금액</label>
+                                    <input type="text" id="payPrice" class="form-control" name="ticket_price" value=0 min=0>
+                                </div>
+                        </div>
+                        <button type="submit" class="btn oneMusic-btn mt-30">카카오 페이 결제</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+	<div>
+    <!-- jQuery-2.2.4 js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 
 <%-- 결제 시  KakaoPay로 주문 내역, 티켓 정도에 사용되는 마일리지가 들어가게 됨 --%>
 </body>
