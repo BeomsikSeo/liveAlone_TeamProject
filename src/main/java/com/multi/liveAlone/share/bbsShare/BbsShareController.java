@@ -24,11 +24,12 @@ public class BbsShareController {
 	BbsShareDAO dao;
 	
 	@RequestMapping("share/bbsShare/insert")
-	public void insert(BbsShareVO bag) {
+	public void insert(BbsShareVO bag, HttpServletRequest request) {
 		System.out.println("insert 요청됨");
-		
-		String userID = "user01"; //userId session 넣기
-		bag.setBbsShareWriter(userID);
+
+		HttpSession session = request.getSession();
+		String member_id = (String) session.getAttribute("member_id");
+		bag.setBbsShareWriter(member_id);
 		
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

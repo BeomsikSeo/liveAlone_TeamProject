@@ -25,27 +25,49 @@ public class MemberController {
 	public void getAddress(String member_id, Model model) {
 		System.out.println("getaddress요청됨.");
 		System.out.println(member_id);
-		MemberVO bag = dao.getaddress(member_id);
+		MemberVO bag = dao.one(member_id);
 		model.addAttribute("bag", bag);
 	}
 	
-	@RequestMapping("share/chatShare/login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
-	// jsp에서는 HttpSession이 기본으로 내장, but java에서는 추가해줘야 함
-	public String login(String login_id, HttpSession session) {
-		MemberVO result = dao.login(login_id); // 1,0
+	@RequestMapping("login")
+	public void login(String member_id,String password, HttpSession session, Model model) {
+		MemberVO result = dao.login(member_id);
+		model.addAttribute("loginSuccess", false);
 		
-		if (login_id.equals(result.getMember_id())) {
-			// 로그인이 성공하면, 세션을 잡아두자!
-			session.setAttribute("member_id", result.getMember_id());
-			session.setAttribute("certification", result.getCertification()+"");
-			session.setAttribute("address", result.getAddress());
-			
-			return "share/chatShare/login"; // views아래 파일이름.jsp
-		} else {
-			// 로그인 실패시, views아래가 아니고, webapp아래 main.jsp로 가고 싶은 경우!
-			session.setAttribute("id", "null");
-			return "redirect:main.jsp";
+		if (result != null) {
+			if (password.equals(result.getPassword())) {
+				session.setAttribute("member_id", result.getMember_id());
+				session.setAttribute("certification", result.getCertification()+"");
+				session.setAttribute("address", result.getAddress());
+		        model.addAttribute("loginSuccess", true);
+			}
 		}
+	}
+	
+	@RequestMapping("signup")
+	public void signup(MemberVO bag) {
+		System.out.println("signup요청됨.");
+		int result = dao.signup(bag);
+		if (result == 1) {
+			System.out.println("회원가입 성공");
+		}
+		else {
+			System.out.println("회원가입 실패");
+		}
+	}
+	
+	@RequestMapping("checkid")
+	public void checkid(String member_id, Model model) {
+		System.out.println("checkid요청됨.");
+		int result = dao.checkid(member_id);
+		model.addAttribute("result", result);
+	}
+	
+	@RequestMapping("checknick")
+	public void checknick(String nickname, Model model) {
+		System.out.println("checknick요청됨.");
+		int result = dao.checknick(nickname);
+		model.addAttribute("result", result);
 	}
 }
 
