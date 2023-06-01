@@ -17,7 +17,6 @@
 </pre>
 	</form>
 	<span id="check"></span>
-	<button id="checksession">세션 확인 버튼</button>
-	<button id="clearsession">세션 초기화 버튼</button>
+	<a href="signup.jsp"><button>회원가입</button></a>
 </body>
 </html>
