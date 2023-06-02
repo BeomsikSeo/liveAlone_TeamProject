@@ -56,7 +56,7 @@ public class KakaoPayController {
 	@Autowired
 	MileageDAO mileageDAO;
 	
-//	@Setter(onMethod_ = @Autowired)
+	@Setter(onMethod_ = @Autowired)
 	private KakaoPay kakaopay;
 
 	private OrderVOList resultOrderList = null;

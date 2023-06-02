@@ -18,8 +18,8 @@
 	<span><a href="rice/mileage/userMileage">My 마일리지</a></span>
 	<hr>
 	
-	<a href="rice/order/menuOrder?storeNo=1">1. 맘스날드 주문</a> <br>
-	<a href="rice/order/menuOrder?storeNo=2">2. LFC 주문</a> <br>
+	<a href="rice/order/menuOrder?store_no=1">1. 맘스날드 주문</a> <br>
+	<a href="rice/order/menuOrder?store_no=2">2. LFC 주문</a> <br>
 	<hr>
 	
 </body>
