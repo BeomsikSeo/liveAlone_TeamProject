@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
      <style>
     .roundButton {
       display: inline-block;
@@ -37,11 +37,14 @@
   
 </head>
 <body>
+
+	<%@ include file="/resources/public/header.jsp" %>
+	
     <h3>모든 여행지입니다.</h3>
     <a href="list" target='_blank'>모든 여행지 보기</a>
     
     
-    <h1>Random Names</h1>
+    <h1>여행지 추천</h1>
 
 
 <ul id="randomNamesList">
@@ -189,8 +192,19 @@ $(document).ready(function() {
   });
   
 </script>
-
-<button type="submit">경유지 보기</button>
-    <hr color="red">
+<%@ include file="/resources/public/footer.jsp" %>
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
+    
 </body>
 </html>

@@ -55,7 +55,7 @@
                                     <li class="has-down"><a>동행</a>
                                     	<ul class="dropdown">
                                         	<li><a href="party/bbsParty/bbsPartyAll?page=1">동행</a></li>
-                                            <li><a href="https://themewagon.github.io/one-music/#">여행</a></li>
+                                            <li><a href="voyageall">여행</a></li>
                                         </ul></li>
                                     <li><a href="blog.jsp">나눔&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li>
                                 </ul>
@@ -144,6 +144,7 @@
     <script src="resources/template/js/plugins/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/template/js/active.js"></script>
+    
 </body>
 
 </html>
