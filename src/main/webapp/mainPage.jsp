@@ -21,10 +21,6 @@
 </head>
 
 <body>
-<%
-	session.setAttribute("member_id", "qwert123");   /*임시적인 유저 아이디*/
-%>
-
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">

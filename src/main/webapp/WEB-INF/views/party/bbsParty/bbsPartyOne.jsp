@@ -154,15 +154,17 @@
 
 	
 	   <div style = "width:100px; position: absolute; right: 20px;">
-		<% if(id.equals(writer)) { %>
-	  		
-	<!--   		<a href="bbsPartyUpdate.jsp">
-				<button style = "background: pink;">수정</button>
-			</a> -->
-			<a href="bbsPartyDelete?partyBbs_num=${one.partyBbs_num}" >
-				<button >삭제</button>
-			</a>
-		<% } %>
+	   <% if(session.getAttribute("member_id") != null) { %>
+			<% if(id.equals(writer)) { %>
+		  		
+		<!--   		<a href="bbsPartyUpdate.jsp">
+					<button style = "background: pink;">수정</button>
+				</a> -->
+				<a href="bbsPartyDelete?partyBbs_num=${one.partyBbs_num}" >
+					<button >삭제</button>
+				</a>
+			<% } %>
+		<% } %>	
 		<% 
 		
 		if(session.getAttribute("member_id") != null) { %>
@@ -172,18 +174,20 @@
 		<% } %>
 		</div>
 		<table>	
-			<% if(id.equals(writer)) { %>
-			<c:forEach items="${memList}" var="memList">
-		   		<tr>
-		      		<td class="right">${memList.member_id}</td> <!-- one.getId() -->
-		      		<td class="right">
-		      			<a href="bbsPartyFire?member_id=${memList.member_id}">
-		      				<button >강제퇴장</button><br>
-		      			</a>
-		      		</td>     
-				</tr>
-		    </c:forEach>
-			<% } %>
+		<% if(session.getAttribute("member_id") != null) { %>
+				<% if(id.equals(writer)) { %>
+				<c:forEach items="${memList}" var="memList">
+			   		<tr>
+			      		<td class="right">${memList.member_id}</td> <!-- one.getId() -->
+			      		<td class="right">
+			      			<a href="bbsPartyFire?member_id=${memList.member_id}">
+			      				<button >강제퇴장</button><br>
+			      			</a>
+			      		</td>     
+					</tr>
+			    </c:forEach>
+				<% } %>
+		<% } %>		
 		</table>   
     </section>
     <!-- ***** Elements Area End ***** -->
