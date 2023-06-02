@@ -24,7 +24,17 @@
       margin: 10px;
       cursor: pointer;
     }
-  </style>
+   </style>
+  <style>
+  .randomNameContainer {
+    display: inline-block;
+    margin-right: 10px; /* 요소 사이 간격을 조정할 수 있습니다 */
+    vertical-align: middle; /* 요소를 수직 정렬합니다 */
+  }
+</style>
+
+
+  
 </head>
 <body>
     <h3>모든 여행지입니다.</h3>
@@ -32,11 +42,16 @@
     
     
     <h1>Random Names</h1>
+
+
 <ul id="randomNamesList">
   <c:forEach items="${randomNames}" var="randomName">
-    <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button><br>
+    <div class="randomNameContainer">
+      <img src="http://localhost:8888/liveAlone/resources/img/1.jpg" alt="Image">
+      <br>
+      <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button>
+    </div>
   </c:forEach>
- 
 </ul>
 <script>
       $(document).ready(function() {
@@ -93,13 +108,16 @@
 
 
     <hr color="red">
-    <form id="infoForm" action="one" method="get">
-        추가할 여행지 : <input id="nameInput" name="name" value=""><br>
-        <button type="submit">정보 보기</button>
-        <button type="button" onclick="addInfo()">추가하기</button>
-    </form>
+<hr color="red">
+<form id="infoForm" action="one" method="get">
+    추가할 여행지: <input id="nameInput" name="name" value=""><br>
+    <button type="submit">정보 보기</button>
+    <button type="button" onclick="insertSelect('<%= session.getAttribute("member_id") %>', $('#nameInput').val())">추가하기</button>
+</form>
+    
 
 <div>
+출발지 입력하기<br>
   위도: <input id="latInput" type="text" name="lat">
   경도: <input id="longiInput" type="text" name="longi">
   <button id="saveButton">입력</button>
@@ -138,6 +156,7 @@ $(document).ready(function() {
  <c:forEach items="${roundButtons}" var="roundButton">
   ${roundButton}
 </c:forEach>
+
 <script>
   $(document).ready(function() {
     $('.roundButton').click(function() {
@@ -171,7 +190,7 @@ $(document).ready(function() {
   
 </script>
 
-
+<button type="submit">경유지 보기</button>
     <hr color="red">
 </body>
 </html>

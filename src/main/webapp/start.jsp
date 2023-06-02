@@ -14,6 +14,6 @@
 <%
  session.setAttribute("member_id", "apple");
 %>
-<a href="randomNames">스타트</a></P>
+<a href="voyageall">스타트</a></P>
 </body>
 </html>

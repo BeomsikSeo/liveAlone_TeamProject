@@ -11,9 +11,23 @@ public class VoyageVO {
 	private String info;
 	private String member_id;
 	private String selection;
+	private String pic;
+	private String voyageaddress;
 	
 	
 	
+	public String getVoyageaddress() {
+		return voyageaddress;
+	}
+	public void setVoyageaddress(String voyageaddress) {
+		this.voyageaddress = voyageaddress;
+	}
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
 	public String getSelection() {
 		return selection;
 	}
@@ -78,7 +92,7 @@ public class VoyageVO {
 	public String toString() {
 		return "VoyageVO [name=" + name + ", region=" + region + ", longi=" + longi + ", lat=" + lat + ", tag1=" + tag1
 				+ ", tag2=" + tag2 + ", tag3=" + tag3 + ", info=" + info + ", member_id=" + member_id + ", selection="
-				+ selection + "]";
+				+ selection + ", pic=" + pic + ", voyageaddress=" + voyageaddress + "]";
 	}
 	
 }
