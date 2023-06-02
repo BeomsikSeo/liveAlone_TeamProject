@@ -247,8 +247,8 @@
                     </div>
                     
                     <div class="d-flex align-items-center" style="padding-left: 25pt; padding-right:25pt;">
-                    	<button class="btn mr-1 ml-1" style="width:50%;" id="Ticket-Use">식권 사용</button>
-                        <button class="btn mr-1 ml-1" style="width:50%;" id="Ticket-Refund">식권 환불</button>
+                    	<button class="btn mr-1 ml-1" style="width:50%;" id="Ticket-Use">식권 환불</button>
+                        <button class="btn mr-1 ml-1" style="width:50%;" id="Ticket-Refund">식권 사용</button>
                     </div>
                     
                     <div class="termClass mt-3 mb-3" id="terms-list-1" style="display : none; padding-left: 25pt; padding-right:25pt;">
