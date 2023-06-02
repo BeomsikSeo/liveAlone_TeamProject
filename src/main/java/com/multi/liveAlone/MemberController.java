@@ -36,9 +36,13 @@ public class MemberController {
 		
 		if (result != null) {
 			if (password.equals(result.getPassword())) {
-				session.setAttribute("member_id", result.getMember_id());
+				session.setAttribute("member_id", "가나다");
+				/* session.setAttribute("member_id", result.getMember_id()); */
 				session.setAttribute("certification", result.getCertification()+"");
 				session.setAttribute("address", result.getAddress());
+				System.out.println("member_id : " + result.getMember_id());
+				System.out.println("certification : " + result.getCertification());
+				System.out.println("address : " + result.getAddress());
 		        model.addAttribute("loginSuccess", true);
 			}
 		}

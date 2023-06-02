@@ -8,12 +8,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
-	function imgError(image) {
-		image.onerror = "";
-		image.src = "../../resources/noimage.jpg";
-		return true;
-	}
+function imgError(image) {
+	image.onerror = "";
+	image.src = "../../resources/noimage.jpg";
+	return true;
+}
+
+window.onload = function() {
+    checkCertification();
+}
+
+function checkCertification() {
+    var certification = "<%= session.getAttribute("certification") %>";
+    
+    <%String x = (String)session.getAttribute("certification"); 
+    System.out.println(x);%>
+
+    if (certification == "1") {
+        location.href = "listcerti?pageno=1";
+    }
+}
 </script>
 <style>
 .flex-row {
@@ -52,25 +68,18 @@ td img {
 </head>
 <body>
 
-<%
-    // session의 certification 값을 가져옵니다.
-    String certification = (String) session.getAttribute("certification");
-	String address = (String) session.getAttribute("address");
-    /* System.out.println("list certi" + certification);
-    System.out.println("list address" + address); */
-
-    // certification 값이 "1"일 경우
-    if ("1".equals(certification)) {
-        // 다른 페이지로 리다이렉트합니다.
-        System.out.println(address);
-        System.out.println("listcerti 이동");
-        response.sendRedirect("listcerti?pageno=1");
-    }
-%>
-
 	<a href="sessiondelete">세션 초기화</a>
-	<a href="member1">유저 : 가나다</a>
-	<a href="member2">유저 : 나다라</a>
+	<%
+    String pagenoStr = request.getParameter("pageno");
+    int pageno = 1;
+    if (pagenoStr != null) {
+        pageno = Integer.parseInt(pagenoStr);
+        if (pageno < 1) {
+            pageno = 1;
+        }
+    }
+    pageContext.setAttribute("pageno", pageno);
+%>
 
 	<!-- 빈 페이지일 경우 경고 -->
 	<c:if test="${not empty message}">
@@ -80,10 +89,10 @@ td img {
 	</c:if>
 
 	<!-- 검색창 -->
-	<form  action="search" method="get" accept-charset="utf-8">
-		<input type="text" name="keyword" placeholder="검색어를 입력하세요">
-		<input type="hidden" name="pageno" value="1">
-		<input type="submit" value="검색">
+	<form action="search" method="get" accept-charset="utf-8">
+		<input type="text" name="keyword" placeholder="검색어를 입력하세요"> <input
+			type="hidden" name="pageno" value="1"> <input type="submit"
+			value="검색">
 	</form>
 	<br>
 
@@ -115,8 +124,8 @@ td img {
 						${vo.bbsShareView}</span><br>
 				</div>
 				<div class="flex-row">
-					포인트 : ${vo.bbsSharePoint} <span class="right-align"> 관심수
-						: ${vo.bbsShareInterest}</span><br>
+					포인트 : ${vo.bbsSharePoint} <span class="right-align"> 관심수 :
+						${vo.bbsShareInterest}</span><br>
 				</div> <br> <br>
 				<div class="breakword" style="max-width: 300px;">
 					${fn:length(vo.bbsShareContent) > 100 ? fn:substring(vo.bbsShareContent, 0, 100) : vo.bbsShareContent}
@@ -130,16 +139,6 @@ td img {
 		</c:forEach>
 	</table>
 
-
-	<%
-		String pagenoStr = request.getParameter("pageno");
-	session.setAttribute("pageno", pagenoStr);
-	int pageno = 1;
-	if (pagenoStr != null) {
-		pageno = Integer.parseInt(pagenoStr);
-	}
-	pageContext.setAttribute("pageno", pageno);
-	%>
 	<c:if test="${pageno > 1}">
 		<a href="list?pageno=${pageno-1}"><button>이전</button></a>
 	</c:if>

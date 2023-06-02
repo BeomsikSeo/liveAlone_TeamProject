@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
 	function imgError(image) {
 		image.onerror = "";
@@ -52,8 +53,17 @@ td img {
 <body>
 
 	<a href="sessiondelete">세션 초기화</a>
-	<a href="member1">유저 : 가나다</a>
-	<a href="member2">유저 : 나다라</a>
+	<%
+    String pagenoStr = request.getParameter("pageno");
+    int pageno = 1;
+    if (pagenoStr != null) {
+        pageno = Integer.parseInt(pagenoStr);
+        if (pageno < 1) {
+            pageno = 1;
+        }
+    }
+    pageContext.setAttribute("pageno", pageno);
+%>
 
 	<!-- 빈 페이지일 경우 경고 -->
 	<c:if test="${not empty message}">
@@ -114,15 +124,7 @@ td img {
 	</table>
 
 
-	<%
-		String pagenoStr = request.getParameter("pageno");
-	session.setAttribute("pageno", pagenoStr);
-	int pageno = 1;
-	if (pagenoStr != null) {
-		pageno = Integer.parseInt(pagenoStr);
-	}
-	pageContext.setAttribute("pageno", pageno);
-	%>
+
 	<c:if test="${pageno > 1}">
 		<a href="listcerti?pageno=${pageno-1}"><button>이전</button></a>
 	</c:if>

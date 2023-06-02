@@ -68,12 +68,12 @@ public class BbsShareController {
 	public String list(String pageno, Model model,RedirectAttributes redirectAttributes) {
 		System.out.println("list요청됨.");
 		List<BbsShareVO> list = dao.list(pageno);
-        int x = Integer.parseInt(pageno) - 1;
+		int x = Integer.parseInt(pageno) -1;
         
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
-            return "redirect:/share/bbsShare/list?pageno="+x;
+            return "share/bbsShare/list?pageno="+x;
         } else {
             // list가 empty가 아닌 경우
             model.addAttribute("list", list);
@@ -83,7 +83,7 @@ public class BbsShareController {
 	
 	@RequestMapping("share/bbsShare/listcerti")
 	public String listcerti(String pageno, Model model,RedirectAttributes redirectAttributes,HttpServletRequest request) {
-		System.out.println("list요청됨.");
+		System.out.println("listcerti요청됨.");
 		HttpSession session = request.getSession();
 		String address = (String) session.getAttribute("address");
 		List<BbsShareVO> list = dao.listcerti(pageno, address);
@@ -91,7 +91,7 @@ public class BbsShareController {
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
-            return "redirect:/share/bbsShare/listcerti?pageno="+x;
+            return "share/bbsShare/listcerti?pageno="+x;
         } else {
             // list가 empty가 아닌 경우
             model.addAttribute("list", list);

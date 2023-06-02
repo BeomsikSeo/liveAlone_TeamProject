@@ -112,14 +112,14 @@ div {
 }
 </style>
 </head>
-<body>
+<body><%-- 
 	<%
 		String pageno = (String) session.getAttribute("pageno"); //거쳐온 페이지 번호
 	if (pageno == null) { //바로 온경우 pageno 1로 설정
 		pageno = "1";
 		session.setAttribute("pageno", pageno);
 	}
-	%>
+	%> --%>
 	<button onclick="history.back()">뒤로가기</button>
 	<br>
 	<br>

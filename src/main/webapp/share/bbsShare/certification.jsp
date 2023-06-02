@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>지역 인증</title>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>HttpSession session = request.getSession(); session.setAttribute("member_id", "가나다"); <!-- 테스트용 세션 지정 --></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	 var address = "<%=session.getAttribute("address")%>";
+	 <% System.out.println(session.getAttribute("address"));%>
+	 document.getElementById("mem_address").innerHTML = address.replace(/_/g, ' ');
+ });
+ </script>
 </head>
 <body>
 	<p style="margin-top: -5px">
@@ -109,30 +115,36 @@
 			}
 		}
 		
-		$.ajax({
-			async : true,
-			type : 'POST',
-			data : {"member_id":"<%=session.getAttribute("member_id")%>"}, //세션 id
-			url : "getaddress",
-			dataType : "text",
-			success : function(adr) {
-				var adrspace = adr.replace(/_/g, ' ');
-				document.getElementById("mem_address").innerHTML = adrspace;
-			},
-			error : function() {
-				document.getElementById("mem_address").innerHTML = "데이터 베이스 접속 에러";
-			}
-		})
 		
 
 		function cert() {
 			var x = document.getElementById("now_address").innerText; //접속지역 행정동명
 			var x1 = x.split(' ');
+			switch (x1[0]) {
+			case "서울특별시": x1[0] = "서울"; break;
+			case "부산광역시": x1[0] = "부산"; break;
+			case "대구광역시": x1[0] = "대구"; break;
+			case "인천광역시": x1[0] = "인천"; break;
+			case "광주광역시": x1[0] = "광주"; break;
+			case "대전광역시": x1[0] = "대전"; break;
+			case "울산광역시": x1[0] = "울산"; break;
+			case "경기도": x1[0] = "경기"; break;
+			case "강원도": x1[0] = "강원"; break;
+			case "충청북도": x1[0] = "충북"; break;
+			case "충청남도": x1[0] = "충남"; break;
+			case "전라북도": x1[0] = "전북"; break;
+			case "전라남도": x1[0] = "전남"; break;
+			case "경상북도": x1[0] = "경북"; break;
+			case "경상남도": x1[0] = "경남"; break;
+			default: break;
+			}
 			var x2 = x1[0] + " " + x1[1];
 			var y = document.getElementById("mem_address").innerText; //등록지역 행정동명
 			var y1 = y.split(' ');
 			var y2 = y1[0] + " " + y1[1];
 
+			console.log(x2);
+			console.log(y2);
 			
 			if (x2 !== y2) {
 				document.getElementById("result").innerText = "인증 불가"
@@ -145,8 +157,8 @@
 					url : "certi",
 					dataType : "text",
 					success : function() {
-						alert("지역 인증이 완료되었습니다.");
-						location.href = "BbsShare.jsp";
+						alert("지역 인증이 완료되었습니다. 다시 로그인해주세요");
+						location.href = "../../login.jsp";
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
 						alert("ERROR : " + textStatus + " : " + errorThrown);
@@ -154,6 +166,8 @@
 				})
 			}
 
+			 
+			
 		}
 	</script>
 	접속자 인식 위치 :
