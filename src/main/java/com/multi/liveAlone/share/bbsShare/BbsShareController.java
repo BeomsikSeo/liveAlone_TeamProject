@@ -73,7 +73,7 @@ public class BbsShareController {
 		if (list.isEmpty()) {
             // list가 empty인 경우
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
-            return "share/bbsShare/list?pageno="+x;
+            return "redirect:/share/bbsShare/list?pageno="+x;
         } else {
             // list가 empty가 아닌 경우
             model.addAttribute("list", list);
@@ -86,14 +86,34 @@ public class BbsShareController {
 		System.out.println("listcerti요청됨.");
 		HttpSession session = request.getSession();
 		String address = (String) session.getAttribute("address");
+		
+		int firstIndex = address.indexOf('_');
+		if (firstIndex != -1) {
+		    int secondIndex = address.indexOf('_', firstIndex + 1);
+		    if (secondIndex != -1) {
+		        address = address.substring(0, secondIndex);
+		    }
+		}
+		
 		List<BbsShareVO> list = dao.listcerti(pageno, address);
+		System.out.println(address);
+		System.out.println("dao실행");
         int x = Integer.parseInt(pageno) - 1;
 		if (list.isEmpty()) {
             // list가 empty인 경우
+
+    		System.out.println("list empty");
+			if (x == 0) {
+				
+				redirectAttributes.addFlashAttribute("message", "근처지역 게시물이 없습니다");
+				return "redirect:/../../login.jsp";
+			}
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
-            return "share/bbsShare/listcerti?pageno="+x;
+            return "redirect:/share/bbsShare/listcerti?pageno="+x;
         } else {
             // list가 empty가 아닌 경우
+
+    		System.out.println("list not empty");
             model.addAttribute("list", list);
             return "share/bbsShare/listcerti";
         }

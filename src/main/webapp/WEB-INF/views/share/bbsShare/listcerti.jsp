@@ -78,6 +78,8 @@ td img {
 		<input type="hidden" name="pageno" value="1">
 		<input type="submit" value="검색">
 	</form>
+	<a href=""><button>글쓰기</button></a>
+	
 	<br>
 
 

@@ -9,9 +9,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
-	var bbsShareNo = '<%= request.getParameter("bbsShareNo") %>';
-    var certification = '<%= session.getAttribute("certification") %>';
-	var viewcheck = '<%=session.getAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo"))%>';
+	var bbsShareNo = "<%= request.getParameter("bbsShareNo") %>";
+    var certification = "<%= session.getAttribute("certification") %>";
+	var viewcheck = "<%=session.getAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo"))%>";
 	
     function viewplus() {
         $.ajax({
@@ -57,6 +57,7 @@
     		
     		if (certification == "1"){
 				document.getElementById("interest-button").style.display = "block";
+				document.getElementById("chatbutton").style.display = "block";
 				
 				 $.ajax({
 				    	async : true,
@@ -176,7 +177,7 @@ div {
 					<input type="hidden" name="chatRequestor" value="${member_id}">
 					<input type="hidden" name="chatReceiver"
 						value="${bag.bbsShareWriter}">
-					<button>채팅요청</button>
+					<button id ="chatbutton" style="display: none;">채팅요청</button>
 				</form>
 				<!-- 밑에 저거 왜 안돼? -->
 				<%-- <button onclick="location.href='${pageContext.request.contextPath}/chatRoom?bbsNo=${bag.no}?chatRequestor=${id}?chatReceiver=${bag.writer}'">채팅 요청</button> --%>

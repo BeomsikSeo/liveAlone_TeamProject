@@ -21,7 +21,7 @@ window.onload = function() {
 }
 
 function checkCertification() {
-    var certification = "<%= session.getAttribute("certification") %>";
+    var certification = "<%=session.getAttribute("certification") %>";
     
     <%String x = (String)session.getAttribute("certification"); 
     System.out.println(x);%>

@@ -9,7 +9,6 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	 var address = "<%=session.getAttribute("address")%>";
-	 <% System.out.println(session.getAttribute("address"));%>
 	 document.getElementById("mem_address").innerHTML = address.replace(/_/g, ' ');
  });
  </script>
@@ -120,24 +119,6 @@ $(document).ready(function() {
 		function cert() {
 			var x = document.getElementById("now_address").innerText; //접속지역 행정동명
 			var x1 = x.split(' ');
-			switch (x1[0]) {
-			case "서울특별시": x1[0] = "서울"; break;
-			case "부산광역시": x1[0] = "부산"; break;
-			case "대구광역시": x1[0] = "대구"; break;
-			case "인천광역시": x1[0] = "인천"; break;
-			case "광주광역시": x1[0] = "광주"; break;
-			case "대전광역시": x1[0] = "대전"; break;
-			case "울산광역시": x1[0] = "울산"; break;
-			case "경기도": x1[0] = "경기"; break;
-			case "강원도": x1[0] = "강원"; break;
-			case "충청북도": x1[0] = "충북"; break;
-			case "충청남도": x1[0] = "충남"; break;
-			case "전라북도": x1[0] = "전북"; break;
-			case "전라남도": x1[0] = "전남"; break;
-			case "경상북도": x1[0] = "경북"; break;
-			case "경상남도": x1[0] = "경남"; break;
-			default: break;
-			}
 			var x2 = x1[0] + " " + x1[1];
 			var y = document.getElementById("mem_address").innerText; //등록지역 행정동명
 			var y1 = y.split(' ');
