@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -68,6 +69,36 @@ public class MemberController {
 		System.out.println("checknick요청됨.");
 		int result = dao.checknick(nickname);
 		model.addAttribute("result", result);
+	}
+
+	@RequestMapping("share/chatShare/login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
+	// jsp에서는 HttpSession이 기본으로 내장, but java에서는 추가해줘야 함
+	public String login(String login_id, HttpSession session) {
+		System.out.println("x");
+		MemberVO result = dao.login(login_id); // 1,0
+		System.out.println("---- " + result);
+		
+		if (result == null){
+			// 로그인 실패시, views아래가 아니고, webapp아래 main.jsp로 가고 싶은 경우!
+			session.setAttribute("member_id", "null");
+			return "redirect:main.jsp";
+		}
+		else {
+			// 로그인이 성공하면, 세션을 잡아두자!
+			session.setAttribute("member_id", result.getMember_id());
+			session.setAttribute("certification", result.getCertification()+"");
+			session.setAttribute("address", result.getAddress());
+			
+			return "share/chatShare/login"; // views아래 파일이름.jsp
+		}
+	}
+
+	@RequestMapping("mypage/{page}")
+	public void mypage(@PathVariable("page") String page, String login_id, Model model) {		
+		if (page.equals("mypage") || page.equals("userInfo")) {
+			MemberVO bag = dao.login(login_id);
+			model.addAttribute("bag", bag);
+		}
 	}
 }
 

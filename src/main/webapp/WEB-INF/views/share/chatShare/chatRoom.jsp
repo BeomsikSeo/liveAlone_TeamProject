@@ -78,8 +78,12 @@
 		    	nowSession : nowSession,
 		    	roomNo : roomNo
 		    },  // 전송할 데이터를 JSON 형태로 변환
-		    success: function(x) {
-		    	$('#state').text("거래수락");
+		    success: function(trade) {
+		    	if (trade == 0) {
+					alert("포인트가 부족합니다!")
+				} else {
+					$('#state').text("거래수락");	
+				}
 		      // 요청이 성공했을 때 실행되는 콜백 함수
 		      // 서버에서 반환한 응답 데이터를 처리
 		    },
