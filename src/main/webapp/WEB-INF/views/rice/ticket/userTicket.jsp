@@ -73,46 +73,62 @@ $(function(){
 		})
 	})
 </script>
-<style>
-	.ticket-info {
-		min-width : 900px;
-		width : 900px;
-	}
-	.ticket-info-one {
-		text-align : center;
-		
-		margin : 15px;
-		padding : 15px;
-		
-		border:  2px solid black;
-	}
-	
-</style>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="header">
-		<a href="${pageContext.request.contextPath}/index.jsp">Index Page</a>
-		<a href="${pageContext.request.contextPath}/rice/mileage/userMileage">Mileage Page</a>
-	</div>
-	<hr>
-	<div class="ticket-info">
-		<div class="ticket-info-one">
-			<h3>내 식권 리스트</h3>
-		</div>
-		<div class="ticket-info-one" id="userTicketList">
-			
-		</div>
-		<div class="ticket-info-one">
-			<div class="ticket-page-buttons">
-				<button class="page-button" value="left">◀</button>
-				<% for(int i=1; i <= 5; i++) { %>
-				<button class="page-button-num" id="page-button-num-<%= i %>" value='<%= i %>'><%= i %></button>
-				<% } %>
-				<button class="page-button" value="right">▶</button>
-			</div>
-		</div>
+	<%@ include file="/resources/public/header.jsp" %>
+	
+    
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/templeate/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>회원님이 보유하신 티켓 리스트</p>
+            <h2>My 티켓</h2>
+        </div>
+    </section>
+	
+	  <section class="login-area section-padding-100">
+	  	<div class="oneMusic-buy-now-area mb-100">
+	        <div class="container">
+	        	<div class="row justify-content-center">
+	                <div class="col-12 col-lg-10">
+	                    <div class="login-content ticket-info-one" id="userTicketList">
+				
+						</div>
+	                </div>
+	            </div>
+	            <p> </p>
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="load-more-btn text-center">
+	                        <button class="btn page-button" value="left">◀</button>
+	                        <% for(int i=1; i <= 5; i++) { %>
+								<button class="btn page-button-num" id="page-button-num-<%= i %>" value='<%= i %>'><%= i %></button>
+							<% } %>
+	                        <button class="btn page-button" value="right">▶</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+	  </section>
+	 
+	<%@ include file="/resources/public/footer.jsp" %>
+	 
+	
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 	</div>
 </body>
 </html>

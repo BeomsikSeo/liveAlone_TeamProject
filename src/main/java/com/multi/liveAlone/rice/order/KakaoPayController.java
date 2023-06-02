@@ -73,6 +73,9 @@ public class KakaoPayController {
 	public String kakaoPay(Model model, OrderVOList list, TicketVO ticket, StoreVO store) {
 		
 		StoreVO compareStore = storeDAO.selectOne(store.getStore_no());
+		
+		System.out.println(store.toString());
+		System.out.println(compareStore.toString());
 		if (!compareStore.getStore_name().equals(store.getStore_name()) || !compareStore.getStore_addr().equals(store.getStore_addr())) {
 			return "redirect:/index.jsp";
 		}
