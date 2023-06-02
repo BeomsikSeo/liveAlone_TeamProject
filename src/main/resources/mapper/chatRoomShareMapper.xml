@@ -2,9 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chatroomshare">
 	
-	<select id="all" resultType="chatRoomShareVO">
-		select *
-		from  chatroomshare <!-- db에 소문자로 저장되어 있는데 도대체 왜...? -->
+	<select id="userChatList" parameterType="String" resultType="chatRoomBbsJoinVO">
+		select * from chatroomshare, bbsshare
+		where chatroomshare.bbsNo = bbsshare.bbsShareNo 
+		and (chatroomshare.chatRequestor = #{nowSession} or chatroomshare.chatReceiver = #{nowSession})
 	</select>
 	
 	<select id="room" parameterType="int" resultType="chatRoomShareVO">

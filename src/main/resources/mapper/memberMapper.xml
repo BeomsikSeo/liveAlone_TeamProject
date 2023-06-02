@@ -27,8 +27,6 @@
 		SELECT COUNT(*) FROM member WHERE nickname = #{nickname}
 	</select>
 	
-	
-	
 	<select id="all" resultType="memberVO">
 		select *
 		from member
@@ -36,6 +34,10 @@
 	
 	<update id="updateUserMileage" parameterType="memberVO">
 		update member set mileage = #{mileage} where member_id = #{member_id}
+	</update>
+	
+	<update id="updatePoint" parameterType="memberVO">
+		update member set point = #{point} where member_id = #{member_id}
 	</update>
 </mapper>
 

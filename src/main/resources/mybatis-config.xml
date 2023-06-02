@@ -28,6 +28,7 @@
       <typeAlias type="com.multi.liveAlone.share.bbsShare.BbsShareInterestVO" alias="bbsShareInterestVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.chatRoomShare.ChatRoomShareVO" alias="chatRoomShareVO"></typeAlias>
       <typeAlias type="com.multi.liveAlone.share.messageShare.MessageShareVO" alias="messageShareVO"></typeAlias>
+      <typeAlias type="com.multi.liveAlone.share.chatRoomShare.ChatRoomBbsJoinVO" alias="chatRoomBbsJoinVO"></typeAlias>
    </typeAliases>
    <mappers>
    <!-- SQL문 정의하는 파일들의 목록을 지정. 테이블당 한개 사용 -->
