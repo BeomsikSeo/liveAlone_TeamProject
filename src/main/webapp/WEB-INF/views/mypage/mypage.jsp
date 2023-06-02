@@ -13,14 +13,15 @@
 		$('#b1').click(function() {
 			$("#result").empty()
 			$.ajax({
-				url : "",
+				url : "userInfo",
 				data : {
-					
+					login_id : "${member_id}"
 				},
 				success : function(x) {
-				} // success
-			}) // ajax
-		}) // b1
+					$('#result').append(x)
+				}
+			})
+		})
 		
 		$('#b2').click(function() {
 			$("#result").empty()

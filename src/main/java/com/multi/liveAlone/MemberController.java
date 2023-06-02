@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -51,11 +52,14 @@ public class MemberController {
 		}
 	}
 
-	@RequestMapping("mypage/mypage")
-	public void mypage(String login_id, Model model) {
-		MemberVO bag = dao.login(login_id);
-		model.addAttribute("bag", bag);
+	@RequestMapping("mypage/{page}")
+	public void mypage(@PathVariable("page") String page, String login_id, Model model) {		
+		if (page.equals("mypage") || page.equals("userInfo")) {
+			MemberVO bag = dao.login(login_id);
+			model.addAttribute("bag", bag);
+		}
 	}
+
 }
 
 
