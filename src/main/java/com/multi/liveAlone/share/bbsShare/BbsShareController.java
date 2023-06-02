@@ -97,7 +97,6 @@ public class BbsShareController {
 		
 		List<BbsShareVO> list = dao.listcerti(pageno, address);
 		System.out.println(address);
-		System.out.println("dao실행");
         int x = Integer.parseInt(pageno) - 1;
 		if (list.isEmpty()) {
             // list가 empty인 경우
@@ -106,7 +105,7 @@ public class BbsShareController {
 			if (x == 0) {
 				
 				redirectAttributes.addFlashAttribute("message", "근처지역 게시물이 없습니다");
-				return "redirect:/../../login.jsp";
+				return "share/bbsShare/emptylist";
 			}
             redirectAttributes.addFlashAttribute("message", "잘못된 페이지입니다");
             return "redirect:/share/bbsShare/listcerti?pageno="+x;

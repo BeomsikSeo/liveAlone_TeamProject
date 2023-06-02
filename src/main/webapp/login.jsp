@@ -21,5 +21,9 @@
 	<a href="share/bbsShare/certification.jsp"><button>인증페이지</button></a>
 	<a href="share/bbsShare/list?pageno=1"><button>리스트</button></a>
 	<a href="mypage/mypage?login_id=<%= session.getAttribute("member_id")%>"><button>마이페이지</button></a>
+	<form action="deleteaccount" method="get">
+		<input type="text" name="member_id" placeholder="탈퇴할 아이디 입력"> <input
+			type="submit" value="탈퇴">
+	</form>
 </body>
 </html>
