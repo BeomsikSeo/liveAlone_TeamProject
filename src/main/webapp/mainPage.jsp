@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -13,24 +13,14 @@
     <title>난 혼자 산다</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="resources/template/img/core-img/favicon.ico">
+    <link rel="icon" href="resources/img/core-img/favicon.ico">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="resources/template/style.css">
 
-
 </head>
 
 <body>
-<!--     Preloader
-    <div class="preloader d-flex align-items-center justify-content-center">
-        <div class="lds-ellipsis">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> -->
 
     <!-- ##### Header Area Start ##### -->
     <header class="header-area">
@@ -71,15 +61,27 @@
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="loginBtn">로그인</a>
-                                    </div>
-                                    <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="loginBtn">회원가입</a>
-                                    </div>
-                                </div>
+                                <% if(session.getAttribute("member_id") != null){%>
+	                            	<div class="login-register-cart-button d-flex align-items-center">
+	                                    <!-- Login/Register -->
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="login.jsp" id="loginBtn">마이페이지</a>
+	                                    </div>
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="login.jsp" id="loginBtn">로그아웃</a>
+	                                    </div>
+	                                </div>										
+	                            <%} else{ %>
+	                            	<div class="login-register-cart-button d-flex align-items-center">
+	                                    <!-- Login/Register -->
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="login.jsp" id="loginBtn">로그인</a>
+	                                    </div>
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="login.jsp" id="loginBtn">회원가입</a>
+	                                    </div>
+	                                </div>
+	                            <%} %>
                             </div>
                             <!-- Nav End -->
 
@@ -91,45 +93,47 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Breadcumb Area Start ##### -->
-    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/template/img/bg-img/breadcumb3.jpg);">
-        <div class="bradcumbContent">
-            <p>See what’s new</p>
-            <h2>Login</h2>
-        </div>
-    </section>
-    <!-- ##### Breadcumb Area End ##### -->
-
-    <!-- ##### Login Area Start ##### -->
-    <section class="login-area section-padding-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="login-content">
-                        <h3>Welcome Back</h3>
-                        <!-- Login Form -->
-                        <div class="login-form">
-                            <form action="login" method="post">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Id</label>
-                                    <input type="text" name="member_id" placeholder="아이디 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
-                                </div>
-                                <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                                <a href="signup.jsp"><button>회원가입</button></a>
-                            </form>
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-slides owl-carousel">
+            <!-- Single Hero Slide -->
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url(resources/template/img/bg-img/bg-5.jpg);"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="hero-slides-content text-center">
+                                <h6>&nbsp식사</h6>
+                                <h2>&nbsp혼밥</h2>
+                                <a  href="#" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="hero-slides-content text-center">
+                                <h6>&nbsp동행/여행 </h6>
+                                <h2>&nbsp동행 <span>&nbsp동행</span></h2>
+                                <a  href="party/bbsParty/bbsPartyAll?page=1" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="hero-slides-content text-center">
+                                <h6>&nbsp지식인의 당근</h6>
+                                <h2>&nbsp나눔</h2>
+                                <a  href="#" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- ##### Login Area End ##### -->
-    
-	<!-- ##### All Javascript Script ##### -->
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
     <!-- jQuery-2.2.4 js -->
     <script src="resources/template/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -139,9 +143,7 @@
     <!-- All Plugins js -->
     <script src="resources/template/js/plugins/plugins.js"></script>
     <!-- Active js -->
-	<script src="resources/template/js/active.js"></script>
-
+    <script src="resources/template/js/active.js"></script>
 </body>
 
->>>>>>> party
 </html>
