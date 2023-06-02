@@ -46,7 +46,7 @@
 <form action="delete.Store">
 <button>삭제</button>
 </form>
-<form action="${pageContext.request.contextPath}/rice/order/orderMenu">
+<form action="${pageContext.request.contextPath}/rice/order/menuOrder">
 	<input type="hidden" name="store_no" value="${vo.store_no }">
 	<button type="submit">티켓 주문</button>	
 </form>
