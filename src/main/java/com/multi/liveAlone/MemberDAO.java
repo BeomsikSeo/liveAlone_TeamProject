@@ -31,7 +31,6 @@ public class MemberDAO {
 		return bag;
 	}
 
-	
 	public void updateUserMileage(MemberVO member) {
 		my.update("member.updateUserMileage", member);
 	}
@@ -53,7 +52,12 @@ public class MemberDAO {
 	
 	public int signup(MemberVO bag) {
 		int result = my.insert("member.signup", bag);
+		my.insert("member.interest",bag.getMember_id());
 		return result;
+	}
+	
+	public void updatePoint(MemberVO bag) {
+		my.update("member.updatePoint", bag);
 	}
 }
 

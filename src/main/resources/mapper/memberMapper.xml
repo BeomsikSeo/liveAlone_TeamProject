@@ -7,6 +7,11 @@
 		(#{member_id}, #{address}, #{nickname}, 0, 0, 0, #{password},0 , null)
 	</insert>
 	
+	<insert id="interest" parameterType="String">
+		insert into membershareinterest values
+		(#{member_id}, ',')
+	</insert>
+	
 	<update id="upcerti"  parameterType="String">
 		update member set certification = 1 where member_id = #{member_id}
 	</update>
@@ -27,8 +32,6 @@
 		SELECT COUNT(*) FROM member WHERE nickname = #{nickname}
 	</select>
 	
-	
-	
 	<select id="all" resultType="memberVO">
 		select *
 		from member
@@ -36,6 +39,10 @@
 	
 	<update id="updateUserMileage" parameterType="memberVO">
 		update member set mileage = #{mileage} where member_id = #{member_id}
+	</update>
+	
+	<update id="updatePoint" parameterType="memberVO">
+		update member set point = #{point} where member_id = #{member_id}
 	</update>
 </mapper>
 
