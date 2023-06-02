@@ -44,6 +44,19 @@ public class BbsPartyController {
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages);
 	}
+
+	
+//	@RequestMapping("party/bbsParty/bbsPartyThemeAll")
+//	public void all(String partyBbs_theme,PagePartyVO vo, Model model) {
+//		vo.setStartEnd(vo.getPage());
+//		List<BbsPartyVO> list = dao.all(vo); //all에 추가
+//		int count = dao.count(partyBbs_theme); //count에 추가
+//		System.out.println("all count>> " + count);
+//		int pages = (count - 1) / 10 + 1; //전체 페이지 개수 구하기 
+//		model.addAttribute("list", list);
+//		model.addAttribute("count", count);
+//		model.addAttribute("pages", pages);
+//	}
 	
 	@RequestMapping("party/bbsParty/bbsPartyOne")
 	public void one(BbsPartyVO vo, Model model) {
@@ -177,7 +190,6 @@ public class BbsPartyController {
 		  
 		  return list;
 	}
-	
 	
 	
 	
