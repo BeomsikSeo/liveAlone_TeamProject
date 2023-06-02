@@ -119,8 +119,12 @@
                                     <input type="password" id="password" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
-                                <a href="signup.jsp"><button>회원가입</button></a>
+                                
                             </form>
+                            <a href="signup.jsp"><button>회원가입</button></a>
+                                <a href="share/bbsShare/certification.jsp"><button>인증페이지</button></a>
+	<a href="share/bbsShare/list?pageno=1"><button>리스트</button></a>
+	<a href="mypage/mypage?login_id=<%= session.getAttribute("member_id")%>"><button>마이페이지</button></a>
                         </div>
                     </div>
                 </div>

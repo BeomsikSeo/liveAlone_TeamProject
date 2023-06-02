@@ -37,9 +37,15 @@
   
 </head>
 <body>
-
 	<%@ include file="/resources/public/header.jsp" %>
-	
+	<%-- 해당 주제 페이지에 맞는 이미지와 페이지 설명이 들어가는 부분 --%>
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg); --%>">
+        <div class="bradcumbContent">
+            <p>설명 부분</p>
+            <h2>타이틀 부분</h2>
+        </div>
+	</section>
+	<section>
     <h3>모든 여행지입니다.</h3>
     <a href="list" target='_blank'>모든 여행지 보기</a>
     
@@ -192,6 +198,7 @@ $(document).ready(function() {
   });
   
 </script>
+</section>
 <%@ include file="/resources/public/footer.jsp" %>
 	<div>
 	    <!-- jQuery-2.2.4 js -->
@@ -205,6 +212,5 @@ $(document).ready(function() {
 	    <!-- Active js -->
 	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 	</div>
-    
 </body>
 </html>

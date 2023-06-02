@@ -85,7 +85,7 @@
 			
 			//3. 채팅방 지정하여 가입하자.
 			stompClient.connect({}, function(frame) {
-				setConnected(true) //css설정 
+				//setConnected(true) //css설정 
 				/* alert('연결됨. '+ frame) */
 				stompClient.subscribe('/topic/messages/' + roomId, function(messageOutput) {
 					//서버에서 받은 메시지 출력 

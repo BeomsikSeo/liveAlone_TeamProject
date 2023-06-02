@@ -51,13 +51,13 @@
                             <div class="classynav ">
                                 <ul>
                                     <li><a href="mainPage.jsp">메인</a></li>
-                                    <li><a href="albums-store.jsp">혼밥</a></li>
+                                    <li><a href="rice/store/main.jsp">혼밥</a></li>
                                     <li class="has-down"><a>동행</a>
                                     	<ul class="dropdown">
                                         	<li><a href="party/bbsParty/bbsPartyAll?page=1">동행</a></li>
                                             <li><a href="voyageall">여행</a></li>
                                         </ul></li>
-                                    <li><a href="blog.jsp">나눔&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li>
+                                    <li><a href="share/bbsShare/list?pageno=1">나눔&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
@@ -107,7 +107,7 @@
                             <div class="hero-slides-content text-center">
                                 <h6>&nbsp식사</h6>
                                 <h2>&nbsp혼밥</h2>
-                                <a  href="#" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
+                                <a  href="rice/store/main.jsp" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                         <div class="col-4">
@@ -121,7 +121,7 @@
                             <div class="hero-slides-content text-center">
                                 <h6>&nbsp지식인의 당근</h6>
                                 <h2>&nbsp나눔</h2>
-                                <a  href="#" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
+                                <a href="share/bbsShare/list?pageno=1" class="btn oneMusic-btn mt-50">바로가기 <i class="fa fa-angle-double-right"></i></a>
                             </div>
                         </div>
                     </div>
