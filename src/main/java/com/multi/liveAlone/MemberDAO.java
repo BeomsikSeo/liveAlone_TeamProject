@@ -52,6 +52,7 @@ public class MemberDAO {
 	
 	public int signup(MemberVO bag) {
 		int result = my.insert("member.signup", bag);
+		my.insert("member.interest",bag.getMember_id());
 		return result;
 	}
 	

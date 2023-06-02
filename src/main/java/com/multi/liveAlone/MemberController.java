@@ -40,6 +40,9 @@ public class MemberController {
 				session.setAttribute("member_id", result.getMember_id());
 				session.setAttribute("certification", result.getCertification()+"");
 				session.setAttribute("address", result.getAddress());
+				System.out.println("member_id : " + result.getMember_id());
+				System.out.println("certification : " + result.getCertification());
+				System.out.println("address : " + result.getAddress());
 		        model.addAttribute("loginSuccess", true);
 			}
 		}
@@ -48,6 +51,42 @@ public class MemberController {
 	@RequestMapping("signup")
 	public void signup(MemberVO bag) {
 		System.out.println("signup요청됨.");
+		String add = bag.getAddress();
+		String address = add;
+		
+		
+		int index = add.indexOf('_');
+	    if (index != -1) {
+	        String firstPart = add.substring(0, index);
+	        String secondPart = add.substring(index + 1);
+
+	        switch (firstPart) {
+			case "서울": firstPart = "서울특별시"; break;
+			case "부산": firstPart = "부산광역시"; break;
+			case "대구": firstPart = "대구광역시"; break;
+			case "인천": firstPart = "인천광역시"; break;
+			case "광주": firstPart = "광주광역시"; break;
+			case "대전": firstPart = "대전광역시"; break;
+			case "울산": firstPart = "울산광역시"; break;
+			case "경기": firstPart = "경기도"; break;
+			case "강원": firstPart = "강원도"; break;
+			case "충북": firstPart = "충청북도"; break;
+			case "충남": firstPart = "충청남도"; break;
+			case "전북": firstPart = "전라북도"; break;
+			case "전남": firstPart = "전라남도"; break;
+			case "경북": firstPart = "경상북도"; break;
+			case "경남": firstPart = "경상남도"; break;
+			default: break;
+			}
+	        
+	        address = firstPart +"_"+ secondPart;
+	    }
+	    bag.setAddress(address);
+		
+		
+		
+		
+		
 		int result = dao.signup(bag);
 		if (result == 1) {
 			System.out.println("회원가입 성공");

@@ -7,6 +7,11 @@
 		(#{member_id}, #{address}, #{nickname}, 0, 0, 0, #{password},0 , null)
 	</insert>
 	
+	<insert id="interest" parameterType="String">
+		insert into membershareinterest values
+		(#{member_id}, ',')
+	</insert>
+	
 	<update id="upcerti"  parameterType="String">
 		update member set certification = 1 where member_id = #{member_id}
 	</update>
