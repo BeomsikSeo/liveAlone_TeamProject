@@ -21,8 +21,8 @@
 </head>
 
 <body>
-
-    <!-- ##### Header Area Start ##### -->
+	<%@ include file="/resources/public/header.jsp" %>
+    <%-- <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Hero Area Start ##### -->
