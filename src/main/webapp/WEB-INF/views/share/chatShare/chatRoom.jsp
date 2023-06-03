@@ -19,13 +19,13 @@
 	var chatcode = ${roomInfo.chatCode};
 
 	//1. 소켓객체 생성
-	var socket = new SockJS('${pageContext.request.contextPath}/chat');
+	var socket = new SockJS('${pageContext.request.contextPath}/chat2');
 	//2. 데이터를 전송하고, 받을 수 있는 stompClent객체 생성
 	stompClient = Stomp.over(socket);
 
 	//3. 채팅방 지정하여 가입하자.
 	stompClient.connect({}, function() {
-		stompClient.subscribe("/topic/" + roomNo, function(messageOutput) {
+		stompClient.subscribe("/topic2/" + roomNo, function(messageOutput) {
 			//서버에서 받은 메시지 출력 
 			showMessageOutput(JSON.parse(messageOutput.body));
 		})
@@ -36,7 +36,7 @@
 	function sendMessage() {
 		//url을 /app/cht을 호출하고,data를 json형태의 sring으로 만들어서 보내라. 
 		// /chat2처럼 하위를 무조건 써줘야 함 이유는 모름.. + /app은 생략가능 마찬가지로 이유는 모름
-		stompClient.send("/app/chat2/" + roomNo, {}, JSON.stringify({ 
+		stompClient.send("/app2/chat3/" + roomNo, {}, JSON.stringify({ 
 			'roomNo' : ${roomInfo.roomNo},
 			'sender' : "${member_id}", // -> "" 안해주면 변수로 처리!
 			'content' : $('#message').val()
