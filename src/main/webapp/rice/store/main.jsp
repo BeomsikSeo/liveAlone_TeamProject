@@ -9,7 +9,7 @@
 <body>
 <h3>난 혼자 산다 _ 혼밥 메인</h3>
 <hr color="blue">
-<form action="main.jsp"><button>메인</button></form>
+<form action="../../mainPage.jsp"><button>메인</button></form>
 <form action="listStore"><button>검색 페이지</button></form>
 <form action="store.jsp"><button>가게/메뉴 등록</button></form>
 </body>
