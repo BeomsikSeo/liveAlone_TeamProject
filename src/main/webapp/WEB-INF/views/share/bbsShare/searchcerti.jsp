@@ -50,6 +50,8 @@ td img {
 </style>
 </head>
 <body>
+
+	<button onclick="history.back()">뒤로가기</button>
 	<!-- 검색창 -->
 	<form action="search" method="get">
 		<input type="text" name="keyword" placeholder="검색어를 입력하세요"> <input
@@ -62,7 +64,6 @@ td img {
 	<!-- 검색 결과가 없을경우 경고 -->
 	<c:if test="${not empty message}">
 		<p>${message}</p><br>
-		<button onclick="history.back()">뒤로가기</button>
 	</c:if>
 
 <table>

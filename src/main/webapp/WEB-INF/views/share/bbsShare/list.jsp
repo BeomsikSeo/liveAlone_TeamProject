@@ -70,7 +70,9 @@ td img {
 </head>
 <body>
 
-	<a href="sessiondelete">세션 초기화</a>
+	<a href="../../mainPage.jsp">메인페이지로</a><br>
+	<%if(session.getAttribute("member_id")!=null){%>
+	<a href="../../share/bbsShare/certification.jsp"><button>인증페이지</button></a><br><%} %>
 	<%
     String pagenoStr = request.getParameter("pageno");
     int pageno = 1;
