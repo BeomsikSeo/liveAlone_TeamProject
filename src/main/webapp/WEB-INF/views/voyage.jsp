@@ -56,7 +56,7 @@
 <ul id="randomNamesList">
   <c:forEach items="${randomNames}" var="randomName">
     <div class="randomNameContainer">
-      <img src="http://localhost:8888/liveAlone/resources/img/1.jpg" alt="Image">
+      <img src="http://localhost:8888/liveAlone/resources/img/${randomName}.jpg" alt="Image">
       <br>
       <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button>
     </div>
