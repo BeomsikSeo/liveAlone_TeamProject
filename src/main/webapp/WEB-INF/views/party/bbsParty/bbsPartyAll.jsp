@@ -44,9 +44,9 @@
 </head>
 
 <body>
+	<%@ include file="/resources/public/header.jsp" %>
 
-
-    <!-- ##### Header Area Start ##### -->
+  <%--   <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
@@ -115,7 +115,7 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
+    <!-- ##### Header Area End ##### --> --%>
 
     <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/template/img/bg-img/trip1.jpg);">

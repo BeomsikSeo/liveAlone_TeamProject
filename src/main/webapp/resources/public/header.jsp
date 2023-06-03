@@ -43,25 +43,36 @@
                                     		<li><a href="${pageContext.request.contextPath}/rice/mileage/userMileage">My 마일리지</a></li>
                                     	</ul>
                                     </li>
-                                    <li><a href="${pageContext.request.contextPath}/party/bbsParty/bbsPartyAll?page=1">동행</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/share/bbsShare/list?pageno=1">당근</a></li>
+                                    <li class="has-down"><a>동행</a>
+                                    	<ul class="dropdown">
+                                        	<li><a href="${pageContext.request.contextPath}/party/bbsParty/bbsPartyAll?page=1">동행</a></li>
+                                            <li><a href="${pageContext.request.contextPath}/voyageall">여행</a></li>
+                                        </ul></li>
+                                    <li><a href="${pageContext.request.contextPath}/share/bbsShare/list?pageno=1">나눔&emsp;&emsp;&emsp;&emsp;</a></li>
                                 </ul>
 
                                 <!-- Login/Register & Cart Button -->
-                                <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
-                                    <div class="login-register-btn mr-50">
-                                        <a href="${pageContext.request.contextPath}/login.jsp" id="loginBtn">로그인</a>
-                                    </div>
-                                    
-									<div class="login-register-btn mr-50">
-	                                        <a href="${pageContext.request.contextPath}/login.jsp" id="loginBtn">회원가입</a>
+                                <% if(session.getAttribute("member_id") != null){%>
+	                            	<div class="login-register-cart-button d-flex align-items-center">
+	                                    <!-- Login/Register -->
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="${pageContext.request.contextPath}/mypage/mypage?login_id=<%= session.getAttribute("member_id")%>" id="loginBtn">마이페이지</a>
+	                                    </div>
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="${pageContext.request.contextPath}/logout" id="loginBtn">로그아웃</a>
+	                                    </div>
+	                                </div>										
+	                            <%} else{ %>
+	                            	<div class="login-register-cart-button d-flex align-items-center">
+	                                    <!-- Login/Register -->
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="${pageContext.request.contextPath}/login.jsp" id="loginBtn">로그인</a>
+	                                    </div>
+	                                    <div class="login-register-btn mr-50">
+	                                        <a href="${pageContext.request.contextPath}/signup.jsp" id="loginBtn">회원가입</a>
+	                                    </div>
 	                                </div>
-                                    <!-- Cart Button -->
-                                    <!-- <div class="cart-btn">
-                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                    </div> -->
-                                </div>
+	                            <%} %>
                             </div>
                             <!-- Nav End -->
 
