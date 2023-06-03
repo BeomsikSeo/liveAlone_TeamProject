@@ -54,7 +54,7 @@ public class OrderController {
 		
 		int totalPrice = 0;	
 		
-		String memberID = (String)session.getAttribute("memberID");
+		String memberID = (String)session.getAttribute("member_id");
 		MemberVO member = memberDAO.selectOne(memberID);
 		
 		store = storeDAO.selectOne(store.getStore_no());

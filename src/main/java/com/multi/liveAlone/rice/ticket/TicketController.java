@@ -45,11 +45,11 @@ public class TicketController {
 	public void userTicket(HttpSession session, Model model) {
 		// 임의의 세션 데이터 설정
 		// session.setAttribute("memberID", "userA");
-		String memberID = (String)session.getAttribute("memberID");
+		String memberID = (String)session.getAttribute("member_id");
 		System.out.println(memberID);
 
 
-		session.setAttribute("memberID", memberID);
+		session.setAttribute("member_id", memberID);
 	}
 	
 	
@@ -59,7 +59,7 @@ public class TicketController {
 		
 		// 만약 사용자가 자신이 보유한 티켓이 아닌 다른 사람이 보유한 티켓을 억지로 찾으려고 할 때 해당 조건문을 통해
 		// 사용자의 티켓 페이지 리스트로 강제로 이동하게 만듭니다.
-		String memberID = (String)session.getAttribute("memberID");
+		String memberID = (String)session.getAttribute("member_id");
 		TicketVO ticket = ticketDAO.selectTicketOne(ticket_ID);
 		
 		// 가지고온 티켓이 존재하지 않은 티켓일 경우 이동하지 않고 티켓 리스트로 이동
@@ -149,7 +149,7 @@ public class TicketController {
 	// 시간의 내림차순으로 정리해 가장 최근에 발행한 것이 맨 위로 올라오도록 합니다.
 	@RequestMapping("userTicketAjax")
 	public void userTicketAjax(Model model,HttpSession session,int pageNo) {
-		TicketVOInfo page = new TicketVOInfo(pageNo, (String)session.getAttribute("memberID"));
+		TicketVOInfo page = new TicketVOInfo(pageNo, (String)session.getAttribute("member_id"));
 		
 		
 		// 페이징한 리스트들을 가지고 옵니다.

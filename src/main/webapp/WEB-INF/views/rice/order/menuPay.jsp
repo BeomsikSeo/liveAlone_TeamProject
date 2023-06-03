@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">사용자 결제 금액</label>
-                                    <input type="text" id="payPrice" class="form-control" name="ticket_price" value=100 min=0>
+                                    <input type="text" id="payPrice" class="form-control" name="ticket_price" value=${totalPrice } min=0>
                                 </div>
                         </div>
                         <button type="submit" class="btn oneMusic-btn mt-30">카카오 페이 결제</button><br>
