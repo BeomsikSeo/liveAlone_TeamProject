@@ -15,8 +15,7 @@
 				placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*"><br>
 <input type="submit" value="로그인">
 </pre>
-	</form>
-	<span id="check"></span>
+	</form><%-- 
 	<a href="signup.jsp"><button>회원가입</button></a>
 	<a href="share/bbsShare/certification.jsp"><button>인증페이지</button></a>
 	<a href="share/bbsShare/list?pageno=1"><button>리스트</button></a>
@@ -24,6 +23,6 @@
 	<form action="deleteaccount" method="get">
 		<input type="text" name="member_id" placeholder="탈퇴할 아이디 입력"> <input
 			type="submit" value="탈퇴">
-	</form>
+	</form> --%>
 </body>
 </html>
