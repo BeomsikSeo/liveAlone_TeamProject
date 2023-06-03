@@ -18,7 +18,7 @@
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="img/core-img/logo.png" alt=""></a>
+                        <a href="${pageContext.request.contextPath}/mainPage.jsp" class="nav-brand"><img src="${pageContext.request.contextPath}/resources/template/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
@@ -35,7 +35,7 @@
 
                             <!-- Nav Start -->
                             <div class="classynav">
-                                <ul>
+                                <ul> 
                                     <li><a href="${pageContext.request.contextPath}/mainPage.jsp">메인 페이지</a></li>
                                     <li><a href="${pageContext.request.contextPath}/rice/store/main">혼밥</a>
                                     	<ul class="dropdown">

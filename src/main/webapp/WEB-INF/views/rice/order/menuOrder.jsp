@@ -79,7 +79,7 @@
 <body>
     <%@ include file="/resources/public/header.jsp" %>
 	
-	<section class="breadcumb-area bg-img bg-overlay" <%-- style="background-image: url(${pageContext.request.contextPath}/resources/img/bg-img/breadcumb3.jpg); --%>">
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
         <div class="bradcumbContent">
             <p>메뉴 주문</p>
             <h2>${store.store_name }</h2>
