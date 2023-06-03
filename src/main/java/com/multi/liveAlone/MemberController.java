@@ -139,6 +139,24 @@ public class MemberController {
 			model.addAttribute("bag", bag);
 		}
 	}
+	
+	@RequestMapping("deleteaccount")
+	public String deleteaccount(String member_id) {	
+		System.out.println(member_id + "에 대한 deleteaccount 요청됨.");
+		dao.deleteaccount(member_id);
+		
+		return "redirect:login.jsp";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {	
+		System.out.println("logout 요청됨.");
+		session.removeAttribute("member_id");
+		session.removeAttribute("address");
+		session.removeAttribute("certification");
+		
+		return "redirect:mainPage.jsp";
+	}
 }
 
 

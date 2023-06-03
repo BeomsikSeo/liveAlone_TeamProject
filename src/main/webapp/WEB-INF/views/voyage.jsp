@@ -42,11 +42,11 @@
 	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg); --%>">
         <div class="bradcumbContent">
             <p>설명 부분</p>
-            <h2>타이틀 부분</h2>
+            <h2>여행지</h2>
         </div>
 	</section>
 	<section>
-    <h3>모든 여행지입니다.</h3>
+    
     <a href="list" target='_blank'>모든 여행지 보기</a>
     
     
@@ -56,7 +56,7 @@
 <ul id="randomNamesList">
   <c:forEach items="${randomNames}" var="randomName">
     <div class="randomNameContainer">
-      <img src="http://localhost:8888/liveAlone/resources/img/1.jpg" alt="Image">
+      <img src="http://localhost:8888/liveAlone/resources/img/${randomName}.jpg" alt="Image">
       <br>
       <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button>
     </div>

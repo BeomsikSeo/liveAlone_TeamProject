@@ -30,7 +30,7 @@
 <body>
 여행지 정보
 <hr color="red">
-<img src="http://localhost:8888/liveAlone/resources/img/${vo.pic}.jpg" alt="Image"><br>
+<img src="http://localhost:8888/liveAlone/resources/img/${vo.name}.jpg" alt="Image"><br>
 ${vo.name} <br>
 여행지 주소: ${vo.voyageaddress} <br>
 여행지 정보:${vo.info} <br>

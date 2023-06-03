@@ -59,5 +59,10 @@ public class MemberDAO {
 	public void updatePoint(MemberVO bag) {
 		my.update("member.updatePoint", bag);
 	}
+	
+	public void deleteaccount(String member_id) {
+		my.delete("member.deleteinterest",member_id);
+		my.delete("member.deletemember", member_id);
+	}
 }
 

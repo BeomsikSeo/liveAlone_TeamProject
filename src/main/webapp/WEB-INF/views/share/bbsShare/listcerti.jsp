@@ -51,7 +51,6 @@ td img {
 </style>
 </head>
 <body>
-
 	<a href="sessiondelete">세션 초기화</a>
 	<%
     String pagenoStr = request.getParameter("pageno");
@@ -131,6 +130,5 @@ td img {
 		<a href="listcerti?pageno=${pageno-1}"><button>이전</button></a>
 	</c:if>
 	<a href="listcerti?pageno=${pageno+1}"><button>다음</button></a>
-
 </body>
 </html>
