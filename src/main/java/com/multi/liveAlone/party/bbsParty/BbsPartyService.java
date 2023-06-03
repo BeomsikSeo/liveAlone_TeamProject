@@ -22,7 +22,7 @@ public class BbsPartyService {
 		JSONVO jsonvo  = new JSONVO();
 		
 		/* String fileRoot = request.getContextPath(); */
-		String fileRoot = "C:\\Users\\Administrator\\TeamProject\\liveAlone_TeamProject\\src\\main\\webapp\\resources\\img\\";
+		String fileRoot = "C:\\Users\\Administrator\\Documents\\workspace-sts-3.9.14.RELEASE\\liveAlone_TeamProject\\src\\main\\webapp\\resources\\img\\";
 		System.out.println(fileRoot);
 		System.out.println("파일루트");
 		String originalFileName = file.getOriginalFilename();
