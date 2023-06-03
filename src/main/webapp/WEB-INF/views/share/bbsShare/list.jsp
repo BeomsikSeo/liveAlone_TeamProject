@@ -27,7 +27,9 @@ function checkCertification() {
     System.out.println(x);%>
 
     if (certification == "1") {
-        location.href = "listcerti?pageno=1";
+
+		window.location.href = "listcerti?pageno=1";
+
     }
 }
 </script>

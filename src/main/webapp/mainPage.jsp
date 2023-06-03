@@ -65,10 +65,10 @@
 	                            	<div class="login-register-cart-button d-flex align-items-center">
 	                                    <!-- Login/Register -->
 	                                    <div class="login-register-btn mr-50">
-	                                        <a href="login.jsp" id="loginBtn">마이페이지</a>
+	                                        <a href="mypage/mypage?login_id=<%= session.getAttribute("member_id")%>" id="loginBtn">마이페이지</a>
 	                                    </div>
 	                                    <div class="login-register-btn mr-50">
-	                                        <a href="login.jsp" id="loginBtn">로그아웃</a>
+	                                        <a href="logout" id="loginBtn">로그아웃</a>
 	                                    </div>
 	                                </div>										
 	                            <%} else{ %>
@@ -78,7 +78,7 @@
 	                                        <a href="login.jsp" id="loginBtn">로그인</a>
 	                                    </div>
 	                                    <div class="login-register-btn mr-50">
-	                                        <a href="login.jsp" id="loginBtn">회원가입</a>
+	                                        <a href="signup.jsp" id="loginBtn">회원가입</a>
 	                                    </div>
 	                                </div>
 	                            <%} %>

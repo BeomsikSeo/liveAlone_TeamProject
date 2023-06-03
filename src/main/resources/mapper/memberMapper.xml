@@ -44,6 +44,16 @@
 	<update id="updatePoint" parameterType="memberVO">
 		update member set point = #{point} where member_id = #{member_id}
 	</update>
+	
+	<delete id="deletemember" parameterType="String">
+		delete from member where
+		member_id = #{member_id}
+	</delete>
+	
+	<delete id="deleteinterest" parameterType="String">
+		delete from membershareinterest where
+		member_id = #{member_id}
+	</delete>
 </mapper>
 
 
