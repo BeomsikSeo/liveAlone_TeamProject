@@ -51,7 +51,8 @@ td img {
 </style>
 </head>
 <body>
-	<a href="sessiondelete">세션 초기화</a>
+	<a href="../../mainPage.jsp">메인페이지로</a><br>
+	<a href="../../share/bbsShare/writing.jsp"><button>글쓰기</button></a><br>
 	<%
     String pagenoStr = request.getParameter("pageno");
     int pageno = 1;
@@ -77,7 +78,6 @@ td img {
 		<input type="hidden" name="pageno" value="1">
 		<input type="submit" value="검색">
 	</form>
-	<a href=""><button>글쓰기</button></a>
 	
 	<br>
 

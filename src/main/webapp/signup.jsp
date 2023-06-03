@@ -126,7 +126,7 @@ $(document).ready(function() {
 		            	},
 		            success: function() {
 		    			alert('회원가입이 완료되었습니다');
-		            	location.href="login.jsp";
+		            	location.href="mainPage.jsp";
 		            },
 		            error: function(xhr, status, error) {
 		                alert('회원가입에 실패했습니다. 다시 시도해주세요.');

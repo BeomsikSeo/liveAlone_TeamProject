@@ -31,33 +31,33 @@
             <div></div>
         </div>
     </div> -->
-
+	<%@ include file="/resources/public/header.jsp" %>
     <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-        <!-- Navbar Area -->
+    <!-- <header class="header-area">
+        Navbar Area
         <div class="oneMusic-main-menu">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container">
-                    <!-- Menu -->
+                    Menu
                     <nav class="classy-navbar justify-content-between" id="oneMusicNav">
 
-                        <!-- Nav brand -->
-                        <a href="mainPage.jsp" class="nav-brand"><img src="resources/template/img/core-img/logo.png" alt=""></a> <!--난혼자산다 아이콘으로 변경-->
+                        Nav brand
+                        <a href="mainPage.jsp" class="nav-brand"><img src="resources/template/img/core-img/logo.png" alt=""></a> 난혼자산다 아이콘으로 변경
 
-                        <!-- Navbar Toggler -->
+                        Navbar Toggler
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
 
-                        <!-- Menu -->
+                        Menu
                         <div class="classy-menu ">
 
-                            <!-- Close Button -->
+                            Close Button
                             <div class="classycloseIcon">
                                 <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                             </div>
 
-                            <!-- Nav Start -->
+                            Nav Start
                             <div class="classynav ">
                                 <ul>
                                     <li><a href="mainPage.jsp">메인</a></li>
@@ -70,9 +70,9 @@
                                     <li><a href="blog.jsp">나눔&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</a></li>
                                 </ul>
 
-                                <!-- Login/Register & Cart Button -->
+                                Login/Register & Cart Button
                                 <div class="login-register-cart-button d-flex align-items-center">
-                                    <!-- Login/Register -->
+                                    Login/Register
                                     <div class="login-register-btn mr-50">
                                         <a href="login.jsp" id="loginBtn">로그인</a>
                                     </div>
@@ -81,14 +81,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Nav End -->
+                            Nav End
 
                         </div>
                     </nav>
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Breadcumb Area Start ##### -->
