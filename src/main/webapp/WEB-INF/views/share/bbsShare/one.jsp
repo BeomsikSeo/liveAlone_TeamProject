@@ -10,6 +10,7 @@
 <script type="text/javascript">
 
 	var bbsShareNo = "<%= request.getParameter("bbsShareNo") %>";
+	var member_id = "<%= session.getAttribute("member_id") %>";
     var certification = "<%= session.getAttribute("certification") %>";
 	var viewcheck = "<%=session.getAttribute("viewBbsShareNo" + request.getParameter("bbsShareNo"))%>";
 	
@@ -57,7 +58,16 @@
     		
     		if (certification == "1"){
 				document.getElementById("interest-button").style.display = "block";
-				document.getElementById("chatbutton").style.display = "block";
+				
+				if (document.getElementById("chatbutton")) {
+				    document.getElementById("chatbutton").style.display = "block";
+				}
+				if (document.getElementById("chatlistbutton")) {
+					document.getElementById("chatlistbutton").style.display = "block";
+				}
+				
+				
+
 				
 				 $.ajax({
 				    	async : true,
@@ -68,12 +78,12 @@
 				    	success : function(response) {				    		
 				    		
 				    		if (response == "1") {
-				    	        document.getElementById("interest-button").textContent = "관심해제";
+				    	        document.getElementById("interest-button").textContent = "관심 해제";
 				    		    document.getElementById("interest-button").onclick = function() {
 				    		        interestminus();
 				    		    }
 				    		} else {
-				    	        document.getElementById("interest-button").textContent = "관심등록";
+				    	        document.getElementById("interest-button").textContent = "관심 등록";
 				    		    document.getElementById("interest-button").onclick = function() {
 				    		        interestplus();
 				    		    }
@@ -167,7 +177,7 @@ div {
 				<form action="../chatShare/bbsChatList" method="get">
 					<!-- type은 디폴트가 submit( -> form제출) -->
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
-					<button type="submit">채팅 목록</button>
+					<button id ="chatlistbutton" type="submit">채팅 목록</button>
 				</form>
 			</c:when>
 
@@ -177,7 +187,7 @@ div {
 					<input type="hidden" name="chatRequestor" value="${member_id}">
 					<input type="hidden" name="chatReceiver"
 						value="${bag.bbsShareWriter}">
-					<button id ="chatbutton" style="display: none;">채팅요청</button>
+					<button id ="chatbutton" style="display: none;">채팅 요청</button>
 				</form>
 				<!-- 밑에 저거 왜 안돼? -->
 				<%-- <button onclick="location.href='${pageContext.request.contextPath}/chatRoom?bbsNo=${bag.no}?chatRequestor=${id}?chatReceiver=${bag.writer}'">채팅 요청</button> --%>
@@ -188,12 +198,12 @@ div {
 
 
 		<br> <br> content : ${bag.bbsShareContent} <br>
-		<c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
+		<%-- <c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
 			<form action="success" method="get">
 				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
 				<button type="submit">완료처리</button>
 			</form>
-		</c:if>
+		</c:if> --%>
 		<br> <br> <img src="../../resources/noimage.jpg"<%-- "share/bbsShare/img/${bag.bbsShareImage}" onerror="imgError(this)" --%>>
 	</div>
 

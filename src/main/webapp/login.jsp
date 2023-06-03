@@ -77,7 +77,7 @@
                                         <a href="login.jsp" id="loginBtn">로그인</a>
                                     </div>
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.jsp" id="loginBtn">회원가입</a>
+                                        <a href="signup.jsp" id="loginBtn">회원가입</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,10 +121,6 @@
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 
                             </form>
-                            <a href="signup.jsp"><button>회원가입</button></a>
-                                <a href="share/bbsShare/certification.jsp"><button>인증페이지</button></a>
-	<a href="share/bbsShare/list?pageno=1"><button>리스트</button></a>
-	<a href="mypage/mypage?login_id=<%= session.getAttribute("member_id")%>"><button>마이페이지</button></a>
                         </div>
                     </div>
                 </div>
@@ -146,6 +142,4 @@
 	<script src="resources/template/js/active.js"></script>
 
 </body>
-
->>>>>>> party
 </html>
