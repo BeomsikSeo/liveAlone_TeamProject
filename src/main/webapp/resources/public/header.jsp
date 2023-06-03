@@ -36,7 +36,7 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="${pageContext.request.contextPath}/index.jsp">메인 페이지</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/mainPage.jsp">메인 페이지</a></li>
                                     <li><a href="${pageContext.request.contextPath}/rice/store/main">혼밥</a>
                                     	<ul class="dropdown">
                                     		<li><a href="${pageContext.request.contextPath}/rice/ticket/userTicket">My 티켓</a></li>
@@ -51,9 +51,12 @@
                                 <div class="login-register-cart-button d-flex align-items-center">
                                     <!-- Login/Register -->
                                     <div class="login-register-btn mr-50">
-                                        <a href="login.html" id="loginBtn">로그인 / 회원가입</a>
+                                        <a href="${pageContext.request.contextPath}/login.jsp" id="loginBtn">로그인</a>
                                     </div>
-
+                                    
+									<div class="login-register-btn mr-50">
+	                                        <a href="${pageContext.request.contextPath}/login.jsp" id="loginBtn">회원가입</a>
+	                                </div>
                                     <!-- Cart Button -->
                                     <!-- <div class="cart-btn">
                                         <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
