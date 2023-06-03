@@ -50,6 +50,8 @@ td img {
 </style>
 </head>
 <body>
+
+	<button onclick="history.back()">뒤로가기</button>
 	<!-- 검색창 -->
 	<form action="search" method="get">
 		<input type="text" name="keyword" placeholder="검색어를 입력하세요"> <input
