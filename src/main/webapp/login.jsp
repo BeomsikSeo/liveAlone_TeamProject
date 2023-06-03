@@ -15,7 +15,8 @@
 				placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*"><br>
 <input type="submit" value="로그인">
 </pre>
-	</form><%-- 
+	</form>
+	<%-- 
 	<a href="signup.jsp"><button>회원가입</button></a>
 	<a href="share/bbsShare/certification.jsp"><button>인증페이지</button></a>
 	<a href="share/bbsShare/list?pageno=1"><button>리스트</button></a>
