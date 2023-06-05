@@ -107,6 +107,35 @@
 </script>
 </head>
 <body>
+
+	<div>
+		${member.nickname} ${member.count}
+	</div>
+	<div>
+		<table>
+			<tr>
+				<td class="down"><img src="../../../../share/bbsShare/img/${bbs.bbsShareImage}"></td>
+				<td class="down">${bbs.bbsShareTitle}</td>
+				<td class="down">${bbs.bbsShareWriter}</td>
+				<td class="down">${bbs.bbsSharePoint}</td>
+				
+				<c:if test="${bbs.bbsShareSuccess eq false}">
+					<td class="down">거래중</td>
+				</c:if>
+				<c:if test="${bbs.bbsShareSuccess eq true}">
+					<td class="down">거래완료</td>
+				</c:if>
+				
+				<td class="down">
+					<form action="../bbsShare/one" method="post">
+						<input type="hidden" name="bbsShareNo" value="${bbs.bbsShareNo}">
+						<button>게시글</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
 	<div id="conversationDiv">
 		<input type="text" id="message" onkeyup="enter();" placeholder="Write a message..." />
 		<button id="sendMessage" onclick="sendMessage();">Send</button>
@@ -141,7 +170,15 @@
 		<p id="response2">
 			
 		</p>
-		<button onclick="tradeCheck();">거래완료</button>
+		
+		<!-- 게시글이 거래완료처리되면 거래완료버튼 비활성화 -->
+		<c:if test="${bbs.bbsShareSuccess eq false}">
+			<button onclick="tradeCheck();">거래완료</button>
+		</c:if>
+		<c:if test="${bbs.bbsShareSuccess eq true}">
+			<button onclick="tradeCheck();" disabled>거래완료</button>
+		</c:if>
+		
 	</div>
 
 </body>

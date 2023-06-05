@@ -2,6 +2,8 @@ package com.multi.liveAlone.share.chatRoomShare;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,10 +30,12 @@ public class ChatRoomShareController {
 	
 	// 채팅방 insert 동시에 채팅방 페이지(채팅이 이루어지는 공간)로 이동 + roomInfo(roomNo, chatRequestor) 데이터 보내기
 	@RequestMapping("share/chatShare/chatRoom")
-	public void insert(ChatRoomShareVO bag, Model model) {
+	public void insert(ChatRoomShareVO bag, Model model, HttpSession session) {
 		
 		ChatRoomShareVO roomInfo;
 		List<MessageShareVO> list;
+		BbsShareVO bbs;
+		MemberVO member;
 		
 		// 게시글 작성자가 아닌 회원이 채팅요청을 했을 때
 		if (bag.getroomNo() == 0) {
@@ -61,22 +65,32 @@ public class ChatRoomShareController {
 			model.addAttribute("roomInfo", roomInfo);
 		}
 		
+		// 채팅상대방 정보 넘기기
+		if (session.getAttribute("member_id").equals(roomInfo.getChatReceiver())) {
+			member = m_dao.login(roomInfo.getChatRequestor());
+			model.addAttribute("member", member);
+		} else if (session.getAttribute("member_id").equals(roomInfo.getChatRequestor())) {
+			member = m_dao.login(roomInfo.getChatReceiver());
+			model.addAttribute("member", member);
+		}
+		
 		list = dao.messageList(roomInfo.getroomNo());
+		bbs = b_dao.one(roomInfo.getBbsNo()+"");
 		model.addAttribute("list", list);
+		model.addAttribute("bbs", bbs);
 	}
 	
 	// 모든 채팅방 목록
 	@RequestMapping("mypage/userChatList")
 	public void userChatList(String nowSession, Model model) {
-		List<ChatRoomBbsJoinVO> list = dao.userChatList(nowSession);
+		List<ChatRoomBbsMessageJoinVO> list = dao.userChatList(nowSession);
 		model.addAttribute("list", list);
 	}
 	
-	// 게시물 채팅방 목록
+	// 게시글 채팅방 리스트 + 채팅방별 마지막 메시지
 	@RequestMapping("share/chatShare/bbsChatList")
 	public void bbschatlist(int bbsNo, Model model) {
-		List<ChatRoomShareVO> list = dao.bbschatlist(bbsNo);
-		
+		List<ChatRoomMessageJoinVO> list = dao.bbschatlist(bbsNo);
 		model.addAttribute("list", list);
 	}
 	

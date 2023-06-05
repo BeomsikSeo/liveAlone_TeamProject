@@ -13,7 +13,7 @@
 <hr color="red">
 <!-- form으로 컨트롤러에 데이터 전송할때 파라미터를 input에 담는 것처럼 a태그로 컨트롤러에 데이터를 전송할 때,
 	 ?뒤에 파라미터 정해서 전달! -->
-${list.chatRequestor} <br>
+${list.chatRequestor} : ${list.content}<br>
 <form action="chatRoom" method="post">
 	<input type="hidden" name="roomNo" value="${list.roomNo}"> 
 	<button>채팅</button>
