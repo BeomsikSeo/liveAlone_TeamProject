@@ -69,7 +69,9 @@ public class VoyageDAO {
 		public List<String> getButtonName(String member_id) {
 		    return my.selectList("voyage.getButtonName", member_id);
 		}
-		
+		public VoyageVO getpoint(String name) {
+		    return my.selectOne("voyage.getpoint", name);
+		}
 		
 		}
 
