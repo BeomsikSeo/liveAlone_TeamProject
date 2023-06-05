@@ -14,9 +14,6 @@
 			$("#result").empty()
 			$.ajax({
 				url : "userInfo",
-				data : {
-					login_id : "${member_id}"
-				},
 				success : function(x) {
 					$('#result').append(x)
 				}

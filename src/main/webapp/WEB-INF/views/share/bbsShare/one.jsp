@@ -174,7 +174,7 @@ div {
 		<c:choose>
 			<%-- = <c:when test = "${writer eq id}"> --%>
 			<c:when test="${bag.bbsShareWriter eq member_id}">
-				<form action="../chatShare/bbsChatList" method="get">
+				<form action="../chatShare/bbsChatList" method="post">
 					<!-- type은 디폴트가 submit( -> form제출) -->
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
 					<button id ="chatlistbutton" type="submit">채팅 목록</button>
@@ -182,7 +182,7 @@ div {
 			</c:when>
 
 			<c:otherwise>
-				<form action="../chatShare/chatRoom">
+				<form action="../chatShare/chatRoom" method="post">
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
 					<input type="hidden" name="chatRequestor" value="${member_id}">
 					<input type="hidden" name="chatReceiver"

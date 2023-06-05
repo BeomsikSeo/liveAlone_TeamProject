@@ -133,9 +133,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("mypage/{page}")
-	public void mypage(@PathVariable("page") String page, String login_id, Model model) {		
+	public void mypage(@PathVariable("page") String page, Model model, HttpSession session) {		
 		if (page.equals("mypage") || page.equals("userInfo")) {
-			MemberVO bag = dao.login(login_id);
+			MemberVO bag = dao.login((String)session.getAttribute("member_id"));
 			model.addAttribute("bag", bag);
 		}
 	}
