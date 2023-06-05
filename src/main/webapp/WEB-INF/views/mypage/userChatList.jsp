@@ -16,7 +16,7 @@
 			<td class="down">${bag.chatRequestor}</td>
 			<td class="down">${bag.chatReceiver}</td>
 			<td class="down">
-				<form action="../share/chatShare/chatRoom">
+				<form action="../share/chatShare/chatRoom" method="post">
 					<input type="hidden" name="bbsNo" value="${bag.bbsNo}">
 					<input type="hidden" name="chatRequestor" value="${bag.chatRequestor}">
 					<button>입장</button>
