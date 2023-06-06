@@ -17,9 +17,13 @@ public class MemberController {
 	
 	
 	@RequestMapping("share/bbsShare/certi")
-	public void certi(String member_id) {
+	public void certi(String member_id, HttpSession session) {
 		System.out.println("certi요청됨.");
 		dao.certi(member_id);
+		session.removeAttribute("member_id");
+		session.removeAttribute("certification");
+		session.removeAttribute("address");
+		session.removeAttribute("nickname");
 	}
 	
 	@RequestMapping("share/bbsShare/getaddress")
