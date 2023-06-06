@@ -96,11 +96,16 @@ public class VoyageController {
 		    int buttonCount = 5; // 항상 5개의 roundButton 생성
 
 		    List<String> roundButtons = new ArrayList<>();
+		    List<VoyageVO> coordinates = new ArrayList<>(); // 좌표를 담을 리스트 추가
+
 		    for (int i = 0; i < buttonCount; i++) {
 		        String buttonTag;
 		        if (i < selectionnames.size()) {
 		            if (!selectionnames.get(i).isEmpty()) {
 		                buttonTag = "<button class=\"roundButton\">" + selectionnames.get(i) + "</button>";
+		                // 좌표 가져오기
+		                VoyageVO coordinate = dao.getpoint(selectionnames.get(i));
+		                coordinates.add(coordinate);
 		            } else {
 		                buttonTag = "<button class=\"roundButton\"></button>";
 		            }
@@ -111,6 +116,7 @@ public class VoyageController {
 		    }
 
 		    model.addAttribute("roundButtons", roundButtons);
+		    model.addAttribute("coordinates", coordinates); // 좌표를 모델에 추가
 
 		    // Random Buttons
 		    List<String> randomNames = dao.getRandomNames(5); // 5개의 이름 가져오기

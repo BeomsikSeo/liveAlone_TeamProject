@@ -47,6 +47,11 @@
     from basket
 		where member_id=#{member_id}
 </select>
+<select id="getpoint" parameterType="String" resultType="VoyageVO">
+    SELECT lat, longi
+    FROM voyage
+    WHERE name = #{name}
+</select>
 </mapper>
 
 

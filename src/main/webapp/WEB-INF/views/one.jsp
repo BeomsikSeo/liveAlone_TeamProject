@@ -1,45 +1,153 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>one</title>
+<title>여행지 보기</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/template/style.css">
 <style>
-.overlaybox {position:relative;width:300px;height:150px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png') no-repeat;padding:15px 10px;}
-.overlaybox div, ul {overflow:hidden;margin:0;padding:0;}
-.overlaybox li {list-style: none;}
-.overlaybox .boxtitle {color:#fff;font-size:16px;font-weight:bold; right 120px center;margin-bottom:8px;}
-.overlaybox .first {position:relative;width:247px;height:50px; no-repeat;margin-bottom:8px;}
-.first .text {color:#fff;font-weight:bold;}
-.first .voyagename {position:absolute;width:100%;bottom:0;background:rgba(0,0,0,0.4);padding:7px 15px;font-size:14px;}
-.close {position: absolute;top: 25px;right: 10px;color: #fffff;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png')}
-.close:hover {cursor: pointer;}
-.overlaybox ul {width:247px;}
-.overlaybox li {position:relative;margin-bottom:2px;background:#2b2d36;padding:5px 10px;color:#aaabaf;line-height: 1;}
-.overlaybox li span {display:inline-block;}
-.overlaybox li .number {font-size:16px;color:#fff;font-weight:bold;}
-.overlaybox li .title {font-size:color:#fff;13px;}
-.overlaybox li:hover {color:#fff;background:#d24545;}
-.overlaybox li:hover .up {background-position:0 0px;}
-.overlaybox li:hover .down {background-position:0 -20px;}  
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 </style>
+<style>
+.overlaybox {
+	position: relative;
+	width: 300px;
+	height: 150px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png')
+		no-repeat;
+	padding: 15px 10px;
+}
+
+.overlaybox div, ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+.overlaybox li {
+	list-style: none;
+}
+
+.overlaybox .boxtitle {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold; right 120px center;
+	margin-bottom: 8px;
+}
+
+.overlaybox .first {
+	position: relative;
+	width: 247px;
+	height: 50px; no-repeat;
+	margin-bottom: 8px;
+}
+
+.first .text {
+	color: #fff;
+	font-weight: bold;
+}
+
+.first .voyagename {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.4);
+	padding: 7px 15px;
+	font-size: 14px;
+}
+
+.close {
+	position: absolute;
+	top: 25px;
+	right: 10px;
+	color: #fffff;
+	width: 17px;
+	height: 17px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png')
+}
+
+.close:hover {
+	cursor: pointer;
+}
+
+.overlaybox ul {
+	width: 247px;
+}
+
+.overlaybox li {
+	position: relative;
+	margin-bottom: 2px;
+	background: #2b2d36;
+	padding: 5px 10px;
+	color: #aaabaf;
+	line-height: 1;
+}
+
+.overlaybox li span {
+	display: inline-block;
+}
+
+.overlaybox li .number {
+	font-size: 16px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.overlaybox li .title {
+	font-size: color:#fff;
+	13
+	px;
+}
+
+.overlaybox li:hover {
+	color: #fff;
+	background: #d24545;
+}
+
+.overlaybox li:hover .up {
+	background-position: 0 0px;
+}
+
+.overlaybox li:hover .down {
+	background-position: 0 -20px;
+}
+</style>
+
 </head>
 <body>
-여행지 정보
-<hr color="red">
+	<%@ include file="/resources/public/header.jsp"%>
+	<%-- 해당 주제 페이지에 맞는 이미지와 페이지 설명이 들어가는 부분 --%>
+	<section class="breadcumb-area bg-img bg-overlay"
+		style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg); --%>">
+		<div class="bradcumbContent">
+			<p></p>
+			<h2>${vo.name}</h2>
+		</div>
+	</section>
+	<section>
 
-<img src="http://localhost:8888/liveAlone/resources/img/${vo.name}.jpg" alt="Image"><br>
-${vo.name} <br>
-여행지 주소: ${vo.voyageaddress} <br>
-여행지 정보:${vo.info} <br>
+		<img
+			src="http://localhost:8888/liveAlone/resources/voyageimg/${vo.name}.jpg"
+			alt="Image"><br> <br> 여행지 주소: ${vo.voyageaddress} <br>
+		여행지 정보:${vo.info} <br>
 
-<div id="map" style="width:500px;height:500px;"></div>
+		<div id="map" style="width: 300px; height: 300px;"></div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d2e73e18842cfaf919b661fddb673fc"></script>
-<script>
+		<script type="text/javascript"
+			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d2e73e18842cfaf919b661fddb673fc"></script>
+		<script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(${vo.longi},${vo.lat}), // 지도의 중심좌표
@@ -93,6 +201,26 @@ function closeOverlay() {
 	customOverlay.setMap(null);     
 }
 </script>
-<a href=http://localhost:8888/liveAlone/voyageall>첫 페이지로 이동</a>
+
+		<a href=http://localhost:8888/liveAlone/voyageall>첫 페이지로 이동</a>
+	</section>
+	<%@ include file="/resources/public/footer.jsp"%>
+	<div>
+		<!-- jQuery-2.2.4 js -->
+		<script
+			src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+		<!-- Popper js -->
+		<script
+			src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+		<!-- Bootstrap js -->
+		<script
+			src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+		<!-- All Plugins js -->
+		<script
+			src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+		<!-- Active js -->
+		<script
+			src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 </body>
 </html>

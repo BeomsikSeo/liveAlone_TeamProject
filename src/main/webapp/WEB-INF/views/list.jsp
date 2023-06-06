@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>여행지 목록</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
     <style>
   .NameContainer {
     display: inline-block;
@@ -14,29 +15,52 @@
     vertical-align: middle; /* 요소를 수직 정렬합니다 */
   }
 </style>
+<style>
+  .nameButton {
+    border: 1px solid lightgray;
+    background-color: 1px solid lightgray;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+</style>
 </head>
 <body>
-   <h3>여행지 목록</h3>
-   <ul id="voyageList">
-      <c:forEach items="${list}" var="vo">
-         <li>
-          <div class="NameContainer">
-      <img src="http://localhost:8888/liveAlone/resources/img/${vo.name}.jpg" alt="Image">
-      </div>
-      <br>
-            <button class="nameButton" data-name="${vo.name}">${vo.name}</button>
-         </li>
-      </c:forEach>
-   </ul>
+<%@ include file="/resources/public/header.jsp" %>
+	<%-- 해당 주제 페이지에 맞는 이미지와 페이지 설명이 들어가는 부분 --%>
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg); --%>">
+        <div class="bradcumbContent">
+            <p>설명 부분</p>
+            <h2>여행지</h2>
+        </div>
+	</section>
+	<section>
+   
+   <br><br>
+   <div class="row oneMusic-albums">
+   
+  <c:forEach items="${list}" var="vo">
+    
+    <!-- Single Album -->
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ">
+                    <div class="single-album">
+                  <img src="${pageContext.request.contextPath}/resources/voyageimg/${vo.name}.jpg" alt="Image">
+                        <div class="album-info">
+                           <button class="nameButton" data-name="${vo.name}">${vo.name}</button>
+                       
+                        </div>
+                    </div>
+                </div>
+  </c:forEach>
+  </div>
    <script>
-     $(document).ready(function() {
-         $('.nameButton').click(function() {
-            var name = $(this).text();
-            insertSelect(name);
-            window.open("one?name=" + name, "_blank");
-         });
-      });
-      
+   $(document).ready(function() {
+	   $('.nameButton').click(function(event) {
+	     event.preventDefault();
+	     var name = $(this).text();
+	     insertSelect(name);
+	     window.location.href = "one?name=" + name;
+	   });
+	 });
      function insertSelect(name) {
     	  $.ajax({
     	    url: 'insertselect',
@@ -55,5 +79,19 @@
     	  });
     	}
    </script>
+   </section>
+   <%@ include file="/resources/public/footer.jsp" %>
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 </body>
 </html>
