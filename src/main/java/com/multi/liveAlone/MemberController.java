@@ -40,9 +40,11 @@ public class MemberController {
 				session.setAttribute("member_id", result.getMember_id());
 				session.setAttribute("certification", result.getCertification()+"");
 				session.setAttribute("address", result.getAddress());
+				session.setAttribute("nickname", result.getNickname());
 				System.out.println("member_id : " + result.getMember_id());
 				System.out.println("certification : " + result.getCertification());
 				System.out.println("address : " + result.getAddress());
+				System.out.println("nickname : " + result.getNickname());
 		        model.addAttribute("loginSuccess", true);
 			}
 		}
@@ -107,6 +109,14 @@ public class MemberController {
 	public void checknick(String nickname, Model model) {
 		System.out.println("checknick요청됨.");
 		int result = dao.checknick(nickname);
+		model.addAttribute("result", result);
+	}
+	
+	@RequestMapping("share/bbsShare/checkpoint")
+	public void checkpoint(String nickname, Model model) {
+		System.out.println("checkpoint요청됨.");
+		int result = dao.checkpoint(nickname);
+		System.out.println(result);
 		model.addAttribute("result", result);
 	}
 

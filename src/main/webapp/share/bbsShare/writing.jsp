@@ -1,90 +1,91 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>지역 인증</title>
+<title>글쓰기</title>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
- </script>
+	window.onload = function() {
+		var radios = document.querySelectorAll('input[name="bbsShareRequest"]');
+		var span = document.getElementById('requestpoint');
+
+		radios.forEach(function(radio) {
+			radio.addEventListener('change', function() {
+				if (this.value === '0') {
+					span.textContent = "보상 ";
+				} else if (this.value === '1') {
+					span.textContent = "요구 ";
+				}
+			});
+		});
+
+		document.querySelector('form').addEventListener('submit', function(event) {
+			  event.preventDefault(); // submit 이벤트의 기본 동작을 방지
+				console.log("form start");
+			  var form = this;
+
+			  $.ajax({
+			    url: "checkpoint",
+			    type: 'POST',
+			    data: {"nickname": "<%=session.getAttribute("nickname")%>"},
+			    success: function(data) {
+			      var point = parseInt(document.querySelector('input[name="bbsSharePoint"]').value);
+			      if (data >= point || document.querySelector('input[name="bbsShareRequest"]:checked').value == 1) {
+			        // AJAX를 사용하여 폼 데이터를 서버로 전송
+			        $.ajax({
+			          type : 'POST',
+			          url : 'insert',
+			          data : new FormData(form),
+			          processData : false,
+			          contentType : false
+			        });
+
+			        // 이전 페이지로 이동
+			        history.back();
+			      } else {
+			        alert('포인트가 부족합니다. 보유포인트 : ' + data);
+			      }
+			    }
+			  });
+			});
+		};
+		
+	</script>
 </head>
 <body>
-<button onclick="history.back()">뒤로가기</button>
-	<br>
-	<br>
-	<div class="q1">
-		<div class="q2">
-			글번호 : ${bag.bbsShareNo}
-			<c:if test="${bag.bbsShareRequest == false}">
-				<span class="right-align"><b>요청</b></span>
-			</c:if>
-			<c:if test="${bag.bbsShareRequest != false}">
-				<span class="right-align"><b>나눔</b></span>
-			</c:if>
-		</div>
-		<div class="q2" style="padding-top: 10px; padding-bottom: 10px">
-			<span style="font-weight: bold; font-size: 24px;">${bag.bbsShareTitle}</span>
-			<c:choose>
-				<c:when test="${bag.bbsShareSuccess}">
-					<span class="right-align">완료</span>
-					<!-- 완료가 true일경우 출력 -->
-				</c:when>
-			</c:choose>
-
-		</div>
-		<div class="q2">
-			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
-				${bag.bbsShareDate}</span>
-		</div>
-		<br> 포인트 : ${bag.bbsSharePoint} <br> view :
-		${bag.bbsShareView} <br> interest : ${bag.bbsShareInterest}
-		<button id="interest-button" style="display: none;"></button>
-		<%-- <c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
-			<form action="success" method="get">
-				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
-				<button type="submit">채팅신청</button>
-			</form>
-		</c:if> --%>
-
-
-
-
-		<c:choose>
-			<%-- = <c:when test = "${writer eq id}"> --%>
-			<c:when test="${bag.bbsShareWriter eq member_id}">
-				<form action="../chatShare/bbsChatList" method="get">
-					<!-- type은 디폴트가 submit( -> form제출) -->
-					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
-					<button type="submit">채팅 목록</button>
-				</form>
-			</c:when>
-
-			<c:otherwise>
-				<form action="../chatShare/chatRoom">
-					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
-					<input type="hidden" name="chatRequestor" value="${member_id}">
-					<input type="hidden" name="chatReceiver"
-						value="${bag.bbsShareWriter}">
-					<button id ="chatbutton" style="display: none;">채팅요청</button>
-				</form>
-				<!-- 밑에 저거 왜 안돼? -->
-				<%-- <button onclick="location.href='${pageContext.request.contextPath}/chatRoom?bbsNo=${bag.no}?chatRequestor=${id}?chatReceiver=${bag.writer}'">채팅 요청</button> --%>
-			</c:otherwise>
-		</c:choose>
-
-
-
-
-		<br> <br> content : ${bag.bbsShareContent} <br>
-		<c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
-			<form action="success" method="get">
-				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
-				<button type="submit">완료처리</button>
-			</form>
-		</c:if>
-		<br> <br> <img src="../../resources/noimage.jpg"<%-- "share/bbsShare/img/${bag.bbsShareImage}" onerror="imgError(this)" --%>>
+<div id="bbs">
+	<div id="bbs_title">
+		게 시 판
 	</div>
-상세주소&nbsp;: <input type="text" name="address_detail" placeholder="상세주소 입력" ><br>
+	
+	<form action="insert" method="post" name="myForm">
+	<div id="bbsCreated">
+		<div class="bbsCreated_bottomLine">
+			<dl>
+				<dt>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 : <input type="text" name=bbsShareTitle size="60" maxlength="100"/></dt>
+			</dl>
+			<dl>
+				<dt>작&nbsp;성&nbsp;자 : <input type="text" name="bbsShareWriter" size="20" maxlength="30" value="<%=session.getAttribute("nickname")%>" readonly/></dt>
+			</dl>		
+			<dl>
+				<dt>요청&nbsp;여부 : <input type="radio" name="bbsShareRequest" value="0" checked="checked"/>요청<input type="radio" name="bbsShareRequest" value="1"/>나눔</dt>
+			</dl>	
+			<dl>
+				<dt><span id="requestpoint">보상 </span>포인트 : <input type="number" name="bbsSharePoint" size="5" maxlength="5" value="0" /></dt>
+			</dl>
+			<dl>
+				<dt>내&nbsp;&nbsp;&nbsp;&nbsp;용</dt><br>
+				<dt><textarea rows="12" cols="63" name="bbsShareContent"></textarea></dt>
+			</dl>
+		</div>
+	</div>
+	<button type="submit">글쓰기</button>
+	</form>
+
+</div>
+	
 </body>
 </html>
