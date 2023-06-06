@@ -15,6 +15,14 @@
     vertical-align: middle; /* 요소를 수직 정렬합니다 */
   }
 </style>
+<style>
+  .nameButton {
+    border: 1px solid lightgray;
+    background-color: 1px solid lightgray;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+</style>
 </head>
 <body>
 <%@ include file="/resources/public/header.jsp" %>
@@ -45,14 +53,14 @@
   </c:forEach>
   </div>
    <script>
-     $(document).ready(function() {
-         $('.nameButton').click(function() {
-            var name = $(this).text();
-            insertSelect(name);
-            window.open("one?name=" + name, "_blank");
-         });
-      });
-      
+   $(document).ready(function() {
+	   $('.nameButton').click(function(event) {
+	     event.preventDefault();
+	     var name = $(this).text();
+	     insertSelect(name);
+	     window.location.href = "one?name=" + name;
+	   });
+	 });
      function insertSelect(name) {
     	  $.ajax({
     	    url: 'insertselect',
