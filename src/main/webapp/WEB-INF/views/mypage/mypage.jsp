@@ -38,7 +38,6 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/style.css">
-
 </head>
 <body>
 	<%@ include file="/resources/public/header.jsp"%>
@@ -60,7 +59,7 @@
 				<div class="col-12">
 				
 					<!-- Buttons -->
-					<div class="oneMusic-buttons-area mb-100">
+					<div class="oneMusic-buttons-area mb-70">
 						<button id="b1" class="btn oneMusic-btn btn-2 m-2">회원 정보</button>
 						<button id="b2" class="btn oneMusic-btn btn-2 m-2">지식인의 당근 채팅</button>
 						<button id="b3" class="btn oneMusic-btn btn-2 m-2">지식인의 당근 게시글</button>
@@ -83,7 +82,7 @@
 						<div class="single-cool-fact mb-100" style="margin-left: 100px;">
 							<div class="scf-text">
 								<h2>${bag.member_id}</h2>
-								<p>아이디</p>
+								<p style="font-size: 20px;">아이디</p>
 							</div>
 						</div>
 
@@ -91,7 +90,7 @@
 						<div class="single-cool-fact mb-100" style="margin-left: 100px;">
 							<div class="scf-text">
 								<h2>${bag.nickname}</h2>
-								<p>닉네임</p>
+								<p style="font-size: 20px;">닉네임</p>
 							</div>
 						</div>
 
@@ -108,7 +107,7 @@
 												</c:otherwise>
 									</c:choose>
 								</h2>
-								<p>지역인증</p>
+								<p style="font-size: 20px;">지역인증</p>
 							</div>
 						</div>
 
@@ -118,7 +117,7 @@
 								<h2>
 									<span class="counter">${bag.count}</span>
 								</h2>
-								<p>성사횟수</p>
+								<p style="font-size: 20px;">성사횟수</p>
 							</div>
 						</div>
 
@@ -128,7 +127,7 @@
 								<h2>
 									<span class="counter">${bag.point}</span>
 								</h2>
-								<p>보유 포인트</p>
+								<p style="font-size: 20px;">보유 포인트</p>
 							</div>
 						</div>
 
@@ -137,24 +136,19 @@
 								<h2>
 									<span class="counter">${bag.mileage}</span>
 								</h2>
-								<p>보유 마일리지</p>
+								<p style="font-size: 20px;">보유 마일리지</p>
 							</div>
 						</div>
 					
 					<!-- Single Cool Facts -->
 						<div class="single-cool-fact mb-100" style="margin-left: 100px;">
-							<div class="scf-text">
-								<h2>${bag.address.replace('_', ' ')}</h2>
-								<p>주소</p>
-							</div>
-						</div>
-						
-						<div class="single-cool-fact mb-100" style="margin-left: 100px;">
-							<button id="password" class="btn oneMusic-btn m-2">비밀번호 변경</button>
+							<h2>${bag.address.replace('_', ' ')}</h2>
+							<p style="font-size: 20px;">주소</p>
 						</div>
 				</div>
 			</div>
 		</div>
+		
 	</section>
 
 

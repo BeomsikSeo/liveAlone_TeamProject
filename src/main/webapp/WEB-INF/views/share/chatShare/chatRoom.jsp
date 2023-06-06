@@ -6,10 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- 채팅 css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/chatroom/chatroom.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	
+<!-- 웹소켓 통신 -->
 <script type="text/javascript" src="../../resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript" src="../../resources/js/sockjs-0.3.4.js"></script>
 <script type="text/javascript" src="../../resources/js/stomp.js"></script>
 <script type="text/javascript" src="../../resources/js/webSocketSendToUserApp.js"></script>
+
 <script type="text/javascript">
 	var stompClient = null;
 	var roomNo = ${roomInfo.roomNo};
@@ -45,20 +60,46 @@
 
 	//받은 데이터를 원하는 위치에 넣음. ==> 받은 데이터를 채팅목록으로 쌓는다. 
 	function showMessageOutput(messageOutput) {
-		//<p id="response">
-		//	<p> 홍길동: 잘지내지?(13:00)</p>
-		//</p>
-		var response2 = document.getElementById('response2');
-		var p = document.createElement('p'); // p태그를 만들어라.
-		//p.style.wordWrap = 'break-word'; // css니까 일단 무시
-		p.appendChild(document.createTextNode(messageOutput.sender + " : "
-				+ messageOutput.content + " (" + messageOutput.time + ")"));
-		response2.appendChild(p);
-		
-		// 메시지보내면 input 초기화
-		// = document.getElementById('message').value = null;
-		$('#message').val(null);
-	}
+    var response = document.getElementById('response');
+    var newMessageDiv = document.createElement('div');
+
+    if (messageOutput.sender === "${member_id}") {
+        newMessageDiv.classList.add("d-flex", "justify-content-end", "mb-4");
+
+        var msgContainerSend = document.createElement('div');
+        msgContainerSend.classList.add("msg_cotainer_send");
+
+        msgContainerSend.textContent = messageOutput.content;
+
+        var msgTimeSend = document.createElement('span');
+        msgTimeSend.classList.add("msg_time_send");
+        msgTimeSend.textContent = messageOutput.time;
+
+        msgContainerSend.appendChild(msgTimeSend);
+
+        newMessageDiv.appendChild(msgContainerSend);
+    } else {
+        newMessageDiv.classList.add("d-flex", "justify-content-start", "mb-4");
+
+        var msgContainer = document.createElement('div');
+        msgContainer.classList.add("msg_cotainer");
+
+        msgContainer.textContent = messageOutput.content;
+
+        var msgTime = document.createElement('span');
+        msgTime.classList.add("msg_time");
+        msgTime.textContent = messageOutput.time;
+
+        msgContainer.appendChild(msgTime);
+
+        newMessageDiv.appendChild(msgContainer);
+    }
+    response.appendChild(newMessageDiv);
+
+    // 메시지 보내면 input 초기화
+    $('#message').val(null);
+}
+
 
 	// form이 없을 때 버튼을 마우스로 클릭하지 않고 엔터로 입력처리
 	function enter(){
@@ -93,93 +134,165 @@
 		    }
 		  });
 	}
-	//서버로 연결 끊음. 
-	/* function disconnect() {
-		if (stompClient != null) {
-			stompClient.disconnect();
-		}
-		setConnected(false); //연결끊어졌을 때 설정 변경 
-		console.log("Disconnected");
-	} */
-	
-	/* var message = 'requestor : ${requestor} , receiver : ${receiver}'
-	document.getElementById("check").innerHTML = message; */
 </script>
+
+<!-- 공용 css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/template/style.css">
+	
+<!-- 게시물로 이동 버튼 css -->	
+<style>
+  .btn {
+    background-color: #555555;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #333333;
+  }
+</style>	
+	
 </head>
 <body>
+<%@ include file="/resources/public/header.jsp"%>
 
-	<div>
-		${member.nickname} ${member.count}
+	<div class="breadcumb-area bg-img bg-overlay"
+		style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<p>채팅방</p>
+			<h2>Chat Room</h2>
+		</div>
 	</div>
-	<div>
-		<table>
-			<tr>
-				<td class="down"><img src="../../../../share/bbsShare/img/${bbs.bbsShareImage}"></td>
-				<td class="down">${bbs.bbsShareTitle}</td>
-				<td class="down">${bbs.bbsShareWriter}</td>
-				<td class="down">${bbs.bbsSharePoint}</td>
-				
-				<c:if test="${bbs.bbsShareSuccess eq false}">
-					<td class="down">거래중</td>
-				</c:if>
-				<c:if test="${bbs.bbsShareSuccess eq true}">
-					<td class="down">거래완료</td>
-				</c:if>
-				
-				<td class="down">
-					<form action="../bbsShare/one" method="post">
-						<input type="hidden" name="bbsShareNo" value="${bbs.bbsShareNo}">
-						<button>게시글</button>
-					</form>
-				</td>
-			</tr>
-		</table>
-	</div>
-	
-	<div id="conversationDiv">
-		<input type="text" id="message" onkeyup="enter();" placeholder="Write a message..." />
-		<button id="sendMessage" onclick="sendMessage();">Send</button>
-		<span id="state">
-			<c:choose>
-				<c:when test="${roomInfo.chatCode eq 1 && roomInfo.chatRequestor eq member_id}">
-					거래수락
-				</c:when>
-				
-				<c:when test="${roomInfo.chatCode eq 2 && roomInfo.chatReceiver eq member_id}">
-					거래수락
-				</c:when>
-				
-				<c:when test="${roomInfo.chatCode eq 3}">
-					거래수락
-				</c:when>
-				
-				<c:otherwise>
-					거래중
-				</c:otherwise>
-			</c:choose>
-		</span>
-		
+<!-- ---------------------------------------------------------------------------- -->
+<div class="row justify-content-center">
 
-		<!-- 메시지리스트 받아오기 -->
-		<p id="response">
-			<c:forEach items="${list}" var="list">
-				<p> ${list.sender} : ${list.content} (${list.time}) </p>
-			</c:forEach>
-		</p>
-		<!-- <p id="response"> 여기다 해버리면 읽어온 리스트위에서 진행되기 때문에 그냥 이렇게 별도로 하나 만들어줌 -->
-		<p id="response2">
+	<div class="col-md-8 col-xl-6 chat mt-5">
+
+		<div class="card">
+
+			<div class="card-header msg_head">
+				<div class="d-flex bd-highlight">
+					<div class="img_cont">
+						<img src="" class="rounded-circle user_img">
+					</div>
+					<div class="user_info">
+					
+						<span style="display: inline-block;">
+							${member.nickname} (${member.count}회)
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<c:if test="${bbs.bbsShareSuccess eq false}">
+								<button class="btn" onclick="tradeCheck();">거래완료</button>
+							</c:if>
+							<c:if test="${bbs.bbsShareSuccess eq true}">
+								<button class="btn" onclick="tradeCheck();" disabled>거래완료</button>
+							</c:if>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							
+							<span id="state" style="display: inline-block;">
+								<c:choose>
+									<c:when test="${roomInfo.chatCode eq 1 && roomInfo.chatRequestor eq member_id}">
+										거래수락
+									</c:when>
+									
+									<c:when test="${roomInfo.chatCode eq 2 && roomInfo.chatReceiver eq member_id}">
+										거래수락
+									</c:when>
+									
+									<c:when test="${roomInfo.chatCode eq 3}">
+										거래수락
+									</c:when>
+									
+									<c:otherwise>
+										거래미수락
+									</c:otherwise>
+								</c:choose>
+							</span>
+						</span>
+						
+						<p style="font-size: 20px; display: inline-block;">
+							<img src="${pageContext.request.contextPath}/resources/img/bbs/${bag.bbsShareImage}">
+							: ${bbs.bbsShareTitle} &nbsp;/&nbsp; ${bbs.bbsSharePoint}P &nbsp;/&nbsp; 
+							<c:if test="${bbs.bbsShareSuccess eq false}">
+								[거래중]
+							</c:if>
+							<c:if test="${bbs.bbsShareSuccess eq true}">
+								[거래완료]
+							</c:if>
+						</p>&nbsp;&nbsp;
+						<form action="../bbsShare/one" method="post" style="display: inline-block;">
+							<input type="hidden" name="bbsShareNo" value="${bbs.bbsShareNo}">
+							<button class="btn">게시글로 이동</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body msg_card_body" id="response">
 			
-		</p>
-		
-		<!-- 게시글이 거래완료처리되면 거래완료버튼 비활성화 -->
-		<c:if test="${bbs.bbsShareSuccess eq false}">
-			<button onclick="tradeCheck();">거래완료</button>
-		</c:if>
-		<c:if test="${bbs.bbsShareSuccess eq true}">
-			<button onclick="tradeCheck();" disabled>거래완료</button>
-		</c:if>
-		
+				<c:forEach items="${list}" var="list">
+					<c:choose>
+						<c:when test="${list.sender eq member_id}">
+							<div class="d-flex justify-content-end mb-4">
+								<div class="msg_cotainer_send">
+									${list.content}
+									 <span class="msg_time_send">${list.time}</span>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="d-flex justify-content-start mb-4">
+								<div class="msg_cotainer">
+									${list.content} <span class="msg_time">${list.time}</span>
+								</div>
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</div>
+
+			<div class="card-footer">
+				<div class="input-group">
+					<input type="text" class="form-control type_msg" id="message" onkeyup="enter();"
+						placeholder="메시지를 입력하세요.">
+					<div class="input-group-append">
+						<span class="input-group-text send_btn">
+							<i class="fas fa-location-arrow" id="sendMessage" onclick="sendMessage();"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
 	</div>
 
+</div>
+<!-- ---------------------------------------------------------------------------- -->
+	
+	
+	<!-- jQuery-2.2.4 js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	<!-- All Plugins js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	<!-- Active js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 </body>
 </html>

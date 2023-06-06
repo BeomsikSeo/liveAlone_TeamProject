@@ -86,7 +86,7 @@ public class ChatRoomShareController {
 		List<ChatRoomBbsMessageJoinVO> list = dao.userChatList(nowSession);
 		model.addAttribute("list", list);
 	}
-	
+
 	// 게시글 채팅방 리스트 + 채팅방별 마지막 메시지
 	@RequestMapping("share/chatShare/bbsChatList")
 	public void bbschatlist(int bbsNo, Model model) {
