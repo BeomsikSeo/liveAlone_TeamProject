@@ -40,9 +40,11 @@ public class MemberController {
 				session.setAttribute("member_id", result.getMember_id());
 				session.setAttribute("certification", result.getCertification()+"");
 				session.setAttribute("address", result.getAddress());
+				session.setAttribute("nickname", result.getNickname());
 				System.out.println("member_id : " + result.getMember_id());
 				System.out.println("certification : " + result.getCertification());
 				System.out.println("address : " + result.getAddress());
+				System.out.println("nickname : " + result.getNickname());
 		        model.addAttribute("loginSuccess", true);
 			}
 		}
@@ -109,6 +111,14 @@ public class MemberController {
 		int result = dao.checknick(nickname);
 		model.addAttribute("result", result);
 	}
+	
+	@RequestMapping("share/bbsShare/checkpoint")
+	public void checkpoint(String nickname, Model model) {
+		System.out.println("checkpoint요청됨.");
+		int result = dao.checkpoint(nickname);
+		System.out.println(result);
+		model.addAttribute("result", result);
+	}
 
 	@RequestMapping("share/chatShare/login") // 따로 return을 안하면 login을 return + RequestMapping의 결과는 views로
 	// jsp에서는 HttpSession이 기본으로 내장, but java에서는 추가해줘야 함
@@ -127,6 +137,7 @@ public class MemberController {
 			session.setAttribute("member_id", result.getMember_id());
 			session.setAttribute("certification", result.getCertification()+"");
 			session.setAttribute("address", result.getAddress());
+			session.setAttribute("nickname", result.getNickname());
 			
 			return "share/chatShare/login"; // views아래 파일이름.jsp
 		}

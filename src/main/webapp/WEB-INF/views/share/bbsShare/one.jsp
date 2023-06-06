@@ -59,7 +59,7 @@
     		if (certification == "1"){
 				document.getElementById("interest-button").style.display = "block";
 				
-				if (document.getElementById("chatbutton")) {
+				if (document.getElementById("chatbutton") && ${bag.bbsShareSuccess}==0) {
 				    document.getElementById("chatbutton").style.display = "block";
 				}
 				if (document.getElementById("chatlistbutton")) {

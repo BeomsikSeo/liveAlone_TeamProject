@@ -51,7 +51,7 @@ td img {
 </head>
 <body>
 
-	<button onclick="history.back()">뒤로가기</button>
+	<button onclick="history.back()">뒤로가기</button>&nbsp;&nbsp;&nbsp;<a href="../../share/bbsShare/writing.jsp"><button>글쓰기</button></a><br>
 	<!-- 검색창 -->
 	<form action="search" method="get">
 		<input type="text" name="keyword" placeholder="검색어를 입력하세요"> <input

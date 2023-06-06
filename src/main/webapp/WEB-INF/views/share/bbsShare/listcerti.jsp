@@ -51,8 +51,7 @@ td img {
 </style>
 </head>
 <body>
-	<a href="../../mainPage.jsp">메인페이지로</a><br>
-	<a href="../../share/bbsShare/writing.jsp"><button>글쓰기</button></a><br>
+	<a href="../../mainPage.jsp">메인페이지로</a>&nbsp;&nbsp;&nbsp;<a href="../../share/bbsShare/writing.jsp"><button>글쓰기</button></a><br>
 	<%
     String pagenoStr = request.getParameter("pageno");
     int pageno = 1;
