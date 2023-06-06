@@ -36,9 +36,9 @@ public class OrderController {
 	
 	// 음식점의 메뉴를 보여줍니다.
 	@RequestMapping("menuOrder")
-	public void menuOrder(HttpSession session,Model model , int storeNo) {
+	public void menuOrder(HttpSession session,Model model , int store_no) {
 
-		StoreVO store = storeDAO.selectOne(storeNo);
+		StoreVO store = storeDAO.selectOne(store_no);
 		
 		List<FoodVO> foodList = foodDAO.showMenu(store.getStore_no());
 		
@@ -54,7 +54,7 @@ public class OrderController {
 		
 		int totalPrice = 0;	
 		
-		String memberID = (String)session.getAttribute("memberID");
+		String memberID = (String)session.getAttribute("member_id");
 		MemberVO member = memberDAO.selectOne(memberID);
 		
 		store = storeDAO.selectOne(store.getStore_no());

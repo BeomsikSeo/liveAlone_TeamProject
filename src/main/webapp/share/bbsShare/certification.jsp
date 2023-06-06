@@ -151,12 +151,9 @@ $(document).ready(function() {
 			
 		}
 	</script>
-	접속자 인식 위치 :
-	<span id="geo_lat"></span> ,
-	<span id="geo_lon"></span> (
-	<span id="now_address"></span>)
-	<br> 접속자 등록 위치 :
-	<span id="mem_address"></span>
+	<span style="visibility: hidden;">
+	접속자 인식 위치 : <span id="geo_lat"></span> ,<span id="geo_lon"></span> (<span id="now_address"></span>)</span>
+	<br>접속자 등록 위치 : <span id="mem_address"></span>
 	<br>
 	<button onclick="cert()">지역 인증</button>
 	<span id="result"></span>

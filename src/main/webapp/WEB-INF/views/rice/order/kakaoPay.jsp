@@ -9,7 +9,7 @@
 <title>one</title>
 </head>
 <body>
-<<<<<<<< HEAD:src/main/webapp/WEB-INF/views/rice/order/kakaoPay.jsp
+
 ========
 여행지 정보
 <hr color="red">

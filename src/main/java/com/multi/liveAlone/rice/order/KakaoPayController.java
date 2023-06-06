@@ -56,7 +56,7 @@ public class KakaoPayController {
 	@Autowired
 	MileageDAO mileageDAO;
 	
-//	@Setter(onMethod_ = @Autowired)
+	/* @Setter(onMethod_ = @Autowired) */
 	private KakaoPay kakaopay;
 
 	private OrderVOList resultOrderList = null;
@@ -73,8 +73,11 @@ public class KakaoPayController {
 	public String kakaoPay(Model model, OrderVOList list, TicketVO ticket, StoreVO store) {
 		
 		StoreVO compareStore = storeDAO.selectOne(store.getStore_no());
+		
+		System.out.println(store.toString());
+		System.out.println(compareStore.toString());
 		if (!compareStore.getStore_name().equals(store.getStore_name()) || !compareStore.getStore_addr().equals(store.getStore_addr())) {
-			return "redirect:/index.jsp";
+			return "redirect:/mainPage.jsp";
 		}
 
 		List<FoodVO> compareFoodList = foodDAO.showMenu(compareStore.getStore_no());
@@ -105,7 +108,7 @@ public class KakaoPayController {
 	@GetMapping("/rice/order/kakaoPaySuccess")
 	public String kakaoPaySuccess(@RequestParam("pg_token") String pg_token,HttpServletRequest request, Model model ,HttpSession session) {
 		
-		String memberID = (String) session.getAttribute("memberID");
+		String memberID = (String) session.getAttribute("member_id");
 		if(memberID.equals(null)) {
 			return "redirect:/index.jsp";
 		}
@@ -182,7 +185,7 @@ public class KakaoPayController {
 	@PostMapping("/rice/order/kakaoPayRefund")
 	public String kakaoPayRefund(HttpSession session, HttpServletRequest request, int ticket_ID) {
 		TicketVO ticket = ticketDAO.selectTicketOne(ticket_ID);
-		MemberVO member = memberDAO.selectOne((String)session.getAttribute("memberID"));
+		MemberVO member = memberDAO.selectOne((String)session.getAttribute("member_id"));
 		
 		Date date = new Date(); 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("yyyy.MM.dd a HH:mm:ss");
@@ -208,7 +211,6 @@ public class KakaoPayController {
 		}
 		
 		KakaoPayRefundVO kakaoPayRefundVO = kakaopay.kakaoPayRefund(ticket);
-		
 		
 		ticket.setTicket_use("환불");
 		ticket.setTicket_end(timeNow);

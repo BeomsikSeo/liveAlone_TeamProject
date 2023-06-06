@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
      <style>
     .roundButton {
       display: inline-block;
@@ -24,19 +24,43 @@
       margin: 10px;
       cursor: pointer;
     }
-  </style>
+   </style>
+  <style>
+  .randomNameContainer {
+    display: inline-block;
+    margin-right: 10px; /* 요소 사이 간격을 조정할 수 있습니다 */
+    vertical-align: middle; /* 요소를 수직 정렬합니다 */
+  }
+</style>
+
+
+  
 </head>
 <body>
-    <h3>모든 여행지입니다.</h3>
+	<%@ include file="/resources/public/header.jsp" %>
+	<%-- 해당 주제 페이지에 맞는 이미지와 페이지 설명이 들어가는 부분 --%>
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg); --%>">
+        <div class="bradcumbContent">
+            <p>설명 부분</p>
+            <h2>여행지</h2>
+        </div>
+	</section>
+	<section>
+    
     <a href="list" target='_blank'>모든 여행지 보기</a>
     
     
-    <h1>Random Names</h1>
+    <h1>여행지 추천</h1>
+
+
 <ul id="randomNamesList">
   <c:forEach items="${randomNames}" var="randomName">
-    <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button><br>
+    <div class="randomNameContainer">
+      <img src="http://localhost:8888/liveAlone/resources/img/${randomName}.jpg" alt="Image">
+      <br>
+      <button class="randomNameButton" onclick="insertSelect('${sessionScope.member_id}', '${randomName}')">${randomName}</button>
+    </div>
   </c:forEach>
- 
 </ul>
 <script>
       $(document).ready(function() {
@@ -93,13 +117,16 @@
 
 
     <hr color="red">
-    <form id="infoForm" action="one" method="get">
-        추가할 여행지 : <input id="nameInput" name="name" value=""><br>
-        <button type="submit">정보 보기</button>
-        <button type="button" onclick="addInfo()">추가하기</button>
-    </form>
+<hr color="red">
+<form id="infoForm" action="one" method="get">
+    추가할 여행지: <input id="nameInput" name="name" value=""><br>
+    <button type="submit">정보 보기</button>
+    <button type="button" onclick="insertSelect('<%= session.getAttribute("member_id") %>', $('#nameInput').val())">추가하기</button>
+</form>
+    
 
 <div>
+출발지 입력하기<br>
   위도: <input id="latInput" type="text" name="lat">
   경도: <input id="longiInput" type="text" name="longi">
   <button id="saveButton">입력</button>
@@ -138,6 +165,7 @@ $(document).ready(function() {
  <c:forEach items="${roundButtons}" var="roundButton">
   ${roundButton}
 </c:forEach>
+
 <script>
   $(document).ready(function() {
     $('.roundButton').click(function() {
@@ -170,8 +198,19 @@ $(document).ready(function() {
   });
   
 </script>
-
-
-    <hr color="red">
+</section>
+<%@ include file="/resources/public/footer.jsp" %>
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 </body>
 </html>

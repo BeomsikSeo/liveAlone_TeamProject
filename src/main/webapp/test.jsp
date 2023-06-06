@@ -9,6 +9,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 </head>
 <body>
 	<h3>Index Page</h3>
@@ -16,8 +17,10 @@
 	<span><a href="rice/ticket/userTicket">My 티켓</a></span><br>
 	<span><a href="rice/mileage/userMileage">My 마일리지</a></span>
 	<hr>
-	<a href="rice/order/menuOrder?storeNo=1">맘스날드 주문</a> <br>
-	<a href="rice/order/menuOrder?storeNo=2">LFC 주문</a> <br>
+	
+	<a href="rice/order/menuOrder?store_no=1">1. 맘스날드 주문</a> <br>
+	<a href="rice/order/menuOrder?store_no=2">2. LFC 주문</a> <br>
 	<hr>
+	
 </body>
 </html>

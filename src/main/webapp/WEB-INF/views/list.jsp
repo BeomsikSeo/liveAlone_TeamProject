@@ -7,12 +7,23 @@
     <meta charset="UTF-8">
     <title>여행지 목록</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+  .NameContainer {
+    display: inline-block;
+    margin-right: 10px; /* 요소 사이 간격을 조정할 수 있습니다 */
+    vertical-align: middle; /* 요소를 수직 정렬합니다 */
+  }
+</style>
 </head>
 <body>
    <h3>여행지 목록</h3>
    <ul id="voyageList">
       <c:forEach items="${list}" var="vo">
          <li>
+          <div class="NameContainer">
+      <img src="http://localhost:8888/liveAlone/resources/img/${vo.name}.jpg" alt="Image">
+      </div>
+      <br>
             <button class="nameButton" data-name="${vo.name}">${vo.name}</button>
          </li>
       </c:forEach>

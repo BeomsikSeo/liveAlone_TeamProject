@@ -68,29 +68,60 @@ $(function(){
 		})
 	})
 </script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="header">
-		<a href="${pageContext.request.contextPath}/index.jsp">Index Page</a>
-	</div>
-	<hr>
-	<div class="mileage-info">
-		<div class="mileage-info-one">
-			<h3>마일리지 사용 내역 <span>(현재 ${member.mileage }마일리지를 보유하고 있으십니다. )</span></h3>
-		</div>
-		<div class="mileage-info-one" id="user-mileageList">
-		</div>
-		<div class="mileage-info-one">
-			<div class="mileage-page-buttons">
-				<button class="mileage-button" value="left">◀</button>
-				<% for(int i=1; i <= 5; i++) { %>
-				<button class="page-button-num" id="page-button-num-<%= i %>" value='<%= i %>'><%= i %></button>
-				<% } %>
-				<button class="mileage-button" value="right">▶</button>
-			</div>
-		</div>
+	<%@ include file="/resources/public/header.jsp" %>
+	
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/templeate/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+             <p>사용자 마일리지 내역</p>
+            <h2>My 마일리지</h2>
+        </div>
+    </section>
+	<section class="login-area section-padding-100">
+	  	<div class="oneMusic-buy-now-area mb-100">
+	        <div class="container">
+	        	<div class="row justify-content-center">
+	        		<h5>마일리지 사용 내역 <span>(현재 ${member.mileage }마일리지를 보유하고 있으십니다. )</span></h5>
+	        	</div>
+	        	<div class="row justify-content-center">
+	                <div class="col-12 col-lg-10">
+	                    <div class="login-content ticket-info-one" id="user-mileageList">
+						
+						</div>
+	                </div>
+	            </div>
+	            <p> </p>
+	            <div class="row">
+	                <div class="col-12">
+	                    <div class="load-more-btn text-center">
+	                        <button class="btn page-button" value="left">◀</button>
+	                        <% for(int i=1; i <= 5; i++) { %>
+								<button class="btn page-button-num" id="page-button-num-<%= i %>" value='<%= i %>'><%= i %></button>
+							<% } %>
+	                        <button class="btn page-button" value="right">▶</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    	</div>
+	  </section>
+	
+	<%@ include file="/resources/public/header.jsp" %>
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 	</div>
 </body>
 </html>

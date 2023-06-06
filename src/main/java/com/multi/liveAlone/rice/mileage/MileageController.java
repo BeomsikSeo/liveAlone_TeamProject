@@ -25,9 +25,9 @@ public class MileageController {
 	
 	@RequestMapping("rice/mileage/userMileage")
 	public void userMileage(HttpSession session,Model model) {
-		System.out.println("userMileage MemberID >> " + (String)session.getAttribute("memberID"));
+		System.out.println("userMileage MemberID >> " + (String)session.getAttribute("member_id"));
 		
-		MemberVO member = memberDAO.selectOne((String)session.getAttribute("memberID"));
+		MemberVO member = memberDAO.selectOne((String)session.getAttribute("member_id"));
 		
 		model.addAttribute("member",member);
 	}
@@ -35,7 +35,7 @@ public class MileageController {
 	
 	@RequestMapping("rice/mileage/userMileageAjax") 
 	public void userMileageAjax(HttpSession session,Model model, int pageNum) {
-		MileageVOInfo page = new MileageVOInfo(pageNum, (String)session.getAttribute("memberID"));
+		MileageVOInfo page = new MileageVOInfo(pageNum, (String)session.getAttribute("member_id"));
 		
 		System.out.println(page.toString());
 		

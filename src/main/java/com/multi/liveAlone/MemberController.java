@@ -157,6 +157,16 @@ public class MemberController {
 		
 		return "redirect:login.jsp";
 	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {	
+		System.out.println("logout 요청됨.");
+		session.removeAttribute("member_id");
+		session.removeAttribute("address");
+		session.removeAttribute("certification");
+		
+		return "redirect:mainPage.jsp";
+	}
 }
 
 

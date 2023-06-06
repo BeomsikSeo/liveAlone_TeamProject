@@ -84,18 +84,12 @@ public class VoyageController {
 		}
 		
 		
-		@RequestMapping("randomNames")
-		public String getRandomNames(Model model) {
-		    List<String> randomNames = dao.getRandomNames(5); // 5개의 이름 가져오기
-		    System.out.println("randomNames  : "+randomNames );
-		    model.addAttribute("randomNames", randomNames);
-		    return "voyage";
-		}
-		
-		@RequestMapping("getButtonName")
-		public String getButtonName(Model model, HttpSession session) {
+		@RequestMapping("voyageall")
+		public String getButtonNameAndRandom(Model model, HttpSession session) {
 		    String member_id = (String) session.getAttribute("member_id");
 		    System.out.println(member_id);
+
+		    // Round Buttons
 		    List<String> selectionnames = dao.getButtonName(member_id);
 		    System.out.println(selectionnames);
 
@@ -117,6 +111,11 @@ public class VoyageController {
 		    }
 
 		    model.addAttribute("roundButtons", roundButtons);
+
+		    // Random Buttons
+		    List<String> randomNames = dao.getRandomNames(5); // 5개의 이름 가져오기
+		    System.out.println("randomNames  : " + randomNames);
+		    model.addAttribute("randomNames", randomNames);
 
 		    return "voyage";
 		}
