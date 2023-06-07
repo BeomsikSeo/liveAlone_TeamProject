@@ -6,7 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="../../resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/template/style.css">
 <script type="text/javascript">
 	$(function() { // body 읽어오기
 		
@@ -22,7 +25,13 @@
 </script>
 </head>
 <body>
-<h3>난 혼자 산다 _ 가게정보</h3>
+<%@ include file="/resources/public/header.jsp" %>
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>난 혼자 산다</p>
+            <h2>가게 정보</h2>
+        </div>
+    </section>
 <form action="main.jsp"><button>메인으로</button></form>
 <hr color="blue">
 <h3>가게정보</h3>
@@ -50,5 +59,21 @@
 	<input type="hidden" name="store_no" value="${vo.store_no }">
 	<button type="submit">티켓 주문</button>	
 </form>
+<%@ include file="/resources/public/footer.jsp"%>
+<!-- jQuery-2.2.4 js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	<!-- Popper js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	<!-- All Plugins js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	<!-- Active js -->
+	<script
+		src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
 </body>
 </html>

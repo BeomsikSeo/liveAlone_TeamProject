@@ -4,8 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
-<script type="text/javascript" src="../../resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/template/style.css">
+	<link rel="icon"
+	href="../../resources/template/img/core-img/favicon.ico">
 <script type="text/javascript">
 	$(function() { // body 읽어오기
 		
@@ -31,6 +40,21 @@
 </script>
 </head>
 <body>
+<%@ include file="/resources/public/header.jsp"%>
+	<div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>난 혼자 산다</p>
+            <h2>메뉴 등록</h2>
+        </div>
+    </section>
 <!-- 가게 등록 페이지에서 다음을 누르면 일단 store db에 저장하고 띄워줌 -->
 가게 등록 정보 <br>
 가게번호 : ${vo.store_no} <br>
@@ -56,5 +80,18 @@
 카테고리 : <input id="food_category"> <br>
 <button id="b1">등록</button>
 <div id="result2"></div>
+    <%@ include file="/resources/public/footer.jsp" %>
+	<div>
+	    <!-- jQuery-2.2.4 js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+	    <!-- Popper js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+	    <!-- Bootstrap js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+	    <!-- All Plugins js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+	    <!-- Active js -->
+	    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+	</div>
 </body>
 </html>
