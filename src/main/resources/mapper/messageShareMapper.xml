@@ -7,7 +7,7 @@
 		insert into MESSAGESHARE (roomNo, sender, content, time)
 		values (#{roomNo}, #{sender}, #{content}, #{time})
 	</insert>
-	
+
 </mapper>
 
 

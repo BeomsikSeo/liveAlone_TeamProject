@@ -1,6 +1,6 @@
 package com.multi.liveAlone.share.chatRoomShare;
 
-public class ChatRoomBbsJoinVO {
+public class ChatRoomBbsMessageJoinVO {
 	private int roomNo;
 	private int bbsNo;
 	private String chatRequestor;
@@ -18,6 +18,10 @@ public class ChatRoomBbsJoinVO {
 	private boolean bbsShareSuccess;
 	private String bbsShareImage;
 	private int bbsSharePoint;
+	private int messageNo;
+	private String sender;
+	private String content;
+	private String time;
 	public int getRoomNo() {
 		return roomNo;
 	}
@@ -120,15 +124,41 @@ public class ChatRoomBbsJoinVO {
 	public void setBbsSharePoint(int bbsSharePoint) {
 		this.bbsSharePoint = bbsSharePoint;
 	}
-	
+	public int getMessageNo() {
+		return messageNo;
+	}
+	public void setMessageNo(int messageNo) {
+		this.messageNo = messageNo;
+	}
+	public String getSender() {
+		return sender;
+	}
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	@Override
 	public String toString() {
-		return "ChatRoomBbsJoinVO [roomNo=" + roomNo + ", bbsNo=" + bbsNo + ", chatRequestor=" + chatRequestor
+		return "ChatRoomBbsMessageJoinVO [roomNo=" + roomNo + ", bbsNo=" + bbsNo + ", chatRequestor=" + chatRequestor
 				+ ", chatReceiver=" + chatReceiver + ", chatCode=" + chatCode + ", bbsShareNo=" + bbsShareNo
 				+ ", bbsShareRequest=" + bbsShareRequest + ", bbsShareTitle=" + bbsShareTitle + ", bbsShareContent="
 				+ bbsShareContent + ", bbsShareWriter=" + bbsShareWriter + ", bbsShareDate=" + bbsShareDate
 				+ ", bbsShareCategory=" + bbsShareCategory + ", bbsShareView=" + bbsShareView + ", bbsShareInterest="
 				+ bbsShareInterest + ", bbsShareSuccess=" + bbsShareSuccess + ", bbsShareImage=" + bbsShareImage
-				+ ", bbsSharePoint=" + bbsSharePoint + "]";
+				+ ", bbsSharePoint=" + bbsSharePoint + ", messageNo=" + messageNo + ", sender=" + sender + ", content="
+				+ content + ", time=" + time + "]";
 	}
+	
+	
 }

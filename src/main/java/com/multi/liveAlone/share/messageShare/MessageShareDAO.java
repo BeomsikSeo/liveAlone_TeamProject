@@ -13,8 +13,5 @@ public class MessageShareDAO {
 	public void insert(MessageShareVO bag) {
 		my.insert("messageshare.insert", bag);
 	}
-	
-//	public List<MessageShareVO> list() {
-//		return my.selectList("messageshare.all");
-//	}
+
 }
