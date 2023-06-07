@@ -2,16 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chatroomshare">
 	
-	<select id="userChatList" parameterType="String" resultType="chatRoomBbsJoinVO">
-		select * from chatroomshare, bbsshare
-		where chatroomshare.bbsNo = bbsshare.bbsShareNo 
-		and (chatroomshare.chatRequestor = #{nowSession} or chatroomshare.chatReceiver = #{nowSession})
+	<!-- 유저가 진행중인 채팅목록 + 게시글제목/이미지 + 채팅내용 -->
+	<select id="userChatList" parameterType="String" resultType="chatRoomBbsMessageJoinVO">
+		SELECT c.*, b.*, ms.messageNo, ms.sender, ms.content, ms.`time` 
+		FROM chatroomshare c
+		JOIN bbsshare b ON c.bbsNo = b.bbsShareNo
+		JOIN (
+			SELECT roomNo, MAX(messageNo) AS max_messageNo
+			  FROM messageshare
+			  GROUP BY roomNo
+			) AS subquery ON c.roomNo = subquery.roomNo
+		JOIN messageshare ms ON c.roomNo = ms.roomNo AND ms.messageNo = subquery.max_messageNo
+		WHERE (c.chatRequestor = #{nowSession} OR c.chatReceiver = #{nowSession});
 	</select>
 	
-	<select id="room" parameterType="int" resultType="chatRoomShareVO">
-		select *
-		from  chatroomshare 
-		where bbsNo = #{bbsNo}
+	<!-- 게시글 채팅목록 + 채팅방별 마지막 메시지  -->
+	<select id="room" parameterType="int" resultType="chatRoomMessageJoinVO">
+		SELECT cr.*, ms.messageNo, ms.content, ms.sender
+		FROM chatroomshare cr
+		JOIN messageshare ms 
+		ON cr.roomNo = ms.roomNo
+		JOIN 
+		(
+		  SELECT roomNo, MAX(messageNo) AS max_messageNo
+		  FROM messageshare
+		  GROUP BY roomNo
+		) AS subquery
+		ON ms.roomNo = subquery.roomNo AND ms.messageNo = subquery.max_messageNo
+		WHERE cr.bbsNo = #{bbsNo}
+		ORDER BY cr.roomNo;
 	</select>
 	
 	<!-- useGeneratedKeys="true" keyProperty="roomNo" : auto_increment 속성 -->

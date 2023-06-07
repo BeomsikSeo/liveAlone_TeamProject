@@ -56,7 +56,7 @@
 	                            	<div class="login-register-cart-button d-flex align-items-center">
 	                                    <!-- Login/Register -->
 	                                    <div class="login-register-btn mr-50">
-	                                        <a href="${pageContext.request.contextPath}/mypage/mypage?login_id=<%= session.getAttribute("member_id")%>" id="loginBtn">마이페이지</a>
+	                                        <a href="${pageContext.request.contextPath}/mypage/mypage" id="loginBtn">마이페이지</a>
 	                                    </div>
 	                                    <div class="login-register-btn mr-50">
 	                                        <a href="${pageContext.request.contextPath}/logout" id="loginBtn">로그아웃</a>

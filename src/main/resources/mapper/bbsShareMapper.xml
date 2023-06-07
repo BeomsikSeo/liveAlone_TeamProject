@@ -4,11 +4,8 @@
 
 	<insert id="create" parameterType="BbsShareVO">
 		insert into bbsshare values
-		(NULL, #{bbsShareRequest}, #{bbsShareTitle}, #{bbsShareContent},
-		#{bbsShareWriter}, #{bbsShareDate}, #{bbsShareCategory},
-		#{bbsShareView}
-		, #{bbsShareInterest}, #{bbsShareSuccess},
-		#{bbsShareImage})
+		(NULL, #{bbsShareRequest}, #{bbsShareTitle}, #{bbsShareContent},#{bbsShareWriter}, #{bbsShareDate}
+		,#{bbsShareCategory},#{bbsShareView}, #{bbsShareInterest}, #{bbsShareSuccess},#{bbsShareImage},#{bbsSharePoint})
 	</insert>
 
 

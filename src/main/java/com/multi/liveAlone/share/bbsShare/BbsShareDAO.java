@@ -16,7 +16,9 @@ public class BbsShareDAO {
 	BbsShareSearchVO bag2 = new BbsShareSearchVO();
 	BbsShareInterestVO bag3 = new BbsShareInterestVO();
 
+	@SuppressWarnings("null")
 	public int insert(BbsShareVO bag) {
+		System.out.println(bag.toString());
 		int result = my.insert("bbsshare.create", bag);
 		return result;
 	}
