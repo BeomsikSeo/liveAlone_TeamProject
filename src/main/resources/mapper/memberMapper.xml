@@ -32,6 +32,10 @@
 		SELECT COUNT(*) FROM member WHERE nickname = #{nickname}
 	</select>
 	
+	<select id="checkpoint" parameterType="String" resultType="int">
+		SELECT point FROM member WHERE nickname = #{nickname}
+	</select>
+	
 	<select id="all" resultType="memberVO">
 		select *
 		from member

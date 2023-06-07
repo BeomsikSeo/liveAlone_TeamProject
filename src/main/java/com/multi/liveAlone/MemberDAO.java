@@ -50,6 +50,12 @@ public class MemberDAO {
 		return result;
 		}
 	
+	public int checkpoint(String nickname) {
+		int result = my.selectOne("member.checkpoint", nickname);
+		System.out.println(nickname);
+		return result;
+	}
+	
 	public int signup(MemberVO bag) {
 		int result = my.insert("member.signup", bag);
 		my.insert("member.interest",bag.getMember_id());
@@ -64,5 +70,7 @@ public class MemberDAO {
 		my.delete("member.deleteinterest",member_id);
 		my.delete("member.deletemember", member_id);
 	}
+	
+	
 }
 

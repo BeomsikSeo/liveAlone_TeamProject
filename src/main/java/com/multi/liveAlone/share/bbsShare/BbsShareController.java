@@ -27,21 +27,27 @@ public class BbsShareController {
 	public void insert(BbsShareVO bag, HttpServletRequest request) {
 		System.out.println("insert 요청됨");
 
-		HttpSession session = request.getSession();
-		String member_id = (String) session.getAttribute("member_id");
-		bag.setBbsShareWriter(member_id);
 		
+		
+		//작성일
 		Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		bag.setBbsShareDate(formatter.format(date));
+		bag.setBbsShareDate((String)formatter.format(date));
 		
+		//카테고리(110)
+		bag.setBbsShareCategory("110");
+		//뷰(0)
 		bag.setBbsShareView(0);
+		//관심(0)
 		bag.setBbsShareInterest(0);
+		//거래완료여부(0)
 		bag.setBbsShareSuccess(false);
 		
-		dao.insert(bag);
-		
+		// 요청(0)/나눔(1)여부확인, 제목, 내용
+		// 글 번호는 mapper에서 null
+		// 글쓴이:닉네임
 
+		dao.insert(bag);
 	}
 
 	@RequestMapping("share/bbsShare/update")
@@ -160,15 +166,5 @@ public class BbsShareController {
 	public void session_delete() {
 		System.out.println("세션 초기화");
 	}
-	
-	@RequestMapping("share/bbsShare/member1")
-	public void member1() {
-		System.out.println("member_id 세션 : 가나다");
-	}
-	@RequestMapping("share/bbsShare/member2")
-	public void member2() {
-		System.out.println("member_id 세션 : 나다라");
-	}
-
 
 }

@@ -14,6 +14,7 @@ public class BbsShareVO {
 	private boolean bbsShareSuccess;
 	private String bbsShareImage;
 	private int bbsSharePoint;
+	
 	public int getBbsShareNo() {
 		return bbsShareNo;
 	}
