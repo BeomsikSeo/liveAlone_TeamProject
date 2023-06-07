@@ -74,12 +74,12 @@
 		font-weight: bold;
 	}
 </style>
-<title>Insert title here</title>
+<title>${store.store_name } 주문 >> 난 혼자 산다</title>
 </head>
 <body>
     <%@ include file="/resources/public/header.jsp" %>
 	
-	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/img/rice/ticket/food-Ticket-unsplash.jpg);">
         <div class="bradcumbContent">
             <p>메뉴 주문</p>
             <h2>${store.store_name }</h2>
@@ -98,7 +98,7 @@
 	                <div class="col-12 col-md-6 col-lg-4">
 	                    <div class="single-event-area mb-30">
 	                        <div class="event-thumbnail">
-	                          <img alt="error" src="${pageContext.request.contextPath}/resources/upload/rice/storeMenu/sample_Image.png">
+	                          <img alt="error" src="${pageContext.request.contextPath}/resources/img/rice/ticket/food-Ticket-defaultFoodImage.png">
 							 </div>
 	                        <div class="event-text">
 	                            <h4>${menu.food_name}</h4>

@@ -92,12 +92,12 @@
 	}
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>My 티켓 >> 난 혼자 산다</title>
 </head>
 <body>
     <%@ include file="/resources/public/header.jsp" %>
     
-	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/templeate/img/bg-img/breadcumb3.jpg);">
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/img/rice/ticket/food-Ticket-unsplash.jpg);">
         <div class="bradcumbContent">
             <p>식권 및 상점에 대한 정보 제공</p>
             <h2>식권 상세 정보</h2>
