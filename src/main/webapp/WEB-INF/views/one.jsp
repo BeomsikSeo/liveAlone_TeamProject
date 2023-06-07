@@ -10,13 +10,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/template/style.css">
 <style>
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 </style>
 <style>
 .overlaybox {
@@ -137,17 +137,29 @@
 		</div>
 	</section>
 	<section>
+		<!-- Single Post Start -->
+		<div class="single-blog-post mb-100 wow fadeInUp"
+			data-wow-delay="100ms">
+			<!-- Post Thumb -->
+			<div class="blog-post-thumb mt-30">
+				
 
-		<img
-			src="http://localhost:8888/liveAlone/resources/voyageimg/${vo.name}.jpg"
-			alt="Image"><br> <br> 여행지 주소: ${vo.voyageaddress} <br>
-		여행지 정보:${vo.info} <br>
+				<!-- Blog Content -->
+				<div class="blog-content" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    
+					<!-- Post Title -->
+					<img
+					src="http://localhost:8888/liveAlone/resources/voyageimg/${vo.name}.jpg"
+					alt="Image">
+					<br> <br> <div style="word-wrap: break-word;">
+        여행지 정보: ${vo.info}
+    </div><br><br>
 
-		<div id="map" style="width: 300px; height: 300px;"></div>
+					<div id="map" style="width: 300px; height: 300px;"></div>
 
-		<script type="text/javascript"
-			src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d2e73e18842cfaf919b661fddb673fc"></script>
-		<script>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5d2e73e18842cfaf919b661fddb673fc"></script>
+					<script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(${vo.longi},${vo.lat}), // 지도의 중심좌표
@@ -201,8 +213,17 @@ function closeOverlay() {
 	customOverlay.setMap(null);     
 }
 </script>
+					<!-- Post Meta -->
+					<div class="post-meta d-flex mb-30">
+						<p class="post-author">
+							여행지 주소: ${vo.voyageaddress}
+						</p>
+					</div>
+				</div>
+			</div>
+</div>
 
-		<a href=http://localhost:8888/liveAlone/voyageall>첫 페이지로 이동</a>
+			<a href=http://localhost:8888/liveAlone/voyageall>첫 페이지로 이동</a>
 	</section>
 	<%@ include file="/resources/public/footer.jsp"%>
 	<div>
