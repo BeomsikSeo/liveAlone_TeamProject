@@ -1,11 +1,22 @@
-<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Sign Up Page</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>회원가입</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="resources/template/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="resources/template/style.css">
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -20,6 +31,7 @@ window.onload = function(){
         }).open();
     });
 }
+
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -139,22 +151,97 @@ $(document).ready(function() {
 
 
 </script>
+<style>
+  #checkid, #checknick {
+    border-color: lightgray;
+    float: right;
+  }
+</style>
 </head>
 <body>
-<form action="signup" method="get">
-<pre>
-아이디	&nbsp;: <input type="text" name="member_id" placeholder="아이디 입력" pattern="[a-zA-Z0-9!@#$%^&]*"> <button type="button" id="checkid">중복확인</button><br> 
-비밀번호 : <input type="password" id="password" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*"><br>
-비밀번호 확인: <input type="password" id="password_check" name="password_check" placeholder="비밀번호를 재입력"> <span id="pwcheck"></span><br>
-아이디,비밀번호로 알파벳 소문자,대문자,!@#$%^& 사용 가능<br>
-별명	&nbsp;: <input type="text" name="nickname" placeholder="별명을 입력하세요"> <button type="button" id="checknick">중복확인</button><br>
-주소	&nbsp;: <input type="text" id="address_kakao" name="address" placeholder="클릭하여 주소입력" readonly><br>
-상세주소&nbsp;: <input type="text" name="address_detail" placeholder="상세주소 입력" ><br>
-</pre>
-		
-		상세주소를 제외한 정보는 모두 필수사항입니다.<br>
-		
-		<input type="submit" value="회원가입">
-	</form>
+
+	<%@ include file="/resources/public/header.jsp" %> <!-- 헤더 파일 -->
+	
+	<div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+	
+	<!-- ##### Breadcumb Area Start ##### -->
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(resources/template/img/bg-img/breadcumb3.jpg);">
+        <div class="bradcumbContent">
+            <p>Welcome Solo life</p>
+            <h2>Sign up</h2>
+        </div>
+    </section>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Login Area Start ##### -->
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <h3>Welcome</h3>
+                        <!-- Login Form -->
+                        <div class="login-form">
+                            <form action="login" method="post">
+								<div class="form-group">
+									<label for="exampleInputEmail1">아이디</label>
+									<input type="text" name="member_id" class="form-control" placeholder="아이디 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
+									<button type="button" id="checkid">중복확인</button>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">비밀번호</label>
+									<input type="password" id="password" class="form-control" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">비밀번호 확인 </label>
+									<input type="password" id="password_check" class="form-control" name="password_check" placeholder="비밀번호를 재입력">
+									<span id="pwcheck"></span>&nbsp;<br><small>아이디,비밀번호로 알파벳 소문자,대문자,!@#$%^& 사용 가능</small><br>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">별명</label>
+									<input type="text" name="nickname"class="form-control" placeholder="별명을 입력하세요">
+									<button type="button" id="checknick">중복확인</button><br>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">주소</label>
+									<input type="text" id="address_kakao" class="form-control"name="address" placeholder="클릭하여 주소입력" readonly><br>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">상세주소</label>
+									<input type="text" class="form-control" name="address_detail" placeholder="상세주소 입력" ><br>
+								</div>
+								
+								상세주소를 제외한 정보는 모두 필수사항입니다.<br>
+								<button type="submit" class="btn oneMusic-btn mt-30">회원가입</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Login Area End ##### -->
+
+	
+	<!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="resources/template/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="resources/template/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="resources/template/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="resources/template/js/active.js"></script>
+    
+	<%@ include file="/resources/public/footer.jsp" %>
 </body>
 </html>

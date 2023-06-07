@@ -166,15 +166,5 @@ public class BbsShareController {
 	public void session_delete() {
 		System.out.println("세션 초기화");
 	}
-	
-	@RequestMapping("share/bbsShare/member1")
-	public void member1() {
-		System.out.println("member_id 세션 : 가나다");
-	}
-	@RequestMapping("share/bbsShare/member2")
-	public void member2() {
-		System.out.println("member_id 세션 : 나다라");
-	}
-
 
 }

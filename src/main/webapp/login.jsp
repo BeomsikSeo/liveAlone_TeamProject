@@ -112,11 +112,11 @@
                             <form action="login" method="post">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Id</label>
-                                    <input type="text" name="member_id" placeholder="아이디 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
+                                    <input type="text" name="member_id" class="form-control" placeholder="아이디 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="비밀번호 입력" pattern="[a-zA-Z0-9!@#$%^&]*">
                                 </div>
                                 <button type="submit" class="btn oneMusic-btn mt-30">Login</button>
                                 

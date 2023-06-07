@@ -1,11 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>상세 페이지</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/template/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 
@@ -102,79 +115,117 @@
     		}
 
     		});
-     
+    	
+    	window.addEventListener('load', function() {
+    	    document.querySelector('.btn.oneMusic-btn').addEventListener('click', function(event) {
+    	        event.preventDefault();
+    	        history.back();
+    	    });
+    	});
 </script>
 <style type="text/css">
-img {
-	width: 500px;
-	height: auto;
-}
+.container form {
+    margin: 0 auto;
+	justify-content: center;
+  }
 
-div {
-	width: 500px;
-}
-
-.q2 {
+.flex-row {
 	display: flex;
+    margin: 0 auto;
+	justify-content: center;
+	font-size:15px;
 }
 
+.flex-row-left {
+	display: flex;
+	font-size:20px;
+    margin: 0 auto;
+}
+
+.left_align{
+	margin-right: auto;
+	}
+	
 .right-align {
 	margin-left: auto;
 }
+
+.breakword {
+	word-wrap: break-word;
+	line-height: 1.5;
+	min-height: 3em;
+	max-height: 3em;
+	overflow: hidden; /* 내용이 넘치면 숨김 */
+}
+
+.container table {
+    margin: 0 auto;
+  }
+
+.title{
+    text-align: left;
+}
+table {
+	table-layout: fixed;
+}
+.productimg {
+    max-width: 400px;
+    height: auto;
+}
+
 </style>
 </head>
-<body><%-- 
-	<%
-		String pageno = (String) session.getAttribute("pageno"); //거쳐온 페이지 번호
-	if (pageno == null) { //바로 온경우 pageno 1로 설정
-		pageno = "1";
-		session.setAttribute("pageno", pageno);
-	}
-	%> --%>
-	<button onclick="history.back()">뒤로가기</button>
-	<br>
-	<br>
-	<div class="q1">
-		<div class="q2">
-			글번호 : ${bag.bbsShareNo}
+<body>
+	<%@ include file="/resources/public/header.jsp"%>
+	<!-- 헤더 파일 -->
+
+	<!-- ##### Breadcumb Area Start ##### -->
+	<section class="breadcumb-area bg-img bg-overlay"
+		style="background-image: url(img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<p></p>
+			<h2>상세 페이지</h2>
+		</div>
+	</section>
+	<!-- ##### Breadcumb Area End ##### -->
+
+	<!-- ##### Events Area Start ##### -->
+	<section class="events-area section-padding-100">
+	<div class="container" style="width: 700px">
+		<div  class="flex-row">
+			<span class="left_align">글번호 : ${bag.bbsShareNo}</span>
 			<c:if test="${bag.bbsShareRequest == false}">
-				<span class="right-align"><b>요청</b></span>
+				<span class="right-align" style="font-size:30px;"><b>요청</b></span>
 			</c:if>
 			<c:if test="${bag.bbsShareRequest != false}">
-				<span class="right-align"><b>나눔</b></span>
+				<span class="right-align" style="font-size:30px;"><b>나눔</b></span>
 			</c:if>
 		</div>
-		<div class="q2" style="padding-top: 10px; padding-bottom: 10px">
-			<span style="font-weight: bold; font-size: 24px;">${bag.bbsShareTitle}</span>
+		<div class="flex-row" style="padding-top: 10px; padding-bottom: 10px">
+			<span class="left_align" style="font-weight: bold; font-size:40px;">${bag.bbsShareTitle}</span>
 			<c:choose>
 				<c:when test="${bag.bbsShareSuccess}">
-					<span class="right-align">완료</span>
+					<span class="right-align" style="font-size:30px;">완료</span>
 					<!-- 완료가 true일경우 출력 -->
 				</c:when>
 			</c:choose>
 
 		</div>
-		<div class="q2">
+		<div class="flex-row">
 			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
 				${bag.bbsShareDate}</span>
 		</div>
-		<br> 포인트 : ${bag.bbsSharePoint} <br> view :
-		${bag.bbsShareView} <br> interest : ${bag.bbsShareInterest}
+		<div  class="flex-row">
+		<br>
+		포인트 : ${bag.bbsSharePoint} <br>
+		조회수 : ${bag.bbsShareView} <br>
+		관심수 : ${bag.bbsShareInterest}
 		<button id="interest-button" style="display: none;"></button>
-		<%-- <c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
-			<form action="success" method="get">
-				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
-				<button type="submit">채팅신청</button>
-			</form>
-		</c:if> --%>
-
-
-
-
+		
 		<c:choose>
 			<%-- = <c:when test = "${writer eq id}"> --%>
 			<c:when test="${bag.bbsShareWriter eq member_id}">
-				<form action="../chatShare/bbsChatList" method="get">
+				<form action="../chatShare/bbsChatList" method="post">
 					<!-- type은 디폴트가 submit( -> form제출) -->
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
 					<button id ="chatlistbutton" type="submit">채팅 목록</button>
@@ -182,30 +233,67 @@ div {
 			</c:when>
 
 			<c:otherwise>
-				<form action="../chatShare/chatRoom">
+				<form action="../chatShare/chatRoom" method="post">
 					<input type="hidden" name="bbsNo" value="${bag.bbsShareNo}">
 					<input type="hidden" name="chatRequestor" value="${member_id}">
 					<input type="hidden" name="chatReceiver"
 						value="${bag.bbsShareWriter}">
 					<button id ="chatbutton" style="display: none;">채팅 요청</button>
 				</form>
-				<!-- 밑에 저거 왜 안돼? -->
-				<%-- <button onclick="location.href='${pageContext.request.contextPath}/chatRoom?bbsNo=${bag.no}?chatRequestor=${id}?chatReceiver=${bag.writer}'">채팅 요청</button> --%>
 			</c:otherwise>
 		</c:choose>
+		</div>
+		
 
 
+		<br> <br>
 
+			<div class="flex-row-left">
+				<span class="left-align"> ${bag.bbsShareContent} </span>
+			</div>
 
-		<br> <br> content : ${bag.bbsShareContent} <br>
-		<%-- <c:if test="${sessionScope.member_id == bag.bbsShareWriter}">
-			<form action="success" method="get">
-				<input type="hidden" name="bbsShareNo" value="${bag.bbsShareNo}">
-				<button type="submit">완료처리</button>
-			</form>
-		</c:if> --%>
-		<br> <br> <img src="../../resources/noimage.jpg"<%-- "share/bbsShare/img/${bag.bbsShareImage}" onerror="imgError(this)" --%>>
+			<br>
+		
+		<br> <br> 
+		
+		<div class="flex-row"><img src="../../resources/noimage.jpg" class="productimg"></div>
 	</div>
+		<div class="flex-row">
+			<div class="row">
+				<div class="col-12">
+					<div class="load-more-btn text-center mt-70">
+						<a href="#" class="btn oneMusic-btn">이전 페이지로</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ##### Events Area End ##### -->
+	
+	<script type="text/javascript">
+	if (${not empty message}) {
+        var element = document.querySelector('.btn.oneMusic-btn');
+        var element2 = document.querySelector('.maincontent');
+        
+        if (element) {
+            element.style.display = 'none';
+            element2.style.height = '700px';
+        }
+    }
+	</script>
 
+<!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+    
+	<%@ include file="/resources/public/footer.jsp" %>
 </body>
 </html>
