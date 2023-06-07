@@ -22,7 +22,7 @@ public class KakaoPayController {
 	@Autowired
 	KakaoPayService_Interface kakaoPayService;
 	
-	@Setter(onMethod_ = @Autowired) 
+	//	@Setter(onMethod_ = @Autowired) 
 	private KakaoPay kakaopay;
 
 	private OrderVOList resultOrderList = null;
