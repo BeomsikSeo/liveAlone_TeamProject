@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="/resources/public/header.jsp" %>
 <h3>난 혼자 산다</h3>
 <form action="main.jsp"><button>메인으로</button></form>
 <hr color="blue">
