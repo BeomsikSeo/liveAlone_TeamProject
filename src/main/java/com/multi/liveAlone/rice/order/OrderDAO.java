@@ -15,10 +15,8 @@ public class OrderDAO {
 	
 	
 	// 주문 내역을 넣습니다.
-	public void insertOrder(List<OrderVO> list) {
-		for(int i=0; i < list.size(); i++) {
-			my.insert("order.insertOrder", list.get(i));
-		}
+	public void insertOrder(OrderVO order) {
+		my.insert("order.insertOrder", order);
 	}
 
 
