@@ -42,20 +42,28 @@ public class TicketController {
 	
 	// 유저의 전체 티켓 목록을 가지고 옵니다.
 	@RequestMapping("userTicket")
-	public void userTicket(HttpSession session, Model model) {
-		// 임의의 세션 데이터 설정
+	public String userTicket(HttpSession session, Model model) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
+		
 		// session.setAttribute("memberID", "userA");
 		String memberID = (String)session.getAttribute("member_id");
 		System.out.println(memberID);
 
 
 		session.setAttribute("member_id", memberID);
+		
+		return null;
 	}
 	
 	
 	// 사용자가 지정한 티켓의 상세 정보를 가지고옵니다.
 	@RequestMapping("userTicketOne")
 	public String userTicketOne(HttpSession session,Model model, int ticket_ID) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
 		
 		// 만약 사용자가 자신이 보유한 티켓이 아닌 다른 사람이 보유한 티켓을 억지로 찾으려고 할 때 해당 조건문을 통해
 		// 사용자의 티켓 페이지 리스트로 강제로 이동하게 만듭니다.
@@ -87,17 +95,23 @@ public class TicketController {
 	// 사용자의 티켓을 업데이트 합니다.
 	@RequestMapping("userTicketUpdate")
 	public String userTicketUpdate(HttpSession session,Model model, int ticket_ID, int update) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
 		
-		String memberID = (String)session.getAttribute("memberID");
+		
+		System.out.println(ticket_ID);
+		System.out.println(update);
+		
+		String memberID = (String)session.getAttribute("member_id");
 		TicketVO ticket = ticketDAO.selectTicketOne(ticket_ID);
 		
+		
 		if(ticket == null) {
-			System.out.println("1번째");
 			return "redirect:userTicket";
 		}
 		
 		if(!(ticket.getTicket_userID().equals(memberID))) {
-			System.out.println("2번째");
 			return "redirect:userTicket";
 		}
 		
@@ -106,7 +120,6 @@ public class TicketController {
 		}
 		
 		String updateStr = null;
-		
 		
 		Date date = new Date(); 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat ("yyyy.MM.dd a HH:mm:ss");

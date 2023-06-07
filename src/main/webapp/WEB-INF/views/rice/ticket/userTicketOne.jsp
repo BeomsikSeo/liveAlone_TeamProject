@@ -251,29 +251,7 @@
                         <button class="btn mr-1 ml-1" style="width:50%;" id="Ticket-Refund">식권 사용</button>
                     </div>
                     
-                    <div class="termClass mt-3 mb-3" id="terms-list-1" style="display : none; padding-left: 25pt; padding-right:25pt;">
-                    	<hr>
-                    		<div>
-                    			<table>
-									<tr>
-										<td>1. 고객 실수로 인한 식권 사용한 취소는 불가능합니다.</td>
-										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
-									</tr>
-									<tr>
-										<td>2. 식권 사용에 사용된 마일리지 내역은 확인이 가능합니다.</td>
-										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
-									</tr>
-									<tr>
-										<td>3. 위의 약관에 대한 숙지를 모두 했습니다.</td>
-										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
-									</tr>
-								</table>
-							</div>
-							<div style="text-align: center; ">
-								<button class="btn" id="useTicket-final" disabled="disabled" style="padding-left: 25pt; padding-right:25pt; width : 100%;">사용하기</button>
-							</div>
-                    	<hr>
-                    </div>
+                    
                     <div class="termClass mt-3 mb-3" id="terms-list-2" style="display : none; padding-left: 25pt; padding-right:25pt;">
                     	<hr>
                     		<div>
@@ -294,6 +272,29 @@
 							</div>
 							<div style="text-align: center; ">
 								<button class="btn" id="useTicket-final-2" disabled="disabled" style="padding-left: 25pt; padding-right:25pt; width : 100%;">환불하기</button>
+							</div>
+                    	<hr>
+                    </div>
+                    <div class="termClass mt-3 mb-3" id="terms-list-1" style="display : none; padding-left: 25pt; padding-right:25pt;">
+                    	<hr>
+                    		<div>
+                    			<table>
+									<tr>
+										<td>1. 고객 실수로 인한 식권 사용한 취소는 불가능합니다.</td>
+										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
+									</tr>
+									<tr>
+										<td>2. 식권 사용에 사용된 마일리지 내역은 확인이 가능합니다.</td>
+										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
+									</tr>
+									<tr>
+										<td>3. 위의 약관에 대한 숙지를 모두 했습니다.</td>
+										<td class="check-point"><input type="checkbox" class="terms-checkBox-1" value="동의">확인</td>
+									</tr>
+								</table>
+							</div>
+							<div style="text-align: center; ">
+								<button class="btn" id="useTicket-final" disabled="disabled" style="padding-left: 25pt; padding-right:25pt; width : 100%;">사용하기</button>
 							</div>
                     	<hr>
                     </div>

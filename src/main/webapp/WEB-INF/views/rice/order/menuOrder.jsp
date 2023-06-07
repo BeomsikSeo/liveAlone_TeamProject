@@ -87,7 +87,7 @@
     </section>
     
 	<section class="events-area section-padding-100">
-	<form action="menuPay">
+	<form action="menuPay" method="post">
         <div class="container">
         	<input type="hidden" name="store_name" value="${store.store_name }">
        		<input type="hidden" name="store_no" value="${store.store_no }">

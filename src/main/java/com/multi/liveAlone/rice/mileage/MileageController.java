@@ -24,12 +24,18 @@ public class MileageController {
 	MileageDAO mileageDAO;
 	
 	@RequestMapping("rice/mileage/userMileage")
-	public void userMileage(HttpSession session,Model model) {
+	public String userMileage(HttpSession session,Model model) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
+		
 		System.out.println("userMileage MemberID >> " + (String)session.getAttribute("member_id"));
 		
 		MemberVO member = memberDAO.selectOne((String)session.getAttribute("member_id"));
 		
 		model.addAttribute("member",member);
+		
+		return null;
 	}
 	
 	
