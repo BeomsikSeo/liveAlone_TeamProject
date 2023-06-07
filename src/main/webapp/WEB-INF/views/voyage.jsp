@@ -21,8 +21,8 @@
 	width: 150px;
 	height: 150px;
 	border-radius: 50%;
-	background-color:1px solid lightgray;
-	color: #fffff;
+	background-color:#999999;
+	color: #ffffff;
 	font-size: 18px;
 	text-align: center;
 	line-height: 150px;
@@ -33,17 +33,19 @@
 <style>
 #map {
 	position: absolute;
-	bottom: -320px;
+	bottom: -330px;
 	right: 310px;
 	margin: 20px;
 }
 </style>
 <style>
   .randomNameButton {
-    border: 1px solid lightgray;
-    background-color: 1px solid lightgray;
+    border: black;
+    background-color: #999999;
     padding: 5px 10px;
     border-radius: 4px;
+    color: #ffffff;
+    
   }
 </style>
 
@@ -74,12 +76,12 @@
 					style="color: gray;">모든 여행지 보기>></a>
 			</div>
 		</div>
-		<div class="row oneMusic-albums">
+		<div class="row oneMusic-albums" >
 			<c:forEach items="${randomNames}" var="randomName">
 
 				<!-- Single Album -->
-				<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item ">
-					<div class="single-album">
+				<div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item " >
+					<div class="single-album" style="border: 1px solid black;">
 						<img
 							src="http://localhost:8888/liveAlone/resources/voyageimg/${randomName}.jpg"
 							alt="Image">
@@ -145,12 +147,12 @@
 
 
 		<div
-			class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
-			<div class="newsletter-area mb-50">
-				<div class="section-heading text-left mb-50">
-					<h2>여행지 검색</h2>
+			class="col-12 col-lg-6 d-flex justify-content-center align-items-center" >
+			<div class="newsletter-area mb-50" style="background-color: #999999;" color="#ffffff">
+				<div class="section-heading text-left mb-50" >
+					<h1>여행지 검색</h1>
 				</div>
-				<div class="infoform">
+				<div class="infoform" >
 					<form action="one">
 						<div class="d-flex justify-content-center">
 							<input type="text" name="name" id="nameInput" method="get"
