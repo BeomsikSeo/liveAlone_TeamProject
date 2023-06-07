@@ -6,7 +6,6 @@ public class MileageVOPage {
 	private int mileage_ID;
 	private String mileage_memberID;
 	private String mileage_when;
-	private String mileage_where;
 	private String mileage_why;
 	private int mileage_what;
 	private String mileage_how;
@@ -39,13 +38,6 @@ public class MileageVOPage {
 		this.mileage_when = mileage_when;
 	}
 
-	public String getMileage_where() {
-		return mileage_where;
-	}
-	public void setMileage_where(String mileage_where) {
-		this.mileage_where = mileage_where;
-	}
-
 	public String getMileage_why() {
 		return mileage_why;
 	}
@@ -69,9 +61,8 @@ public class MileageVOPage {
 	@Override
 	public String toString() {
 		return "MileageVOPage [mileage_no=" + mileage_no + ", mileage_ID=" + mileage_ID + ", mileage_memberID="
-				+ mileage_memberID + ", mileage_when=" + mileage_when + ", mileage_where=" + mileage_where
-				+ ", mileage_why=" + mileage_why + ", mileage_what=" + mileage_what + ", mileage_how=" + mileage_how
-				+ "]";
+				+ mileage_memberID + ", mileage_when=" + mileage_when + ", mileage_why=" + mileage_why + ", mileage_what=" + mileage_what 
+				+ ", mileage_how=" + mileage_how + "]";
 	}
 	
 	
