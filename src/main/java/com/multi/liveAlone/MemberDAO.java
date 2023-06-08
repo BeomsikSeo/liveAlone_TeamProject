@@ -66,6 +66,10 @@ public class MemberDAO {
 		my.update("member.updatePoint", bag);
 	}
 	
+	public void updateCnt(String member_id) {
+		my.update("member.updateCnt", member_id);
+	}
+	
 	public void deleteaccount(String member_id) {
 		my.delete("member.deleteinterest",member_id);
 		my.delete("member.deletemember", member_id);

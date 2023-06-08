@@ -37,7 +37,7 @@
 									<a class="event-place">채팅 요청자 : ${bag.chatRequestor}</a> <a
 										class="event-date">게시글 작성자 : ${bag.chatReceiver}</a>
 								</div>
-								<h4>${bag.sender}: ${bag.content}</h4>
+								<h4>${bag.content}</h4>
 	
 	
 								<form action="chatRoom" method="post">

@@ -41,7 +41,6 @@ public class ChatRoomShareController {
 		if (bag.getroomNo() == 0) {
 			// 만들어진 채팅방의 roomNo, chatRequestor 가져와서 views의 chatRoom.jsp에 전달
 			roomInfo = dao.one(bag);
-//			System.out.println(roomInfo);
 			
 			// db에 채팅방이 없으면 채팅방생성s
 			if (roomInfo == null) {
@@ -49,8 +48,6 @@ public class ChatRoomShareController {
 				dao.insert(bag); // 채팅방 생성 -> db삽입
 				
 				roomInfo = dao.one(bag);
-//				System.out.println(roomInfo2.getroomNo());
-//				System.out.println(roomInfo2.getChatRequestor());
 				model.addAttribute("roomInfo", roomInfo);
 			}
 			
@@ -183,6 +180,8 @@ public class ChatRoomShareController {
 					m_dao.updatePoint(receiver_member_vo);
 				}
 			}
+			m_dao.updateCnt(requestor_member_vo.getMember_id());
+			m_dao.updateCnt(receiver_member_vo.getMember_id());
 		}
 		
 		return trade;
