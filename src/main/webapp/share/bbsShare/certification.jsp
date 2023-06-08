@@ -78,8 +78,8 @@ $(document).ready(function() {
 				var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 				message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
 
-				document.getElementById("geo_lat").innerHTML = lat;
-				document.getElementById("geo_lon").innerHTML = lon;
+				/* document.getElementById("geo_lat").innerHTML = lat;
+				document.getElementById("geo_lon").innerHTML = lon; */
 
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition, message);
@@ -128,6 +128,9 @@ $(document).ready(function() {
 					callback);
 		}
 
+
+		var nowadr;
+		
 		function addressInfo(result, status) {
 			if (status === kakao.maps.services.Status.OK) {
 				var infoDiv = document.getElementById('now_address');
@@ -135,7 +138,9 @@ $(document).ready(function() {
 				for (var i = 0; i < result.length; i++) {
 					// 행정동의 region_type 값은 'H' 이므로
 					if (result[i].region_type === 'H') {
+						nowadr = result[i].address_name;
 						infoDiv.innerHTML = result[i].address_name;
+						console.log(nowadr);
 						break;
 					}
 				}
@@ -146,8 +151,11 @@ $(document).ready(function() {
 		
 
 		function cert() {
-			var x = document.getElementById("now_address").innerText; //접속지역 행정동명
+			
+			/* var x = document.getElementById("now_address").innerText; //접속지역 행정동명 */
+			var x = nowadr;
 			var x1 = x.split(' ');
+			var x2 = now_address;
 			var x2 = x1[0] + " " + x1[1];
 			var y = document.getElementById("mem_address").innerText; //등록지역 행정동명
 			var y1 = y.split(' ');
