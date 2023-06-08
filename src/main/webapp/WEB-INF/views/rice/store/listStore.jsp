@@ -53,7 +53,7 @@
 					<div class="col-12 col-md-6 col-lg-4">
 						<div class="single-event-area mb-30">
 							<div class="event-thumbnail">
-								<img src="../../resources/template/img/bg-img/e1.jpg" alt="x">
+								<img src="../../resources/template/img/bg-img/${vo.store_name}.jpg" alt="x">
 							</div>
 							<div class="event-text">
 								<h4>${vo.store_name}</h4>
