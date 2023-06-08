@@ -13,7 +13,8 @@
 				해당 메뉴의 총 가격을 결재 가격의 기본값으로 설정합니다.
 			 --%>
 			let totalPrice = Number($("#totalPrice").val());
-			$("#payPrice").val(totalPrice)
+			let userMileage = Number($("#userMileage").val());
+			$("#payPrice").val(totalPrice-userMileage)
 		
 			<%--
 			
@@ -30,10 +31,11 @@
 			
 			console.log(totalPrice - userMileage)
 			
-			let payPrice = totalPrice - userMileage
-			
-			$("#payPrice").val(payPrice)
-			
+			if(userMileage > 0){
+				let payPrice = totalPrice - userMileage
+				
+				$("#payPrice").val(payPrice)
+			}	
 		})
 		
 		
@@ -76,12 +78,12 @@
 	}
 </style>
 
-<title>Insert title here</title>
+<title>${store.store_name } 주문 >> 난 혼자 산다</title>
 </head>
 <body>
 	 <%@ include file="/resources/public/header.jsp" %>
     
-	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/template/img/bg-img/breadcumb3.jpg);">
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/img/rice/ticket/food-Ticket-unsplash.jpg);">
         <div class="bradcumbContent">
             <p>최종 결제 정보</p>
             <h2>${store.store_name }</h2>
@@ -132,7 +134,7 @@
                         <div class="login-form">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">주문 총 금액</label>
-                                    <input type="text" class="form-control" class="order-info" id="totalPrice" value="${totalPrice }" readonly="readonly">
+                                    <input type="text" class="form-control" class="order-info" name="total_price" id="totalPrice" value="${totalPrice }" readonly="readonly">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">보유 마일리지</label>
@@ -141,7 +143,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">사용자 결제 금액</label>
-                                    <input type="text" id="payPrice" class="form-control" name="ticket_price" value=${totalPrice } min=0>
+                                    <input type="text" readonly="readonly" id="payPrice" class="form-control" name="ticket_price" min=0>
                                 </div>
                         </div>
                         <button type="submit" class="btn oneMusic-btn mt-30">카카오 페이 결제</button><br>

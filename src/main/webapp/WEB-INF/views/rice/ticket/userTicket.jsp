@@ -76,13 +76,13 @@ $(function(){
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>My 티켓 >> 난 혼자 산다</title>
 </head>
 <body>
 	<%@ include file="/resources/public/header.jsp" %>
 	
     
-	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(${pageContext.request.contextPath}/resources/templeate/img/bg-img/breadcumb3.jpg);">
+	<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/img/rice/ticket/food-Ticket-unsplash.jpg);">
         <div class="bradcumbContent">
             <p>회원님이 보유하신 티켓 리스트</p>
             <h2>My 티켓</h2>

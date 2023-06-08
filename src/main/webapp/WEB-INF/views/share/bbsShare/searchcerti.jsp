@@ -102,6 +102,7 @@ td img {
 							size="30"> <input type="hidden" name="pageno" value="1">
 						<input type="submit" value="Search">
 					</form>
+					'<b><%=request.getParameter("keyword") %></b>'에 대한 검색 결과입니다
 				</div>
 				<div class="right-align">
 					<%

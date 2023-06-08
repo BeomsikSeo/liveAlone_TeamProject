@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.liveAlone.MemberDAO;
@@ -36,21 +38,33 @@ public class OrderController {
 	
 	// 음식점의 메뉴를 보여줍니다.
 	@RequestMapping("menuOrder")
-	public void menuOrder(HttpSession session,Model model , int store_no) {
-
+	public String menuOrder(HttpSession session,Model model , int store_no) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
+		
 		StoreVO store = storeDAO.selectOne(store_no);
 		
 		List<FoodVO> foodList = foodDAO.showMenu(store.getStore_no());
 		
 		model.addAttribute("store",store);
+		
 		model.addAttribute("list", foodList);
+		
+		return null;
 	}
 
-	
+	@GetMapping("menuPay") 
+	public String checkMenu() {
+		return "redirect:/mainPage.jsp";
+	}
 	
 	// 사용자가 주문한 메뉴들을 결제 확인창에 보내주기 위한 controller
-	@RequestMapping("menuPay")
-	public void checkMenu(HttpSession session, Model model, OrderVOList list, StoreVO store) {
+	@PostMapping("menuPay")
+	public String checkMenu(HttpSession session, Model model, OrderVOList list, StoreVO store) {
+		if( session.getAttribute("member_id") == null ) {
+			return "redirect:/login.jsp";
+		}
 		
 		int totalPrice = 0;	
 		
@@ -71,5 +85,7 @@ public class OrderController {
 		model.addAttribute("orderList",orderList);
 		model.addAttribute("totalPrice",totalPrice);
 		model.addAttribute("store", store);
+		
+		return null;
 	}
 }

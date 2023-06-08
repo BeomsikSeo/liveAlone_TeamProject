@@ -37,7 +37,7 @@
                             <div class="classynav">
                                 <ul> 
                                     <li><a href="${pageContext.request.contextPath}/mainPage.jsp">메인 페이지</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/rice/store/main">혼밥</a>
+                                    <li><a href="${pageContext.request.contextPath}/rice/store/main.jsp">혼밥</a>
                                     	<ul class="dropdown">
                                     		<li><a href="${pageContext.request.contextPath}/rice/ticket/userTicket">My 티켓</a></li>
                                     		<li><a href="${pageContext.request.contextPath}/rice/mileage/userMileage">My 마일리지</a></li>

@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>비인증리스트</title>
+    <title>지역인증</title>
 
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/resources/template/img/core-img/favicon.ico">
