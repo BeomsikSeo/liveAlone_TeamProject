@@ -85,7 +85,7 @@
 						data-wow-delay="100ms">
 						<!-- Post Thumb -->
 						<div class="blog-post-thumb mt-30">
-							<a href="#"><img src="${pageContext.request.contextPath}/resources/template/img/bg-img/blog1.jpg" alt=""></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/resources/template/img/bg-img/${vo.store_name}.jpg" alt=""></a>
 							<!-- Post Date -->
 							<div class="post-date">
 								<span>${vo.store_no}</span> <span>가게번호</span>
@@ -125,23 +125,45 @@
 							</div>
 							<!-- Post Excerpt -->
 							<p><h3>메뉴정보</h3><br><div id="result"></div></p>
+							<div class="login-form">
+                            <form action="${pageContext.request.contextPath}/rice/order/menuOrder">
+                            	<input type="hidden" name="store_no" value="${vo.store_no }">
+								<button type="submit" class="btn oneMusic-btn mt-30">티켓주문</button>
+                            </form>
+                        </div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<hr color="blue">
+	
+<%-- 	<section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        <div class="login-form">
+                            <form action="${pageContext.request.contextPath}/rice/order/menuOrder">
+                            	<input type="hidden" name="store_no" value="${vo.store_no }">
+								<button type="submit" class="btn oneMusic-btn mt-30">티켓주문</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --%>
 	<form action="update.Store">
 		<button>수정</button>
 	</form>
 	<form action="delete.Store">
 		<button>삭제</button>
 	</form>
-	<form action="${pageContext.request.contextPath}/rice/order/menuOrder">
+<%-- 	<form action="${pageContext.request.contextPath}/rice/order/menuOrder">
 		<input type="hidden" name="store_no" value="${vo.store_no }">
 		<button type="submit">티켓 주문</button>
-	</form>
+	</form> --%>
 	<%@ include file="/resources/public/footer.jsp"%>
 	<!-- jQuery-2.2.4 js -->
 	<script
