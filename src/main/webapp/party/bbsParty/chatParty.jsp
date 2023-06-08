@@ -139,7 +139,8 @@
 </head>
 
 <body onload="connect()">
-    <!-- ##### Header Area Start ##### -->
+<%@ include file="/resources/public/header.jsp" %>
+    <%-- <!-- ##### Header Area Start ##### -->
     <header class="header-area">
         <!-- Navbar Area -->
         <div class="oneMusic-main-menu">
@@ -208,7 +209,7 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
+    <!-- ##### Header Area End ##### --> --%>
 
 
 
@@ -217,7 +218,7 @@
     <!-- ##### Breadcumb Area Start ##### -->
     <section class="breadcumb-area bg-img bg-overlay" style="background-image: url(../../resources/template/img/bg-img/trip1.jpg);">
         <div class="bradcumbContent">
-            <p>채팅방 번호</p>
+            <p>채팅방</p>
             <h2>${roomId}</h2>
         </div>
     </section>
@@ -226,7 +227,7 @@
     <!-- ##### Blog Area Start ##### -->
     <div class="blog-area section-padding-100">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-12 col-lg-9">
 
                     <!-- Single Post Start -->
