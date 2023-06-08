@@ -27,6 +27,22 @@
             <h2>가게 등록</h2>
         </div>
     </section>
+    	<section class="elements-area mt-30 section-padding-100-0">
+		<div class="container">
+			<div class="row">
+
+				<!-- ========== Buttons ========== -->
+				<div class="col-12">
+					<!-- Buttons -->
+					<div class="oneMusic-buttons-area mb-100">
+						<a href="../../mainPage.jsp" class="btn oneMusic-btn m-2">메인<i	class="fa fa-angle-double-right"></i></a>
+						<a href="listStore"	class="btn oneMusic-btn btn-2 m-2">검색 페이지<i class="fa fa-angle-double-right"></i></a>
+						<a href="store.jsp"	class="btn oneMusic-btn btn-2 m-2">가게/메뉴 등록<i class="fa fa-angle-double-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <!-- <hr color="blue">
 <form action="insert" method="get">
 가게 이름 : <input name="store_name"> <br>
