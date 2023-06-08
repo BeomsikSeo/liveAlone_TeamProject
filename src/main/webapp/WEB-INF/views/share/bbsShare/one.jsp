@@ -211,15 +211,17 @@ table {
 			</c:choose>
 
 		</div>
-		<div class="flex-row">
+		<div class="flex-row" >
 			작성자 : ${bag.bbsShareWriter} <span class="right-align">작성일 :
 				${bag.bbsShareDate}</span>
 		</div>
-		<div  class="flex-row">
+		<div  class="flex-row-left" style="font-size:15px;">
 		<br>
 		포인트 : ${bag.bbsSharePoint} <br>
 		조회수 : ${bag.bbsShareView} <br>
-		관심수 : ${bag.bbsShareInterest}
+		관심수 : ${bag.bbsShareInterest}<br>
+		</div>
+		<div>
 		<button id="interest-button" style="display: none;"></button>
 		
 		<c:choose>
@@ -242,6 +244,7 @@ table {
 				</form>
 			</c:otherwise>
 		</c:choose>
+		
 		</div>
 		
 

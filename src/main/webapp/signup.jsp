@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="resources/template/style.css">
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <script>
 window.onload = function(){
     document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
@@ -43,12 +44,10 @@ $(document).ready(function() {
 	
 	$('input[name="member_id"]').on('change', function() {
 	    idval = 0;
-	    <%System.out.println("idval : 0");%>
 	});
 	
 	$('input[name="nickname"]').on('change', function() {
 	    nickval = 0;
-	    <%System.out.println("nickval : 0");%>
 	});
 	
 	$('input[name="password"], input[name="password_check"]').on('keyup', function() {
