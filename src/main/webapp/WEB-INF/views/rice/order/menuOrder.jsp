@@ -73,6 +73,15 @@
 		
 		font-weight: bold;
 	}
+	
+	.food_thumbnail{
+    	top: 0;
+   		left: 0;
+   		width: 100%;
+    	height: 300px;
+    	object-fit: cover;
+    	margin: auto;
+	}
 </style>
 <title>${store.store_name } 주문 >> 난 혼자 산다</title>
 </head>
@@ -98,7 +107,7 @@
 	                <div class="col-12 col-md-6 col-lg-4">
 	                    <div class="single-event-area mb-30">
 	                        <div class="event-thumbnail">
-	                          <img alt="error" src="${pageContext.request.contextPath}/resources/img/rice/ticket/food-Ticket-defaultFoodImage.png">
+	                          <img alt="error" class="food_thumbnail" onerror="this.src='${pageContext.request.contextPath}/resources/img/rice/ticket/food-Ticket-defaultFoodImage.png'" src="${pageContext.request.contextPath}/resources/img/rice/store/food/${menu.store_no}_${menu.food_img}">
 							 </div>
 	                        <div class="event-text">
 	                            <h4>${menu.food_name}</h4>
