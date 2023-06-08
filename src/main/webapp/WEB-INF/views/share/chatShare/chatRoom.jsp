@@ -181,12 +181,12 @@
 			<div class="card-header msg_head">
 				<div class="d-flex bd-highlight">
 					<div class="img_cont">
-						<img src="" class="rounded-circle user_img">
+						<img src="${pageContext.request.contextPath}/resources/img/bbs/member.jpg" class="rounded-circle user_img">
 					</div>
 					<div class="user_info">
 					
 						<span style="display: inline-block;">
-							${member.nickname} (${member.count}회)
+							${member.member_id} (${member.count}회)
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<c:if test="${bbs.bbsShareSuccess eq false}">
 								<button class="btn" onclick="tradeCheck();">거래완료</button>
@@ -218,7 +218,7 @@
 						</span>
 						
 						<p style="font-size: 20px; display: inline-block;">
-							<img src="${pageContext.request.contextPath}/resources/img/bbs/${bag.bbsShareImage}">
+							<img src="${pageContext.request.contextPath}/resources/img/bbs/${bbs.bbsShareImage}" width="50" height="50">
 							: ${bbs.bbsShareTitle} &nbsp;/&nbsp; ${bbs.bbsSharePoint}P &nbsp;/&nbsp; 
 							<c:if test="${bbs.bbsShareSuccess eq false}">
 								[거래중]
