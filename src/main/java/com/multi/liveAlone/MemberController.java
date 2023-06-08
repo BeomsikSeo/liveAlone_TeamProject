@@ -169,6 +169,8 @@ public class MemberController {
 		session.removeAttribute("member_id");
 		session.removeAttribute("address");
 		session.removeAttribute("certification");
+		session.removeAttribute("nickname");
+		session.removeAttribute("loginSuccess");
 		
 		return "redirect:mainPage.jsp";
 	}
