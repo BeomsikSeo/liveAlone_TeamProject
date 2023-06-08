@@ -44,9 +44,9 @@ public class KakaoPay {
         params.add("quantity", "1");						// 확인
         params.add("total_amount", Integer.toString(ticket.getTicket_price()));					// 확인
         params.add("tax_free_amount", "100");				// 확인
-        params.add("approval_url", "http://localhost:8888/liveAlone/rice/order/kakaoPaySuccess");	// 확인
-        params.add("cancel_url", "http://localhost:8888/liveAlone/rice/order/kakaoPayCancel");		// 확인
-        params.add("fail_url", "http://localhost:8888/liveAlone/rice/order/kakaoPaySuccessFail");	// 확인
+        params.add("approval_url", "http://localhost:8887/liveAlone/rice/order/kakaoPaySuccess");	// 확인
+        params.add("cancel_url", "http://localhost:8887/liveAlone/rice/order/kakaoPayCancel");		// 확인
+        params.add("fail_url", "http://localhost:8887/liveAlone/rice/order/kakaoPaySuccessFail");	// 확인
  
         HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
  
@@ -62,7 +62,7 @@ public class KakaoPay {
             e.printStackTrace();
         }
         
-        return "/index";
+        return "/mainPage.jsp";
     }
     
     public KakaoPayApprovalVO kakaoPayInfo(String pg_token,TicketVO ticket) {
