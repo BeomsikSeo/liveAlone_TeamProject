@@ -33,6 +33,7 @@
 				} // success
 			}) // ajax
 		}) // b1
+		
 	})
 </script>
 
@@ -62,8 +63,6 @@
 					<div class="oneMusic-buttons-area mb-70">
 						<button id="b1" class="btn oneMusic-btn btn-2 m-2">회원 정보</button>
 						<button id="b2" class="btn oneMusic-btn btn-2 m-2">지식인의 당근 채팅</button>
-						<button id="b3" class="btn oneMusic-btn btn-2 m-2">지식인의 당근 게시글</button>
-						<button id="b4" class="btn oneMusic-btn btn-2 m-2">동행 채팅</button>
 					</div>
 				</div>
 			</div>
