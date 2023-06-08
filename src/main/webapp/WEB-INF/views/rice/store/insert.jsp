@@ -31,7 +31,7 @@
 						store_no: ${no}
 					},
 					success: function(x) {
-						$('#result2').append("<hr color=red>" + x + "<br>" + "<hr color=red>")
+						$('#result2').append(x + "<br><br><br>")
 				} // success
 			}) // ajax
 		}) // b1
@@ -48,6 +48,22 @@
             <h2>메뉴 등록</h2>
         </div>
     </section>
+	<section class="elements-area mt-30 section-padding-100-0">
+		<div class="container">
+			<div class="row">
+
+				<!-- ========== Buttons ========== -->
+				<div class="col-12">
+					<!-- Buttons -->
+					<div class="oneMusic-buttons-area mb-100">
+						<a href="../../mainPage.jsp" class="btn oneMusic-btn m-2">메인<i	class="fa fa-angle-double-right"></i></a>
+						<a href="listStore"	class="btn oneMusic-btn btn-2 m-2">검색 페이지<i class="fa fa-angle-double-right"></i></a>
+						<a href="store.jsp"	class="btn oneMusic-btn btn-2 m-2">가게/메뉴 등록<i class="fa fa-angle-double-right"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <!-- 가게 등록 페이지에서 다음을 누르면 일단 store db에 저장하고 띄워줌 -->
 <%-- 가게 등록 정보 <br>
 가게번호 : ${vo.store_no} <br>
