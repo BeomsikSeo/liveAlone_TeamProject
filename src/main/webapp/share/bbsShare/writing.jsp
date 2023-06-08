@@ -1,12 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글쓰기</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>상세 페이지</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/template/img/core-img/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/template/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	window.onload = function() {
 		var radios = document.querySelectorAll('input[name="bbsShareRequest"]');
@@ -54,38 +67,95 @@
 		};
 		
 	</script>
+	<style type="text/css">
+	.tab { white-space: pre; }
+	</style>
 </head>
 <body>
-<div id="bbs">
-	<div id="bbs_title">
-		게 시 판
-	</div>
-	
-	<form action="insert" method="post" name="myForm">
-	<div id="bbsCreated">
-		<div class="bbsCreated_bottomLine">
-			<dl>
-				<dt>제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 : <input type="text" name=bbsShareTitle size="60" maxlength="100"/></dt>
-			</dl>
-			<dl>
-				<dt>작&nbsp;성&nbsp;자 : <input type="text" name="bbsShareWriter" size="20" maxlength="30" value="<%=session.getAttribute("nickname")%>" readonly/></dt>
-			</dl>		
-			<dl>
-				<dt>요청&nbsp;여부 : <input type="radio" name="bbsShareRequest" value="0" checked="checked"/>요청<input type="radio" name="bbsShareRequest" value="1"/>나눔</dt>
-			</dl>	
-			<dl>
-				<dt><span id="requestpoint">보상 </span>포인트 : <input type="number" name="bbsSharePoint" size="5" maxlength="5" value="0" /></dt>
-			</dl>
-			<dl>
-				<dt>내&nbsp;&nbsp;&nbsp;&nbsp;용</dt><br>
-				<dt><textarea rows="12" cols="63" name="bbsShareContent"></textarea></dt>
-			</dl>
-		</div>
-	</div>
-	<button type="submit">글쓰기</button>
-	</form>
+	<%@ include file="/resources/public/header.jsp"%>
+	<!-- 헤더 파일 -->
 
-</div>
-	
+	<!-- ##### Breadcumb Area Start ##### -->
+	<section class="breadcumb-area bg-img bg-overlay"
+		style="background-image: url(img/bg-img/breadcumb3.jpg);">
+		<div class="bradcumbContent">
+			<p></p>
+			<h2>글쓰기 페이지</h2>
+		</div>
+	</section>
+	<!-- ##### Breadcumb Area End ##### -->
+
+	<!-- ##### Login Area Start ##### -->
+	<section class="login-area section-padding-100">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-12 col-lg-8">
+					<div class="login-content">
+						<!-- Login Form -->
+						<div class="login-form">
+							<form action="writing" method="post" name="myForm">
+								<div class="form-group">
+									<label for="exampleInputEmail1">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목<span class="tab">&#9;</span></label>
+									<input type="text" name=bbsShareTitle size="60" maxlength="100" />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">작&nbsp;&nbsp;&nbsp;&nbsp;성&nbsp;&nbsp;&nbsp;&nbsp;자<span class="tab">&#9;</span></label> <input
+										type="text" name="bbsShareWriter" size="20" maxlength="30"
+										value="<%=session.getAttribute("nickname")%>" readonly />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">요청&nbsp;&nbsp;&nbsp;여부<span class="tab">&#9;</span></label> <input
+										type="radio" name="bbsShareRequest" value="0"
+										checked="checked" />요청<input type="radio"
+										name="bbsShareRequest" value="1" />나눔
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1"><span id="requestpoint">보상
+									</span>포인트<span class="tab">&#9;</span></label> <input type="number" name="bbsSharePoint" size="5"
+										maxlength="5" value="0" />
+								</div>
+								<div class="form-group">
+									<label for="exampleInputEmail1">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용</label><br>
+									<textarea rows="12" cols="80" name="bbsShareContent"></textarea>
+								</div>
+
+								<button type="submit" class="btn oneMusic-btn mt-30">글쓰기</button>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- ##### Login Area End ##### -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- ##### All Javascript Script ##### -->
+    <!-- Popper js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="${pageContext.request.contextPath}/resources/template/js/active.js"></script>
+    
+	<%@ include file="/resources/public/footer.jsp" %>
 </body>
 </html>
